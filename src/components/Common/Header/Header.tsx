@@ -8,7 +8,7 @@ import Navbar from "./Navbar";
 const Header = () => {
   const { pathname } = useLocation();
   let style;
-  if (pathname === "/categories") {
+  if (pathname === "/categories" || pathname === "/") {
     style = {
       backgroundImage: `url(${banner})`,
       height: "100vh",
@@ -17,17 +17,26 @@ const Header = () => {
       backgroundRepeat: "no-repeat",
     };
   }
+
   return (
     <div>
       <div style={style}>
         <div className="border-b border-gray-500">
           <Navbar />
         </div>
-        {pathname === "/categories" && (
-          <Container>
-            <Banner />
-          </Container>
-        )}
+        <div>
+          {pathname === "/categories" ? (
+            <Container>
+              <Banner />
+            </Container>
+          ) : pathname === "/" ? (
+            <Container>
+              <Banner />
+            </Container>
+          ) : (
+            ""
+          )}
+        </div>
       </div>
     </div>
   );

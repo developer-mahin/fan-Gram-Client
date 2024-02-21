@@ -1,7 +1,6 @@
 import App from "@/App";
 import Categories from "@/pages/Categories";
 import Gifting from "@/pages/Gifting";
-import Home from "@/pages/Home";
 import HowToFanGram from "@/pages/HowToFanGram";
 import Support from "@/pages/Support";
 import { createBrowserRouter } from "react-router-dom";
@@ -12,8 +11,8 @@ const router = createBrowserRouter([
     element: <App />,
     children: [
       {
-        path: "/",
-        element: <Home />,
+        index: true,
+        element: <Categories />,
       },
       {
         path: "/categories",

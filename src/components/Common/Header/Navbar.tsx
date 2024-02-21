@@ -5,6 +5,7 @@ import { CgCloseO, CgMenuRight } from "react-icons/cg";
 import logo from "../../../assets/logo.png";
 import Container from "../Container";
 import FNavLink from "../FNavLink";
+import { Link } from "react-router-dom";
 
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -13,7 +14,9 @@ const Navbar = () => {
     <Container>
       <div className="py-2">
         <div className="relative flex items-center justify-between">
-          <img className="w-[100px]" src={logo} alt="" />
+          <Link to="/">
+            <img className="w-[100px]" src={logo} alt="" />
+          </Link>
           <ul className="flex items-center hidden space-x-8 lg:flex">
             {navList.map((item, i: number) => (
               <FNavLink item={item} key={i} />
