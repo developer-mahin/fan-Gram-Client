@@ -1,8 +1,11 @@
+import FeaturedCelebrity from "@/components/Categories/FeaturedCelebrity";
+import Container from "@/components/Common/Container";
+
 const Categories = () => {
   return (
-    <div>
-      <h2>Welcome to the Categories page</h2>
-    </div>
+    <Container>
+      <FeaturedCelebrity />
+    </Container>
   );
 };
 
