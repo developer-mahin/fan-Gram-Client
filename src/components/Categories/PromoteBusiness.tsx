@@ -11,22 +11,8 @@ import Autoplay from "embla-carousel-autoplay";
 
 const PromoteBusiness = () => {
   return (
-    <div className="w-[90%] mx-auto flex justify-around items-center gap-6 my-6 py-4 rounded-xl bg-[#FCAE4B]">
-      <div className="text-white space-y-4">
-        <h3 className="text-2xl">
-          Promote Your Business <br /> through <span>celebrity</span>
-        </h3>
-
-        <p>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Sint
-          exercitationem, <br /> dolorem aliquam sapiente illum eum neque minus
-          tenetur nulla odit?
-        </p>
-        <Button className="bg-white hover:bg-white text-[#D94489] rounded-2xl px-6 ml-4">
-          Fill The Form
-        </Button>
-      </div>
-      <div>
+    <div className="w-[90%] mx-auto md:flex flex-row-reverse justify-around items-center gap-6 my-6 lg:py-6 rounded-xl bg-[#FCAE4B] p-4 ">
+      <div className="flex justify-center md:flex-none">
         <Carousel
           plugins={[
             Autoplay({
@@ -51,6 +37,20 @@ const PromoteBusiness = () => {
           {/* <CarouselPrevious />
           <CarouselNext /> */}
         </Carousel>
+      </div>
+      <div className="text-white space-y-4">
+        <h3 className="text-2xl">
+          Promote Your Business <br /> through <span>celebrity</span>
+        </h3>
+
+        <p>
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Sint
+          exercitationem, <br /> dolorem aliquam sapiente illum eum neque minus
+          tenetur nulla odit?
+        </p>
+        <Button className="bg-white hover:bg-white text-[#D94489] block mx-auto lg:mx-0 rounded-2xl px-6  lg:ml-4">
+          Fill The Form
+        </Button>
       </div>
     </div>
   );

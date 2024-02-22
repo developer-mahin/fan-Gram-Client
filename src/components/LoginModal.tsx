@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { Button } from "@/components/ui/button";
 import {
   Dialog,
@@ -17,7 +18,7 @@ import FInput from "./Form/FInput";
 // };
 
 export function LoginModal() {
-  const handleLogin = (data) => {
+  const handleLogin = (data: any) => {
     console.log(data);
   };
   return (
