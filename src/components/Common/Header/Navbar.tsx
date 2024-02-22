@@ -1,12 +1,12 @@
 import { navList } from "@/Data/navlinkPaths";
+import { LoginModal } from "@/components/Modal/LoginModal";
 import { Button } from "@/components/ui/button";
 import { useState } from "react";
 import { CgCloseO, CgMenuRight } from "react-icons/cg";
+import { Link } from "react-router-dom";
 import logo from "../../../assets/logo.png";
 import Container from "../Container";
 import FNavLink from "../FNavLink";
-import { Link } from "react-router-dom";
-import { LoginModal } from "@/components/LoginModal";
 
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -25,14 +25,11 @@ const Navbar = () => {
           </ul>
           <ul className="flex items-center hidden space-x-4 lg:flex">
             <li>
-              <Button className="bg-transparent border rounded-full">
-                Promote My Business
+              <Button className="bg-transparent hover:bg-transparent border rounded-full">
+                <Link to="/promote-my-business">Promote My Business</Link>
               </Button>
             </li>
             <li>
-              {/* <Button className="bg-[#D42978] hover:bg-[#D42978] rounded-full">
-                Login/Signup
-              </Button> */}
               <LoginModal />
             </li>
           </ul>
