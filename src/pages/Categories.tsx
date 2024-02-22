@@ -1,3 +1,4 @@
+import { Faq } from "@/components/Categories/FAQ";
 import CelebrityCards from "@/components/Categories/CelebrityCards";
 import FeaturedCelebrity from "@/components/Categories/FeaturedCelebrity";
 import PromoteBusiness from "@/components/Categories/PromoteBusiness";
@@ -8,6 +9,7 @@ const Categories = () => {
   return (
     <Container>
       <FeaturedCelebrity />
+      <Faq />
       <CelebrityCards />
       <PromoteBusiness />
       <QuestionAccordion />
