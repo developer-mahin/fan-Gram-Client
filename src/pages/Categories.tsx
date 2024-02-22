@@ -1,5 +1,8 @@
 import { Faq } from "@/components/Categories/FAQ";
+import CelebrityCards from "@/components/Categories/CelebrityCards";
 import FeaturedCelebrity from "@/components/Categories/FeaturedCelebrity";
+import PromoteBusiness from "@/components/Categories/PromoteBusiness";
+import { QuestionAccordion } from "@/components/Categories/QuestionAccordion";
 import Container from "@/components/Common/Container";
 
 const Categories = () => {
@@ -7,6 +10,9 @@ const Categories = () => {
     <Container>
       <FeaturedCelebrity />
       <Faq />
+      <CelebrityCards />
+      <PromoteBusiness />
+      <QuestionAccordion />
     </Container>
   );
 };

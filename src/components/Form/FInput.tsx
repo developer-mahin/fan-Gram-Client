@@ -4,7 +4,7 @@ import { Input } from "../ui/input";
 type TInputProps = {
   type: string;
   name: string;
-  placeholder: string;
+  placeholder?: string;
 };
 
 const FInput = ({ type, name, placeholder }: TInputProps) => {
@@ -19,7 +19,12 @@ const FInput = ({ type, name, placeholder }: TInputProps) => {
       }}
       render={({ field }) => (
         <>
-          <Input {...field} type={type} placeholder={placeholder} />
+          <Input
+            className="w-full"
+            {...field}
+            type={type}
+            placeholder={placeholder ? placeholder : ""}
+          />
         </>
       )}
     />
