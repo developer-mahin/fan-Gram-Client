@@ -6,6 +6,7 @@ import logo from "../../../assets/logo.png";
 import Container from "../Container";
 import FNavLink from "../FNavLink";
 import { Link } from "react-router-dom";
+import { LoginModal } from "@/components/LoginModal";
 
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -29,9 +30,10 @@ const Navbar = () => {
               </Button>
             </li>
             <li>
-              <Button className="bg-[#D42978] hover:bg-[#D42978] rounded-full">
+              {/* <Button className="bg-[#D42978] hover:bg-[#D42978] rounded-full">
                 Login/Signup
-              </Button>
+              </Button> */}
+              <LoginModal />
             </li>
           </ul>
           <div className="lg:hidden">
