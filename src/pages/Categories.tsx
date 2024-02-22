@@ -1,4 +1,3 @@
-import { Faq } from "@/components/Categories/FAQ";
 import CelebrityCards from "@/components/Categories/CelebrityCards";
 import FeaturedCelebrity from "@/components/Categories/FeaturedCelebrity";
 import PromoteBusiness from "@/components/Categories/PromoteBusiness";
@@ -9,9 +8,8 @@ const Categories = () => {
   return (
     <Container>
       <FeaturedCelebrity />
-      <Faq />
       <CelebrityCards />
-      <PromoteBusiness />
+      <PromoteBusiness className="lg:w-[90%] mx-auto my-6 lg:py-8 justify-around rounded-xl" />
       <QuestionAccordion />
     </Container>
   );

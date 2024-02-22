@@ -22,6 +22,7 @@ const FForm = ({
   children,
   defaultValues,
   resolver,
+  
 }: TFormProps) => {
   const formConfig: TFormConfig = {
     resolver: undefined,
