@@ -5,6 +5,7 @@ import Brands from "@/components/PromoteMyBusiness/Brands";
 import BusinessWork from "@/components/PromoteMyBusiness/BusinessWork";
 import CelebrityBrandShoutouts from "@/components/PromoteMyBusiness/CelebrityBrandShoutouts";
 import LetsWork from "@/components/PromoteMyBusiness/LetsWork";
+import OutLetestWork from "@/components/PromoteMyBusiness/OutLetestWork";
 import WhatWeOffers from "@/components/PromoteMyBusiness/WhatWeOffers";
 import { Button } from "@/components/ui/button";
 
@@ -14,6 +15,7 @@ const PromoteMyBusiness = () => {
       <PromoteBusiness className="w-full py-[66px] justify-between lg:px-64 px-10" />
       <Container>
         <Brands />
+        <OutLetestWork />
         <LetsWork />
         <CelebrityBrandShoutouts />
         <WhatWeOffers />

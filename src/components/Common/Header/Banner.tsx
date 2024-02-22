@@ -23,7 +23,7 @@ const Banner = () => {
             placeholder="Search Your Favourite creator"
             className="bg-transparent rounded-full mt-8 w-[545px] focus:outline-none text-white placeholder:text-white h-[50px] pl-12"
           />
-          <Button className="bg-primary hover:bg-primary rounded-full absolute right-36 top-1 px-8">
+          <Button className="bg-primary hover:bg-primary rounded-full absolute right-[210px] top-1 px-8">
             Search
           </Button>
         </div>
