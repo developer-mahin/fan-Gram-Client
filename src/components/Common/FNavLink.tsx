@@ -15,8 +15,8 @@ const FNavLink = ({ item }: TFNavLinkProps) => {
           isPending
             ? "pending"
             : isActive
-            ? "text-[#D42978] font-medium border-b border-[#D42978]"
-            : "text-white font-medium"
+            ? "text-[#D42978] font-semibold border-b border-[#D42978]"
+            : "text-white font-semibold"
         }
         to={item.path}
       >

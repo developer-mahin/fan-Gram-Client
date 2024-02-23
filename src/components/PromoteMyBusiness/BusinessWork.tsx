@@ -8,7 +8,7 @@ const BusinessWork = () => {
       <SectionTitle className="text-center">
         How does Fanrang for Business Work?
       </SectionTitle>
-      <div className="grid grid-cols-3 gap-x-5 mt-20 gap-y-20">
+      <div className="grid lg:grid-cols-3 gap-x-5 mt-20 gap-y-20">
         {businessData.map((data, i) => {
           return (
             <div
@@ -34,7 +34,7 @@ const BusinessWork = () => {
           Click here to see additional benefits
         </p>
 
-        <div className="grid grid-cols-4 gap-4 ">
+        <div className="grid lg:grid-cols-4 gap-4 ">
           {additionalBenefits.map((data, i) => {
             return (
               <div
@@ -49,8 +49,8 @@ const BusinessWork = () => {
         </div>
       </div>
 
-      <div className="bg-primary px-10 py-12 rounded-2xl mt-12 flex items-center justify-between">
-        <h2 className="text-2xl font-extrabold text-white lg:w-[824px]">
+      <div className="bg-primary lg:px-10 px-5 lg:py-12 py-5 rounded-2xl mt-12 flex items-center justify-between lg:gap-y-0 gap-y-3 lg:flex-row flex-col">
+        <h2 className="text-2xl font-extrabold text-white lg:w-[824px] lg:text-start text-center">
           Want to grow your business?Book a free consultation session with our
           Dedicated Brand Representative
         </h2>

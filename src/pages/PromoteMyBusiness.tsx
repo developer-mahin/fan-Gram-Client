@@ -1,7 +1,6 @@
 import PromoteBusiness from "@/components/Categories/PromoteBusiness";
 import { QuestionAccordion } from "@/components/Categories/QuestionAccordion";
 import Container from "@/components/Common/Container";
-import Brands from "@/components/PromoteMyBusiness/Brands";
 import BusinessWork from "@/components/PromoteMyBusiness/BusinessWork";
 import CelebrityBrandShoutouts from "@/components/PromoteMyBusiness/CelebrityBrandShoutouts";
 import LetsWork from "@/components/PromoteMyBusiness/LetsWork";
@@ -14,9 +13,8 @@ const PromoteMyBusiness = () => {
     <div>
       <PromoteBusiness className="w-full py-[66px] justify-between lg:px-64 px-10" />
       <Container>
-        <Brands />
-        <OutLetestWork />
         <LetsWork />
+        <OutLetestWork />
         <CelebrityBrandShoutouts />
         <WhatWeOffers />
         <BusinessWork />

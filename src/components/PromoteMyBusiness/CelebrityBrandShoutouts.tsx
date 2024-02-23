@@ -6,7 +6,7 @@ const CelebrityBrandShoutouts = () => {
       <SectionTitle className="text-center">
         Celebrity Brand Shoutouts
       </SectionTitle>
-      <div className="grid grid-cols-5 gap-x-5 [&>*:nth-child(even)]:mt-[30px] mt-10">
+      <div className="grid lg:grid-cols-5 gap-x-5 lg:gap-y-0 gap-y-6 lg:[&>*:nth-child(even)]:mt-[30px] mt-10">
         {Array.from({ length: 5 }).map((_, index) => (
           <div
             key={index}
@@ -14,7 +14,7 @@ const CelebrityBrandShoutouts = () => {
           ></div>
         ))}
       </div>
-      <div className="grid grid-cols-5 gap-x-5 [&>*:nth-child(even)]:mt-[30px] ">
+      <div className="grid lg:grid-cols-5 gap-x-5 lg:gap-y-0 gap-y-6 lg:[&>*:nth-child(even)]:mt-[30px] lg:mt-0 mt-6">
         {Array.from({ length: 5 }).map((_, index) => (
           <div
             key={index}

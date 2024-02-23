@@ -25,47 +25,57 @@ const PromoteBusiness = ({ className }: TPromoteBusiness) => {
     <div
       style={style}
       className={cn(
-        "md:flex flex-row-reverse items-center gap-6 p-4 ",
+        "lg:flex flex-row-reverse items-center gap-6 p-4 ",
         className
       )}
     >
-      <div className="flex justify-center md:flex-none">
-        <Carousel
-          plugins={[
-            Autoplay({
-              delay: 2000,
-            }),
-          ]}
-          className="w-full max-w-md"
-        >
-          <CarouselContent className="rounded-xl">
-            {Array.from({ length: 10 }).map((_, index) => (
-              <CarouselItem key={index}>
-                <div className="p-1">
-                  <img
-                    className="w-[432px] h-[255px] rounded-xl"
-                    src={girl}
-                    alt=""
-                  />
-                </div>
-              </CarouselItem>
-            ))}
-          </CarouselContent>
-          {/* <CarouselPrevious />
+      <div>
+        <div className="flex justify-center md:flex-none">
+          <Carousel
+            plugins={[
+              Autoplay({
+                delay: 2000,
+              }),
+            ]}
+            className="w-full max-w-md"
+          >
+            <CarouselContent className="rounded-xl">
+              {Array.from({ length: 10 }).map((_, index) => (
+                <CarouselItem key={index}>
+                  <div className="p-1 flex items-center justify-center">
+                    <img
+                      className="lg:w-[432px] w-[125px] lg:h-[255px] rounded-xl object-cover"
+                      src={girl}
+                      alt=""
+                    />
+                  </div>
+                </CarouselItem>
+              ))}
+            </CarouselContent>
+            {/* <CarouselPrevious />
           <CarouselNext /> */}
-        </Carousel>
+          </Carousel>
+        </div>
+        <h2
+          style={{
+            fontFamily: "'Satisfy', cursive",
+          }}
+          className="text-center font-medium"
+        >
+          # Munmun datta
+        </h2>
       </div>
 
-      <div className="text-white space-y-4">
-        <h3 className="text-[45px] leading-[50px] font-bold">
-          Promote Your Business <br /> through{" "}
+      <div className="text-white space-y-1">
+        <h3 className="lg:text-[45px] text-lg lg:text-start text-center lg:leading-[50px] font-bold">
+          Promote Your Business <br className="lg:block hidden" /> through{" "}
           <span className="text-black">celebrity</span>
         </h3>
 
-        <p>
+        <p className="lg:text-base text-sm lg:text-start text-center">
           Lorem ipsum dolor sit amet consectetur adipisicing elit. Sint
-          exercitationem, <br /> dolorem aliquam sapiente illum eum neque minus
-          tenetur nulla odit?
+          exercitationem, <br className="lg:block hidden" /> dolorem aliquam
+          sapiente illum eum neque minus tenetur nulla odit?
         </p>
         <Button className="bg-white hover:bg-white text-primary block mx-auto lg:mx-0 rounded-full px-6  lg:ml-4">
           Fill The Form

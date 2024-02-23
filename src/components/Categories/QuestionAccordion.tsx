@@ -3,6 +3,7 @@ import { IoIosArrowDown, IoIosArrowUp } from "react-icons/io";
 import Container from "../Common/Container";
 import { faqData } from "@/Data/faqData";
 import { Button } from "../ui/button";
+import SectionTitle from "../Common/SectionTitle";
 
 type TItemProps = {
   children: ReactNode;
@@ -23,15 +24,15 @@ const Item = ({ title, children, index }: TItemProps) => {
         className="flex items-center justify-between w-full p-4 focus:outline-none"
         onClick={() => setIsOpen(!isOpen)}
       >
-        <div className="flex items-center gap-5">
+        <div className="flex items-center lg:gap-5 gap-3">
           <p
-            className={`size-8 flex items-center justify-center text-lg rounded-full font-semibold ${
+            className={`lg:size-8 size-6 flex items-center justify-center text-lg rounded-full font-semibold ${
               isOpen ? "bg-primary text-white" : "bg-white text-black"
             }`}
           >
             {index + 1}
           </p>
-          <p className="text-lg font-bold">{title}</p>
+          <p className="lg:text-lg text-sm font-bold text-start">{title}</p>
         </div>
         <div className="flex items-center justify-center w-8 h-8 ">
           {isOpen ? (
@@ -42,8 +43,8 @@ const Item = ({ title, children, index }: TItemProps) => {
         </div>
       </button>
       {isOpen && (
-        <div className="p-4 pt-0 px-10 pl-16">
-          <p className="">{children}</p>
+        <div className="p-4 pt-0 px-10 lg:pl-16 pl-[50px]">
+          <p className="lg:text-base text-xs">{children}</p>
         </div>
       )}
     </div>
@@ -54,10 +55,10 @@ export const QuestionAccordion = () => {
   return (
     <div className="py-20">
       <Container>
-        <h2 className="text-[45px] font-semibold text-white text-center mb-8">
+        <SectionTitle className="text-white text-center mb-8">
           Frequently Asked Questions
-        </h2>
-        <div className="space-y-4">
+        </SectionTitle>
+        <div className="lg:space-y-4 space-y-2">
           {faqData.map((data, i: number) => (
             <Item index={i} key={i} title={data.title}>
               {data.des}

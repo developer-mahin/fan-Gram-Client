@@ -4,15 +4,9 @@ import { Button } from "../ui/button";
 const FeaturedCelebrity = () => {
   return (
     <div className="py-20 relative">
-      <div className="grid grid-cols-5 gap-x-6 [&>*:nth-child(even)]:mt-[30px] [&>*:nth-child(odd)]:pb-8">
+      <div className="grid lg:grid-cols-5 grid-cols-1 gap-x-6 lg:gap-y-0 gap-y-6 lg:[&>*:nth-child(even)]:mt-[30px] lg:[&>*:nth-child(odd)]:pb-8">
         {celebraty.map((item, i) => (
           <div key={i}>
-            {/* <img
-              className="rounded-[15px] object-cover w-[285px] h-[446px]"
-              src={item.image}
-              alt=""
-            /> */}
-
             <div
               style={{
                 backgroundImage: `url(${item.image})`,

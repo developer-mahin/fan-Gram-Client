@@ -21,9 +21,9 @@ const WhatWeOffers = () => {
   return (
     <div className="pb-10">
       <SectionTitle className="text-center">What we offers</SectionTitle>
-      <div className="flex items-center justify-between mt-8">
+      <div className="flex items-center lg:gap-y-0 gap-y-3 lg:flex-row flex-col justify-between mt-8">
         {buttonText.map((data) => (
-          <Button className="text-xl font-normal rounded-full bg-gradient-to-t from-[#39182B] lg:w-[327px] to-[#020101] px-6 h-12 border-b-2 border-[#D383A4]">
+          <Button className="text-xl font-normal rounded-full bg-gradient-to-t from-[#39182B] lg:w-[327px] w-full to-[#020101] px-6 h-12 border-b-2 border-[#D383A4]">
             {data}
           </Button>
         ))}
@@ -34,7 +34,7 @@ const WhatWeOffers = () => {
           We help you onboard a celebrity face as a brand ambassador, which
           would level up your marketing and improve your positioning
         </p>
-        <div >
+        <div>
           <p className="text-xl font-semibold text-white mb-2.5">Services</p>
           {services.map((data, i) => (
             <div key={i} className="flex items-center gap-2.5 space-y-1">

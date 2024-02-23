@@ -1,26 +1,19 @@
 import { useLocation } from "react-router-dom";
-import banner from "../../../assets/Banner.png";
+import "../../../styles/global.css";
 import Container from "../Container";
 import Banner from "./Banner";
-
 import Navbar from "./Navbar";
 
 const Header = () => {
   const { pathname } = useLocation();
-  let style;
-  if (pathname === "/categories" || pathname === "/") {
-    style = {
-      backgroundImage: `url(${banner})`,
-      height: "100vh",
-      width: "100%",
-      backgroundSize: "cover",
-      backgroundRepeat: "no-repeat",
-    };
-  }
 
   return (
     <div>
-      <div style={style}>
+      <div
+        className={`${
+          pathname === "/categories" || pathname === "/" ? "banner_image" : ""
+        }`}
+      >
         <div className="border-b border-gray-500">
           <Navbar />
         </div>
