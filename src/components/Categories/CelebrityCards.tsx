@@ -132,7 +132,7 @@ const CelebrityCards = () => {
           <p className="text-white pl-[8%] pb-4 text-2xl font-bold">
             Next Day Delivery
           </p>
-          <Button className="bg-transparent text-[#9F1F5A] border rounded-2xl px-4 ml-4 border-[#9F1F5A]">
+          <Button className="bg-transparent text-[#9F1F5A] border rounded-full px-4 ml-4 border-[#9F1F5A]">
             See All
           </Button>
         </div>
@@ -143,7 +143,7 @@ const CelebrityCards = () => {
           <p className="text-white pl-[8%] pb-4 text-2xl font-bold">
             FanGram Dhamaka
           </p>
-          <Button className="bg-transparent text-[#9F1F5A] border rounded-2xl px-4 ml-4 border-[#9F1F5A]">
+          <Button className="bg-transparent text-[#9F1F5A] border rounded-full px-4 ml-4 border-[#9F1F5A]">
             See All
           </Button>
         </div>

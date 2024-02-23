@@ -18,7 +18,7 @@ const OutLetestWork = () => {
         </div>
       </div>
 
-      <div className="grid grid-cols-3 gap-5 mt-[42px]">
+      <div className="grid lg:grid-cols-3 gap-5 mt-[42px]">
         {Array.from({ length: 6 }).map((_, index) => {
           return (
             <div key={index}>

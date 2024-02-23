@@ -37,12 +37,12 @@ const LetsWork = () => {
   };
 
   return (
-    <div className="bg-white my-20 rounded-2xl px-[90px] py-[50px]">
+    <div className="bg-white my-20 rounded-2xl lg:px-[90px] px-7 lg:py-[50px] py-7">
       <SectionTitle className="text-center text-black">
         Let's get to work
       </SectionTitle>
       <FForm onSubmit={onSubmit}>
-        <div className="grid grid-cols-2 gap-x-10 gap-y-2.5 mt-5">
+        <div className="grid lg:grid-cols-2 gap-x-10 gap-y-2.5 mt-5">
           {letsWorkFormData.map((data, i) => {
             return (
               <div key={i} className="space-y-2.5">
@@ -76,17 +76,17 @@ const LetsWork = () => {
         </div>
         <div className="flex flex-col">
           <Label>What’s your budget?</Label>
-          <div className="space-x-5 mt-2.5">
+          <div className="lg:space-x-5 space-x-1 mt-2.5 flex items-center">
             {budgetButtonText.map((data, i) => (
-              <Button
+              <div
                 onClick={() => setBudget(data)}
-                className={`w-fit rounded-full px-6  hover:text-white ${
-                  budget === data ? "bg-primary " : "bg-[#F3F1F1] text-black"
+                className={`w-fit rounded-full lg:px-6 px-2 lg:h-10 h-6 bg-[#F3F1F1] text-black cursor-pointer flex items-center justify-center lg:font-medium font-bold lg:text-base text-[10px] ${
+                  budget === data ? "bg-primary text-white" : "text-back"
                 }`}
                 key={i}
               >
                 {data}
-              </Button>
+              </div>
             ))}
           </div>
         </div>
@@ -94,7 +94,7 @@ const LetsWork = () => {
           <Checkbox id="terms" />
           <label
             htmlFor="terms"
-            className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+            className="lg:text-sm text-xs font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
           >
             By submitting, you agree to receive marketing communications about
             Tring for Business
@@ -102,7 +102,7 @@ const LetsWork = () => {
         </div>
 
         <div className="flex items-center  justify-center mt-6">
-          <Button type="submit" className="lg:w-[294px] rounded-full">
+          <Button type="submit" className="w-[294px] rounded-full">
             Submit
           </Button>
         </div>
