@@ -1,13 +1,16 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { Controller, useFormContext } from "react-hook-form";
 import { Input } from "../ui/input";
+import { cn } from "@/lib/utils";
 
 type TInputProps = {
   type: string;
   name: string;
   placeholder?: string;
+  className?: any;
 };
 
-const FInput = ({ type, name, placeholder }: TInputProps) => {
+const FInput = ({ type, name, placeholder, className }: TInputProps) => {
   const { control } = useFormContext();
 
   return (
@@ -20,7 +23,7 @@ const FInput = ({ type, name, placeholder }: TInputProps) => {
       render={({ field }) => (
         <>
           <Input
-            className="w-full"
+            className={cn(className)}
             {...field}
             type={type}
             placeholder={placeholder ? placeholder : ""}

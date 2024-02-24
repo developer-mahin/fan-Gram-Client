@@ -3,6 +3,8 @@ import BookCeleb from "@/pages/BookCeleb";
 import Categories from "@/pages/Categories";
 import Gifting from "@/pages/Gifting";
 import HowToFanGram from "@/pages/HowToFanGram";
+import Order from "@/pages/Order";
+import PromoteMyBusiness from "@/pages/PromoteMyBusiness";
 import Support from "@/pages/Support";
 import { createBrowserRouter } from "react-router-dom";
 
@@ -34,6 +36,14 @@ const router = createBrowserRouter([
       {
         path: "/book/:id",
         element: <BookCeleb />,
+      },
+      {
+        path: "/promote-my-business",
+        element: <PromoteMyBusiness />,
+      },
+      {
+        path: "/order",
+        element: <Order />,
       },
     ],
   },

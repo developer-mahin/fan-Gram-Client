@@ -34,7 +34,6 @@ export function CelebrityCard({ data }: { data: Record<string, any> }) {
         <CardDescription className="mx-auto text-white">
           {data?.tags?.map((tag: string, index: number) => (
             <small key={index} className="font-serif">
-              {" "}
               #{tag}
             </small>
           ))}
