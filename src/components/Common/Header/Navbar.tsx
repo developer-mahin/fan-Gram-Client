@@ -25,9 +25,11 @@ const Navbar = () => {
           </ul>
           <ul className="flex items-center hidden space-x-4 lg:flex">
             <li>
-              <Button className="bg-transparent hover:bg-transparent border rounded-full">
-                <Link to="/promote-my-business">Promote My Business</Link>
-              </Button>
+              <Link to="/promote-my-business">
+                <Button className="bg-transparent hover:bg-transparent border rounded-full">
+                  Promote My Business
+                </Button>
+              </Link>
             </li>
             <li>
               <LoginModal />

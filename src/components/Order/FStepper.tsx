@@ -1,6 +1,8 @@
 import { ReactNode, useState } from "react";
-import { Button } from "../ui/button";
-import Container from "./Container";
+import Container from "../Common/Container";
+import ConfirmStepFooter from "./ConfirmStepFooter";
+import DetailsStepFooter from "./DetailsStepFooter";
+import PaymentStepFooter from "./PaymentStepFooter";
 
 type TStepperProps = {
   stepData: {
@@ -13,16 +15,18 @@ const Stepper = ({ stepData }: TStepperProps) => {
   const [activeStep, setActiveStep] = useState(0);
 
   const handleNext = () => setActiveStep((cur) => cur + 1);
-  const handlePrev = () => setActiveStep((cur) => cur - 1);
+  // const handlePrev = () => setActiveStep((cur) => cur - 1);
 
   return (
     <div className="w-full py-4">
       <div className="w-[840px] mx-auto">
         <div className="flex justify-between items-center space-x-4">
           {stepData.map((_, index) => (
-            <div className="flex flex-col items-center justify-center">
+            <div
+              key={index}
+              className="flex flex-col items-center justify-center"
+            >
               <div
-                key={index}
                 className={`size-6 rounded-full cursor-pointer ${
                   activeStep === index ? "bg-primary " : "border-2 rounded-full"
                 }`}
@@ -48,27 +52,13 @@ const Stepper = ({ stepData }: TStepperProps) => {
       </div>
 
       <Container>
-        <div className="mt-16 flex items-center justify-between">
-          {/* <Button onClick={handlePrev} disabled={activeStep < 1}>
-            Prev
-          </Button> */}
-          <p className="text-white font-semibold text-xl lg:w-[635px]">
-            Secure and fast payments via Card, UPI, Netbanking and more By
-            continuing, you agree to our terms
-          </p>
-          <div>
-            <Button
-              className="w-[414px] rounded-full font-semibold text-lg"
-              onClick={handleNext}
-              disabled={activeStep > 1}
-            >
-              Continue
-            </Button>
-            <p className="text-[#737373] font-medium text-sm">
-              You will not be charged when you press this button
-            </p>
-          </div>
-        </div>
+        {activeStep === 0 ? (
+          <DetailsStepFooter activeStep={activeStep} handleNext={handleNext} />
+        ) : activeStep === 1 ? (
+          <ConfirmStepFooter activeStep={activeStep} handleNext={handleNext} />
+        ) : (
+          <PaymentStepFooter activeStep={activeStep} handleNext={handleNext} />
+        )}
       </Container>
     </div>
   );

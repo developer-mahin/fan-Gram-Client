@@ -4,7 +4,7 @@ import { Button } from "../ui/button";
 
 const BusinessWork = () => {
   return (
-    <div>
+    <div className="py-12">
       <SectionTitle className="text-center">
         How does Fanrang for Business Work?
       </SectionTitle>
@@ -34,7 +34,7 @@ const BusinessWork = () => {
           Click here to see additional benefits
         </p>
 
-        <div className="grid lg:grid-cols-4 gap-4 ">
+        <div className="grid lg:grid-cols-4 gap-4">
           {additionalBenefits.map((data, i) => {
             return (
               <div

@@ -35,8 +35,8 @@ const Footer = () => {
             <div>
               <p className="font-semibold tracking-wide text-white">About</p>
               <ul className="mt-[30px] space-y-2">
-                {footerData[0].about?.map((item) => (
-                  <li>
+                {footerData[0].about?.map((item, i) => (
+                  <li key={i}>
                     <a href="/" className="text-white ">
                       {item.name}
                     </a>
@@ -49,8 +49,8 @@ const Footer = () => {
                 Resources
               </p>
               <ul className="mt-[30px] space-y-2">
-                {footerData[1]?.Resources?.map((item) => (
-                  <li>
+                {footerData[1]?.Resources?.map((item, i) => (
+                  <li key={i}> 
                     <a href="/" className="text-white ">
                       {item.name}
                     </a>
@@ -61,8 +61,8 @@ const Footer = () => {
             <div>
               <p className="font-semibold tracking-wide text-white">Help</p>
               <ul className="mt-[30px] space-y-2">
-                {footerData[2]?.Help?.map((item) => (
-                  <li>
+                {footerData[2]?.Help?.map((item, i) => (
+                  <li key={i}>
                     <a href="/" className="text-white ">
                       {item.name}
                     </a>
@@ -73,8 +73,8 @@ const Footer = () => {
             <div>
               <p className="font-semibold tracking-wide text-white">Explore</p>
               <ul className="mt-[30px] space-y-2">
-                {footerData[3]?.Explore?.map((item) => (
-                  <li>
+                {footerData[3]?.Explore?.map((item, i) => (
+                  <li key={i}>
                     <a href="/" className="text-white ">
                       {item.name}
                     </a>
