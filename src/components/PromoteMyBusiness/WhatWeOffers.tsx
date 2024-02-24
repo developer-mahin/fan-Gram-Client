@@ -19,7 +19,7 @@ const services = [
 
 const WhatWeOffers = () => {
   return (
-    <div className="pb-10">
+    <div className="py-12">
       <SectionTitle className="text-center">What we offers</SectionTitle>
       <div className="flex items-center lg:gap-y-0 gap-y-3 lg:flex-row flex-col justify-between mt-8">
         {buttonText.map((data) => (

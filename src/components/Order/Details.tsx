@@ -96,7 +96,7 @@ const Details = () => {
 
   return (
     <>
-      <Container>
+      <Container className="mt-12">
         <h4 className="text-2xl font-semibold text-[#999999]">
           PERSONALIZED VIDEO FROM
         </h4>
