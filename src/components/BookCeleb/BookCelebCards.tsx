@@ -6,20 +6,12 @@ import {
   MdOutlineKeyboardArrowRight,
 } from "react-icons/md";
 import { data } from "@/FakeData/data";
-
-export type TCeleb = {
-  _id: number;
-  name: string;
-  img: string;
-  tags: Array<string>;
-  price: number;
-  available: boolean;
-};
+import { CelebrityCard } from "../Common/CelebrityCard";
 
 const availableCeleb = data?.filter((celeb) => celeb.available === true);
 const fanGramCeleb = data?.filter((celeb) => celeb.available !== true);
 
-const CelebrityCards = () => {
+const BookCelebCards = () => {
   const [currentSlider, setCurrentSlider] = useState(0);
   const [currentFanGramSlider, setCurrentFanGramSlider] = useState(0);
 
@@ -48,13 +40,6 @@ const CelebrityCards = () => {
     []
   );
 
-  // if you don't want to change the slider automatically then you can just remove the useEffect
-  // useEffect(() => {
-  //   const intervalId = setInterval(() => {
-  //     nextSlider();
-  //   }, 3000);
-  //   return () => clearInterval(intervalId);
-  // }, [nextSlider]);
   return (
     <div className="space-y-8 ">
       <div className="">
@@ -84,10 +69,24 @@ const CelebrityCards = () => {
             </button>
           </div>
         </div>
-        <CelebritySlider
+        {/* <CelebritySlider
           currentSlider={currentSlider}
           data={availableCeleb}
-        ></CelebritySlider>
+        ></CelebritySlider> */}
+
+        <div className="my-6 relative overflow-hidden">
+          <div
+            className="ease-linear duration-300 flex gap-[2%]"
+            style={{ transform: `translateX(-${currentSlider * 52}%)` }}
+          >
+            {/* sliders */}
+            {availableCeleb?.map((item) => (
+              <div className="min-w-[20%] h-fit bg-black/30 relative duration-200">
+                <CelebrityCard data={item} />
+              </div>
+            ))}
+          </div>
+        </div>
       </div>
 
       <div>
@@ -129,4 +128,4 @@ const CelebrityCards = () => {
   );
 };
 
-export default CelebrityCards;
+export default BookCelebCards;

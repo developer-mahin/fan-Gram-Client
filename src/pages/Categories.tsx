@@ -9,7 +9,7 @@ const Categories = () => {
     <Container>
       <FeaturedCelebrity />
       <CelebrityCards />
-      <PromoteBusiness className="lg:w-[90%] mx-auto my-6 lg:py-8 justify-around rounded-xl" />
+      <PromoteBusiness />
       <QuestionAccordion />
     </Container>
   );

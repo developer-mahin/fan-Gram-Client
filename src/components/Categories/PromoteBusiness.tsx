@@ -86,3 +86,4 @@ const PromoteBusiness = ({ className }: TPromoteBusiness) => {
 };
 
 export default PromoteBusiness;
+promote;

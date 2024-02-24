@@ -1,6 +1,6 @@
 import Container from "@/components/Common/Container";
 import DetailsStepFooter from "@/components/Order/DetailsStepFooter";
-import React, { useState } from "react";
+import { useState } from "react";
 import Confirm from "../components/Order/Confirm";
 import Details from "../components/Order/Details";
 import Payment from "../components/Order/Payment";
