@@ -57,3 +57,4 @@ const PromoteBusiness = () => {
 };
 
 export default PromoteBusiness;
+promote;

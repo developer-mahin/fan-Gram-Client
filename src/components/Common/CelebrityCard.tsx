@@ -10,10 +10,13 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { CiHeart } from "react-icons/ci";
+import { useNavigate } from "react-router-dom";
 
 // type CardProps = React.ComponentProps<typeof Card>;
 
 export function CelebrityCard({ data }: { data: Record<string, any> }) {
+  const navigate = useNavigate();
+
   return (
     <Card className={cn("w-auto h-fit  bg-[#292929] border-none rounded-2xl")}>
       <CardHeader
@@ -43,6 +46,7 @@ export function CelebrityCard({ data }: { data: Record<string, any> }) {
       </CardContent>
       <CardFooter>
         <Button
+          onClick={() => navigate(`/book/${data._id}`)}
           size="sm"
           className="mx-auto bg-white text-primary hover:bg-white rounded-full font-medium"
         >

@@ -1,4 +1,5 @@
 import App from "@/App";
+import BookCeleb from "@/pages/BookCeleb";
 import Categories from "@/pages/Categories";
 import Gifting from "@/pages/Gifting";
 import HowToFanGram from "@/pages/HowToFanGram";
@@ -29,6 +30,10 @@ const router = createBrowserRouter([
       {
         path: "/support",
         element: <Support />,
+      },
+      {
+        path: "/book/:id",
+        element: <BookCeleb />,
       },
     ],
   },
