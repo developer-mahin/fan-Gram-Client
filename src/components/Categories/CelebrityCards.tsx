@@ -1,11 +1,9 @@
-import { CelebritySlider } from "../Common/CelebritySlider";
-import { useCallback, useState } from "react";
-import { Button } from "../ui/button";
-import {
-  MdOutlineKeyboardArrowLeft,
-  MdOutlineKeyboardArrowRight,
-} from "react-icons/md";
 import { data } from "@/FakeData/data";
+import { useCallback, useEffect, useState } from "react";
+import { IoIosArrowBack, IoIosArrowForward } from "react-icons/io";
+import { CelebritySlider } from "../Common/CelebritySlider";
+import { Button } from "../ui/button";
+import SectionTitle from "../Common/SectionTitle";
 
 export type TCeleb = {
   _id: number;
@@ -33,6 +31,7 @@ const CelebrityCards = () => {
         ? fanGramCeleb.length - 1
         : currentFanGramSlider - 1
     );
+
   const nextSlider = useCallback(
     () =>
       setCurrentSlider((currentSlider) =>
@@ -40,6 +39,7 @@ const CelebrityCards = () => {
       ),
     []
   );
+
   const nextFanGramSlider = useCallback(
     () =>
       setCurrentFanGramSlider((currentSlider) =>
@@ -48,43 +48,56 @@ const CelebrityCards = () => {
     []
   );
 
-  // if you don't want to change the slider automatically then you can just remove the useEffect
-  // useEffect(() => {
-  //   const intervalId = setInterval(() => {
-  //     nextSlider();
-  //   }, 3000);
-  //   return () => clearInterval(intervalId);
-  // }, [nextSlider]);
+  const handleDotClick = (index: number) => {
+    setCurrentSlider(index);
+  };
+
+  const handleDotClickFanGram = (index: number) => {
+    setCurrentFanGramSlider(index);
+  };
+
+  useEffect(() => {
+    let intervalId: string | number | NodeJS.Timeout | undefined;
+    intervalId = setInterval(() => {
+      nextSlider();
+    }, 3000);
+    intervalId = setInterval(() => {
+      nextFanGramSlider();
+    }, 4000);
+
+    return () => clearInterval(intervalId);
+  }, [nextSlider, nextFanGramSlider]);
+
   return (
     <div className="space-y-8 ">
       <div className="">
         <div className="flex w-full justify-evenly">
           <div className="flex-grow flex justify-start">
-            <p className="text-white pb-4 text-2xl font-bold">
+            <SectionTitle className="text-white">
               Next Day Delivery
-            </p>
-            <Button className="bg-transparent text-[#9F1F5A] border rounded-2xl px-4 ml-4 border-[#9F1F5A]">
+            </SectionTitle>
+            <Button className="bg-transparent text-primary border rounded-full px-4 ml-4 hover:bg-transparent border-primary">
               See All
             </Button>
           </div>
-          <div className="flex gap-6">
-            {/* arrow left */}
+
+          <div className="lg:flex hidden items-center gap-5">
             <button
               onClick={prevSlider}
-              className="bg-transparent rounded-full w-6 h-6 md:w-8 md:h-8 border border-[#9F1F5A] flex justify-center items-center"
+              className="size-12 rounded-full bg-transparent flex items-center justify-center border border-primary "
             >
-              <MdOutlineKeyboardArrowLeft className="w-4 h-4 md:w-6 md:h-6  font-light text-[#9F1F5A]" />
+              <IoIosArrowBack className="text-primary size-6" />
             </button>
-            {/* arrow right */}
             <button
               onClick={nextSlider}
-              className="bg-transparent rounded-full w-6 h-6 md:w-8 md:h-8 border border-[#9F1F5A] flex justify-center items-center"
+              className="size-12 rounded-full bg-primary flex items-center justify-center border border-primary "
             >
-              <MdOutlineKeyboardArrowRight className="w-4 h-4 md:w-6 md:h-6  font-light text-[#9F1F5A]" />
+              <IoIosArrowForward className="text-white size-6" />
             </button>
           </div>
         </div>
         <CelebritySlider
+          handleDotClick={handleDotClick}
           currentSlider={currentSlider}
           data={availableCeleb}
         ></CelebritySlider>
@@ -94,33 +107,32 @@ const CelebrityCards = () => {
         <div>
           <div className="flex w-full justify-evenly">
             <div className="flex-grow flex justify-start">
-              <p className="text-white pb-4 text-2xl font-bold">
+              <SectionTitle className="text-white ">
                 FanGram Dhamaka
-              </p>
-              <Button className="bg-transparent text-[#9F1F5A] border rounded-2xl px-4 ml-4 border-[#9F1F5A]">
+              </SectionTitle>
+              <Button className="bg-transparent hover:bg-transparent text-primary border rounded-full px-4 ml-4 border-primary">
                 See All
               </Button>
             </div>
-            <div className="flex gap-6">
-              {/* arrow left */}
+            <div className="lg:flex hidden items-center gap-5">
               <button
                 onClick={prevFanGramSlider}
-                className="bg-transparent rounded-full w-6 h-6 md:w-8 md:h-8 border border-[#9F1F5A] flex justify-center items-center"
+                className="size-12 rounded-full bg-transparent flex items-center justify-center border border-primary "
               >
-                <MdOutlineKeyboardArrowLeft className="w-4 h-4 md:w-6 md:h-6  font-light text-[#9F1F5A]" />
+                <IoIosArrowBack className="text-primary size-6" />
               </button>
-              {/* arrow right */}
               <button
                 onClick={nextFanGramSlider}
-                className="bg-transparent rounded-full w-6 h-6 md:w-8 md:h-8 border border-[#9F1F5A] flex justify-center items-center"
+                className="size-12 rounded-full bg-primary flex items-center justify-center border border-primary "
               >
-                <MdOutlineKeyboardArrowRight className="w-4 h-4 md:w-6 md:h-6  font-light text-[#9F1F5A]" />
+                <IoIosArrowForward className="text-white size-6" />
               </button>
             </div>
           </div>
         </div>
 
         <CelebritySlider
+          handleDotClick={handleDotClickFanGram}
           currentSlider={currentFanGramSlider}
           data={fanGramCeleb}
         ></CelebritySlider>

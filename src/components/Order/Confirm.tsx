@@ -62,7 +62,7 @@ const Confirm = ({ activeStep, handleNext }: TConfirmProps) => {
           <h4 className="text-2xl font-semibold text-[#999999]">
             PERSONALIZED VIDEO FROM
           </h4>
-          <div className="flex items-center gap-4 mt-5">
+          <div className="flex lg:flex-row flex-col items-center gap-4 mt-5">
             <img
               src={sunny}
               alt=""
@@ -79,10 +79,10 @@ const Confirm = ({ activeStep, handleNext }: TConfirmProps) => {
           </div>
         </div>
       </Container>
-      <div className=" ">
-        <div className="w-[1022px]  mx-auto rounded-2xl bg-white">
-          <div className="p-10">
-            <h4 className="font-semibold text-[#7E7E7E]">
+      <div className="mx-3">
+        <div className="lg:w-[1022px]  mx-auto rounded-2xl bg-white ">
+          <div className="lg:p-10 p-3">
+            <h4 className="font-semibold text-secondary">
               YOUR BOOKING DETAILS
             </h4>
             <div className="flex items-center gap-4 mt-5">
@@ -96,7 +96,7 @@ const Confirm = ({ activeStep, handleNext }: TConfirmProps) => {
                   Sunny Leone
                 </h2>
                 <p className="text-primary font-medium">Summary</p>
-                <p className="text-[#7E7E7E]">
+                <p className="text-secondary">
                   Hi, nayan what's up? Hope you are doing great in this festive
                   season of Diwali. It's me Sunny Leone wishing you a very happy
                   & prosperous Diwali from monika. May, the occasion of Diwali
@@ -111,7 +111,7 @@ const Confirm = ({ activeStep, handleNext }: TConfirmProps) => {
               <p className="font-semibold">Diwali</p>
               <p>
                 <span className="font-bold"> ₹10450</span>{" "}
-                <span className="line-through text-xs text-[#7E7E7E]">
+                <span className="line-through text-xs text-secondary">
                   ₹11000
                 </span>
               </p>
@@ -131,8 +131,8 @@ const Confirm = ({ activeStep, handleNext }: TConfirmProps) => {
 
           <div className="bg-[url('@/assets/line.png')] w-full h-1.5 bg-no-repeat bg-center bg-cover"></div>
 
-          <Container className="my-5 px-10">
-            <h2 className="text-[#7E7E7E] font-semibold pb-3">
+          <Container className="my-5 lg:px-10 px-3">
+            <h2 className="text-secondary font-semibold pb-3">
               You're eligible for a FREE gift!
             </h2>
             <div className="p-3 rounded-xl flex items-center justify-between bg-[#F9F9F9]">
@@ -146,7 +146,7 @@ const Confirm = ({ activeStep, handleNext }: TConfirmProps) => {
                   </h4>
                   <p className="text-sm flex items-center gap-1.5 font-semibold text-black">
                     <span> ₹0</span>
-                    <span className="line-through font-normal text-[#7E7E7E]">
+                    <span className="line-through font-normal text-secondary">
                       ₹1499
                     </span>
                     <span>₹1499</span>
@@ -154,7 +154,7 @@ const Confirm = ({ activeStep, handleNext }: TConfirmProps) => {
                 </div>
               </div>
               <div className="px-6 flex items-center gap-2">
-                <p className="text-[#7E7E7E] text-sm">
+                <p className="text-secondary text-sm">
                   Want to add this to your order?
                 </p>
                 <Button className="rounded-full p-0 size-8">
@@ -166,8 +166,8 @@ const Confirm = ({ activeStep, handleNext }: TConfirmProps) => {
 
           <div className="bg-[url('@/assets/line.png')] w-full h-1.5 bg-no-repeat bg-center bg-cover"></div>
 
-          <Container className="py-5 px-10">
-            <h2 className="text-[#7E7E7E] font-semibold pb-3">
+          <Container className="py-5 lg:px-10 px-3">
+            <h2 className="text-secondary font-semibold pb-3">
               Level Up Your Surprise
             </h2>
             <div className="p-3 rounded-xl flex items-center justify-between bg-[#F9F9F9]">
@@ -183,7 +183,7 @@ const Confirm = ({ activeStep, handleNext }: TConfirmProps) => {
                   <h4 className=" font-semibold text-black">
                     Remove the FanRang Logo
                   </h4>
-                  <p className="text-sm text-[#7E7E7E] gap-1.5 font-semibold">
+                  <p className="text-sm text-secondary gap-1.5 font-semibold">
                     Remove the logo and show off in your circle
                   </p>
                 </div>
@@ -203,7 +203,7 @@ const Confirm = ({ activeStep, handleNext }: TConfirmProps) => {
                   <h4 className=" font-semibold text-black">
                     Remove the FanRang Logo
                   </h4>
-                  <p className="text-sm text-[#7E7E7E] gap-1.5 font-semibold">
+                  <p className="text-sm text-secondary gap-1.5 font-semibold">
                     Remove the logo and show off in your circle
                   </p>
                 </div>
@@ -217,8 +217,8 @@ const Confirm = ({ activeStep, handleNext }: TConfirmProps) => {
 
           <div className="bg-[url('@/assets/line.png')] w-full h-1.5 bg-no-repeat bg-center bg-cover"></div>
 
-          <Container className="px-10 py-5">
-            <h2 className="text-[#7E7E7E] font-semibold pb-3">OFFERS</h2>
+          <Container className="lg:px-10 px-3 py-5">
+            <h2 className="text-secondary font-semibold pb-3">OFFERS</h2>
             <div className="p-3 rounded-xl flex items-center justify-between bg-[#F9F9F9]">
               <div className="flex items-center gap-5">
                 <div className="">
@@ -229,7 +229,7 @@ const Confirm = ({ activeStep, handleNext }: TConfirmProps) => {
                   />
                 </div>
                 <div className="flex flex-col">
-                  <h4 className=" font-semibold text-[#7E7E7E]">
+                  <h4 className=" font-semibold text-secondary">
                     "SMILE5" coupon applied
                   </h4>
                   <p className="text-sm text-black font-semibold">
@@ -248,10 +248,10 @@ const Confirm = ({ activeStep, handleNext }: TConfirmProps) => {
 
           <div className="bg-[url('@/assets/line.png')] w-full h-1.5 bg-no-repeat bg-center bg-cover"></div>
 
-          <Container className="px-10 py-5">
-            <p className="text-[#7E7E7E] font-semibold">YOUR DETAILS</p>
+          <Container className="lg:px-10 px-3 py-5">
+            <p className="text-secondary font-semibold">YOUR DETAILS</p>
             <div className="mb-4 space-y-1">
-              <Label className="text-[#7E7E7E] font-medium">
+              <Label className="text-secondary font-medium">
                 Billing number *
               </Label>
 
@@ -265,7 +265,7 @@ const Confirm = ({ activeStep, handleNext }: TConfirmProps) => {
               />
             </div>
             <div className=" space-y-1">
-              <Label className="text-[#7E7E7E] font-medium">
+              <Label className="text-secondary font-medium">
                 Billing email id *
               </Label>
               <Input
@@ -274,15 +274,15 @@ const Confirm = ({ activeStep, handleNext }: TConfirmProps) => {
                 placeholder="Enter Your Email Address"
               />
             </div>
-            <p className="text-center text-[#7E7E7E] mt-2">
+            <p className="text-center text-secondary mt-2">
               *Your receipt & order updates will be sent here!
             </p>
           </Container>
 
           <div className="bg-[url('@/assets/line.png')] w-full h-1.5 bg-no-repeat bg-center bg-cover"></div>
 
-          <Container className="px-10 pt-5 text-black">
-            <p className="text-[#7E7E7E] font-semibold">BILLING SUMMARY</p>
+          <Container className="lg:px-10 px-3 pt-5 text-black">
+            <p className="text-secondary font-semibold">BILLING SUMMARY</p>
             <div className="flex items-center justify-between mt-5">
               <p className="font-medium">Personalized Video</p>
               <p className="font-medium">₹11000</p>
@@ -324,7 +324,7 @@ const Confirm = ({ activeStep, handleNext }: TConfirmProps) => {
             </div>
           </Container>
 
-          <Container className="px-10 py-10 text-black">
+          <Container className="lg:px-10 px-3 py-10 text-black">
             <ConfirmStepFooter
               activeStep={activeStep}
               handleNext={handleNext}
@@ -332,7 +332,7 @@ const Confirm = ({ activeStep, handleNext }: TConfirmProps) => {
           </Container>
         </div>
 
-        <div className="w-[1022px]  mx-auto space-y-2.5 my-8">
+        <div className="lg:w-[1022px]  mx-auto space-y-2.5 my-8">
           {fakeData.map((data, i) => (
             <div
               key={i}

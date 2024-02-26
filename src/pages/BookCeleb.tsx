@@ -6,6 +6,8 @@ import { useParams } from "react-router-dom";
 const BookCeleb = () => {
   const { id } = useParams();
   const celebData = data?.filter((item) => item._id === Number(id));
+
+  
   return (
     <div className="space-y-6">
       <BookCelebCard data={celebData[0]} />

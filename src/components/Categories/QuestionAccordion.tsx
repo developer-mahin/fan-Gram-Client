@@ -54,7 +54,7 @@ const Item = ({ title, children, index }: TItemProps) => {
 export const QuestionAccordion = () => {
   return (
     <div className="py-20">
-      <Container>
+      <div>
         <SectionTitle className="text-white text-center mb-8">
           Frequently Asked Questions
         </SectionTitle>
@@ -68,7 +68,7 @@ export const QuestionAccordion = () => {
         <div className="flex items-center justify-center mt-10">
           <Button className="rounded-full px-8 text-lg">See All FAQ's</Button>
         </div>
-      </Container>
+      </div>
     </div>
   );
 };

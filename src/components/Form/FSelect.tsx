@@ -24,12 +24,12 @@ const FSelect = ({ label, name, className, options }: TInputProps) => {
         required: true,
       }}
       render={({ field }) => (
-        <div className="">
-          <Label className="my-2.5">{label}</Label>
+        <div className={cn("text-black", className)}>
+          <Label className="my-2.5 ">{label}</Label>
           <select
             {...field}
             className={cn(
-              "w-full h-[48px] border rounded-lg px-2 bg-[#F7F7F7] my-2.5 text-[#B6B6B6]",
+              "w-full lg:h-12 h-9 border rounded-lg px-2 bg-[#F7F7F7] lg:my-2.5 mt-1 text-[#B6B6B6]",
               className
             )}
           >

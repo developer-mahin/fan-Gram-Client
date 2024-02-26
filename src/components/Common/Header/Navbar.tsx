@@ -49,7 +49,7 @@ const Navbar = () => {
               </button>
             </div>
             {isMenuOpen && (
-              <div className="absolute top-0 left-0 w-full">
+              <div className="absolute z-50 top-0 left-0 w-full">
                 <div className="p-5 bg-gradient-to-r from-[#3F261B] to-[#0F030A] rounded shadow-sm">
                   <div className="flex items-center justify-between mb-4">
                     <div>

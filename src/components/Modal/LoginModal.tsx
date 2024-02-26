@@ -1,4 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
+import apple from "@/assets/apple.png";
+import facebook from "@/assets/facebook-fil.png";
+import google from "@/assets/google.png";
 import { Button } from "@/components/ui/button";
 import {
   Dialog,
@@ -9,13 +12,10 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog";
+import { cn } from "@/lib/utils";
 import FForm from "../Form/FForm";
 import FInput from "../Form/FInput";
-import apple from "@/assets/apple.png";
-import facebook from "@/assets/facebook-fil.png";
-import google from "@/assets/google.png";
 import { SignUpModal } from "./SignUpModal";
-import { cn } from "@/lib/utils";
 
 type TLogin = {
   className?: string;
@@ -31,7 +31,7 @@ export function LoginModal({ className }: TLogin) {
       <DialogTrigger asChild>
         <Button className={cn("rounded-full", className)}>Login/SignUp</Button>
       </DialogTrigger>
-      <DialogContent className="w-full p-12">
+      <DialogContent className="w-full p-12 rounded-3xl">
         <DialogHeader>
           <DialogTitle className="text-[35px] font-black text-[#0A0207]">
             Login With FamGram
@@ -54,13 +54,13 @@ export function LoginModal({ className }: TLogin) {
           </DialogDescription>
         </DialogHeader>
         <FForm onSubmit={handleLogin}>
-          <div className="space-y-4">
-            <div className="flex gap-4 items-center">
+          <div className="space-y-4 mt-3">
+            <div className="">
               <FInput
                 placeholder="Enter Your Email Here"
                 type="text"
                 name="email"
-                className="bg-[#EEEEEE] h-11"
+                className="bg-[#EEEEEE] h-11 w-full"
               />
             </div>
             <div>

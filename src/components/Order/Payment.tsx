@@ -1,16 +1,16 @@
-import Container from "../Common/Container";
-import { fakeData } from "./Confirm";
+import colorMark from "@/assets/colorMark.png";
 import star from "@/assets/star.png";
 import sunny from "@/assets/sunny.png";
-import colorMark from "@/assets/colorMark.png";
-import { IoIosArrowDown } from "react-icons/io";
-import { Input } from "../ui/input";
-import { Button } from "../ui/button";
-import PhoneInput from "react-phone-number-input";
-import { Label } from "../ui/label";
-import { useState } from "react";
 import { E164Number } from "libphonenumber-js/core";
+import { useState } from "react";
+import { IoIosArrowDown } from "react-icons/io";
+import PhoneInput from "react-phone-number-input";
+import Container from "../Common/Container";
+import { Button } from "../ui/button";
 import { Checkbox } from "../ui/checkbox";
+import { Input } from "../ui/input";
+import { Label } from "../ui/label";
+import { fakeData } from "./Confirm";
 import PaymentStepFooter from "./PaymentStepFooter";
 
 type TPaymentProps = {
@@ -49,7 +49,7 @@ const Payment = ({ activeStep, handleNext }: TPaymentProps) => {
       <div className="bg-[#171717] mt-12 pt-[70px] pb-9">
         <div className="w-[1022px]  mx-auto rounded-2xl bg-white">
           <div className="p-10">
-            <h4 className="font-semibold text-[#7E7E7E]">
+            <h4 className="font-semibold text-secondary">
               YOUR BOOKING DETAILS
             </h4>
             <div className="flex items-center gap-4 mt-5">
@@ -66,7 +66,7 @@ const Payment = ({ activeStep, handleNext }: TPaymentProps) => {
                   <span className="text-primary font-semibold"> Show/Edit</span>{" "}
                   <IoIosArrowDown className="size-6 text-primary" />
                 </div>
-                <p className="text-[#7E7E7E]"></p>
+                <p className="text-secondary"></p>
               </div>
             </div>
             <div className="flex items-center mt-4 justify-between text-black">
@@ -93,7 +93,7 @@ const Payment = ({ activeStep, handleNext }: TPaymentProps) => {
           <div className="bg-[url('@/assets/line.png')] w-full h-1.5 bg-no-repeat bg-center bg-cover"></div>
 
           <div className="p-10">
-            <p className="font-semibold text-[#7E7E7E] mb-3">YOUR DETAILS</p>
+            <p className="font-semibold text-secondary mb-3">YOUR DETAILS</p>
             <p className="text-black">Billing Email </p>
             <p className="text-black">
               Email is required ro continue to payment

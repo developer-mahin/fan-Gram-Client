@@ -45,13 +45,13 @@ const LetsWork = () => {
         <div className="grid lg:grid-cols-2 gap-x-10 gap-y-2.5 mt-5">
           {letsWorkFormData.map((data, i) => {
             return (
-              <div key={i} className="space-y-2.5">
-                <Label>{data.label}</Label>
+              <div key={i} className="space-y-2  text-black">
                 <FInput
                   name={data.name}
                   type={data.type}
+                  label={data.label}
                   placeholder={data.placeholder}
-                  className="bg-[#F7F7F7] rounded-lg h-12 placeholder:text-[#B6B6B6]"
+                  className="bg-[#F7F7F7] text-black rounded-lg lg:h-12 h-9 placeholder:text-[#B6B6B6] lg:mt-1.5"
                 />
               </div>
             );
@@ -61,7 +61,7 @@ const LetsWork = () => {
               options={selectProductOptions}
               name="selectProduct"
               label="Select Product"
-              className="mt-2"
+              className="lg:mt-1"
             />
           </div>
         </div>
@@ -75,15 +75,15 @@ const LetsWork = () => {
           />
         </div>
         <div className="flex flex-col">
-          <Label>What’s your budget?</Label>
+          <Label className="mt-2">What’s your budget?</Label>
           <div className="lg:space-x-5 space-x-1 mt-2.5 flex items-center">
             {budgetButtonText.map((data, i) => (
               <div
+                key={i}
                 onClick={() => setBudget(data)}
-                className={`w-fit rounded-full lg:px-6 px-2 lg:h-10 h-6 bg-[#F3F1F1] text-black cursor-pointer flex items-center justify-center lg:font-medium font-bold lg:text-base text-[10px] ${
+                className={`w-fit rounded-full lg:px-6 px-1 lg:h-10 h-6 bg-[#F3F1F1] text-black cursor-pointer flex items-center justify-center lg:font-medium font-bold lg:text-base text-[10px] ${
                   budget === data ? "bg-primary text-white" : "text-back"
                 }`}
-                key={i}
               >
                 {data}
               </div>

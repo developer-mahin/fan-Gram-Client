@@ -4,8 +4,14 @@ import jacklin from "@/assets/jacklin.jpg";
 import salman from "@/assets/salman.jpg";
 import silpa from "@/assets/silpa.jpg";
 import { Button } from "@/components/ui/button";
+import {
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+} from "@/components/ui/carousel";
 import { Input } from "@/components/ui/input";
 import { SearchIcon } from "lucide-react";
+import Autoplay from "embla-carousel-autoplay";
 
 const Banner = () => {
   const images = [silpa, jacklin, salman, allu];
@@ -28,17 +34,33 @@ const Banner = () => {
           </Button>
         </div>
       </div>
-      <div className="grid grid-cols-2 gap-6 [&>*:nth-child(odd)]:-mt-14  lg:mt-10 mt-20">
-        {images.map((item, i) => (
-          <div key={i}>
-            <img
-              className="rounded-[15px] lg:w-[310px] w-full lg:h-[300px] h-[152px]"
-              src={item}
-              alt=""
-            />
-          </div>
-        ))}
-      </div>
+
+      <Carousel
+        plugins={[
+          Autoplay({
+            delay: 3500,
+          }),
+        ]}
+        className=""
+      >
+        <CarouselContent className="rounded-xl">
+          {Array.from({ length: 10 }).map((_, index) => (
+            <CarouselItem key={index}>
+              <div className="grid grid-cols-2 gap-6 [&>*:nth-child(odd)]:-mt-14  lg:mt-10 mt-20">
+                {images.map((item, i) => (
+                  <div key={i}>
+                    <img
+                      className="rounded-[15px] lg:w-[310px] w-full lg:h-[300px] h-auto"
+                      src={item}
+                      alt=""
+                    />
+                  </div>
+                ))}
+              </div>
+            </CarouselItem>
+          ))}
+        </CarouselContent>
+      </Carousel>
     </div>
   );
 };
