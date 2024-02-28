@@ -25,7 +25,7 @@ const PromoteBusiness = ({ className }: TPromoteBusiness) => {
     <div
       style={style}
       className={cn(
-        "lg:flex flex-row-reverse items-center gap-6 p-4 ",
+        "flex w-full lg:flex-row-reverse flex-col justify-between items-center gap-6 ",
         className
       )}
     >
@@ -37,14 +37,14 @@ const PromoteBusiness = ({ className }: TPromoteBusiness) => {
                 delay: 2000,
               }),
             ]}
-            className="w-full max-w-md"
+            className="w-full lg:max-w-md max-w-xl"
           >
             <CarouselContent className="rounded-xl">
               {Array.from({ length: 10 }).map((_, index) => (
                 <CarouselItem key={index}>
                   <div className="p-1 flex items-center justify-center">
                     <img
-                      className="lg:w-[432px] w-[125px] lg:h-[255px] rounded-xl object-cover"
+                      className="lg:w-[432px] w-[150px] lg:h-[255px] rounded-xl object-cover"
                       src={girl}
                       alt=""
                     />
@@ -77,7 +77,7 @@ const PromoteBusiness = ({ className }: TPromoteBusiness) => {
           exercitationem, <br className="lg:block hidden" /> dolorem aliquam
           sapiente illum eum neque minus tenetur nulla odit?
         </p>
-        <Button className="bg-white hover:bg-white text-primary block mx-auto lg:mx-0 rounded-full px-6  lg:ml-4">
+        <Button className="bg-white hover:bg-white text-primary block mx-auto lg:mx-0 rounded-full px-6 lg:ml-4">
           Fill The Form
         </Button>
       </div>

@@ -37,19 +37,19 @@ const Navbar = () => {
           </ul>
           <div className="lg:hidden">
             <div className="flex items-center gap-2.5">
-              <Button className="bg-[#D42978] hover:bg-[#D42978] rounded-full">
+              <Button className="bg-primary hover:bg-primary rounded-full">
                 Login/Signup
               </Button>
 
               <button
-                className="bg-[#D42978] p-1 rounded-full text-white "
+                className="bg-primary p-1 rounded-full text-white "
                 onClick={() => setIsMenuOpen(true)}
               >
                 <CgMenuRight className="size-6 text-white" />
               </button>
             </div>
             {isMenuOpen && (
-              <div className="absolute top-0 left-0 w-full">
+              <div className="absolute z-50 top-0 left-0 w-full">
                 <div className="p-5 bg-gradient-to-r from-[#3F261B] to-[#0F030A] rounded shadow-sm">
                   <div className="flex items-center justify-between mb-4">
                     <div>

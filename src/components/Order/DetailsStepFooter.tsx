@@ -7,7 +7,7 @@ type TDetailsStepFooter = {
 
 const DetailsStepFooter = ({ handleNext, activeStep }: TDetailsStepFooter) => {
   return (
-    <div className="my-16 flex items-center justify-between">
+    <div className="my-16 flex lg:flex-row flex-col items-center justify-between">
       <p className="text-white font-semibold text-xl lg:w-[635px]">
         Secure and fast payments via Card, UPI, Netbanking and more By
         continuing, you agree to our terms

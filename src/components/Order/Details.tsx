@@ -97,7 +97,7 @@ const Details = () => {
   return (
     <>
       <Container className="mt-12">
-        <h4 className="text-2xl font-semibold text-[#999999]">
+        <h4 className="lg:text-2xl text-xl font-semibold text-[#999999]">
           PERSONALIZED VIDEO FROM
         </h4>
         <div className="flex items-center gap-4 mt-5">
@@ -106,12 +106,16 @@ const Details = () => {
             alt=""
             className="size-[100px] object-cover border rounded-xl"
           />
-          <h2 className="text-4xl font-extrabold text-white">Sunny Leone</h2>
           <div className="flex items-center gap-2">
-            <img src={colorMark} className="size-8" alt="" />
-            <div className="border rounded-full px-3 w-fit flex items-center gap-2 h-8">
-              <img src={star} className="size-5" alt="" />
-              <p className="text-sm font-medium">4.7 (12)</p>
+            <h2 className="lg:text-4xl text-2xl font-extrabold text-white">
+              Sunny Leone
+            </h2>
+            <div className="flex items-center gap-2">
+              <img src={colorMark} className="size-8 " alt="" />
+              <div className="border rounded-full px-3 w-fit flex items-center gap-2 h-8">
+                <img src={star} className="size-5" alt="" />
+                <p className="text-sm font-medium">4.7 (12)</p>
+              </div>
             </div>
           </div>
         </div>
@@ -132,7 +136,7 @@ const Details = () => {
               />
             </div>
 
-            <div className="grid grid-cols-2 gap-2.5 mt-5">
+            <div className="grid lg:grid-cols-2 gap-2.5 mt-5">
               <div className="flex flex-col gap-3">
                 <Label htmlFor="toFirstName">To (First Name)</Label>
                 <FInput
@@ -212,11 +216,11 @@ const Details = () => {
                     key={i}
                     className="p-3 rounded-xl bg-gradient-to-r from-black to-[#202020] mt-5 flex items-center justify-between"
                   >
-                    <div className="flex items-center gap-5">
+                    <div className="flex lg:flex-row flex-col lg:items-center items-start lg:gap-5">
                       <div className="bg-primary p-2 rounded-lg">
                         <img className="size-[58px]" src={data.img} alt="" />
                       </div>
-                      <div className="flex flex-col gap-y-1">
+                      <div className="flex lg:mt-0 mt-4 flex-col gap-y-1">
                         <h4 className="text-xl font-semibold text-white">
                           {data.title}
                         </h4>
@@ -228,7 +232,7 @@ const Details = () => {
                         </p>
                       </div>
                     </div>
-                    <div className="px-6">
+                    <div className="px-6 lg:mt-0 mt-4 ">
                       <Button className="rounded-full p-0 size-8">
                         <Plus />
                       </Button>

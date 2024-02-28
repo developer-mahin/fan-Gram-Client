@@ -2,15 +2,25 @@
 import { Controller, useFormContext } from "react-hook-form";
 import { Input } from "../ui/input";
 import { cn } from "@/lib/utils";
+import { Label } from "../ui/label";
 
 type TInputProps = {
   type: string;
   name: string;
   placeholder?: string;
   className?: any;
+  label?: string;
+  required?: boolean;
 };
 
-const FInput = ({ type, name, placeholder, className }: TInputProps) => {
+const FInput = ({
+  type,
+  name,
+  placeholder,
+  className,
+  label,
+  required,
+}: TInputProps) => {
   const { control } = useFormContext();
 
   return (
@@ -18,17 +28,20 @@ const FInput = ({ type, name, placeholder, className }: TInputProps) => {
       control={control}
       name={name}
       rules={{
-        required: true,
+        required: required,
       }}
       render={({ field }) => (
-        <>
+        <div className="flex flex-col gap-y-1">
+          <Label htmlFor={name} className="mb-2">
+            {label}
+          </Label>
           <Input
             className={cn(className)}
             {...field}
             type={type}
             placeholder={placeholder ? placeholder : ""}
           />
-        </>
+        </div>
       )}
     />
   );

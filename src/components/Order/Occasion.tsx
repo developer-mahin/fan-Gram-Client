@@ -62,7 +62,7 @@ const Occasion = ({ occasion, setOccasion }: TOccasionProps) => {
             />
           ))}
         </div>
-        <div className="grid grid-cols-4 gap-7 my-5">
+        <div className="grid lg:grid-cols-4 gap-7 my-5">
           {textAreaValue.map((data, i) => (
             <div key={i}>
               <Textarea

@@ -9,7 +9,7 @@ const Categories = () => {
     <Container>
       <FeaturedCelebrity />
       <CelebrityCards />
-      <PromoteBusiness />
+      <PromoteBusiness className="lg:p-[42px] p-[20px] rounded-2xl mt-20" />
       <QuestionAccordion />
     </Container>
   );
