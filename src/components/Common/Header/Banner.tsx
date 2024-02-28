@@ -50,7 +50,7 @@ const Banner = () => {
                 {images.map((item, i) => (
                   <div key={i}>
                     <img
-                      className="rounded-[15px] lg:w-[310px] w-full lg:h-[300px] h-auto"
+                      className="rounded-[15px] lg:w-[310px] w-full  h-auto"
                       src={item}
                       alt=""
                     />

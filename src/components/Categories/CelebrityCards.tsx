@@ -1,9 +1,9 @@
-import { data } from "@/FakeData/data";
+import { data } from "@/Data/data";
 import { useCallback, useEffect, useState } from "react";
 import { IoIosArrowBack, IoIosArrowForward } from "react-icons/io";
 import { CelebritySlider } from "../Common/CelebritySlider";
-import { Button } from "../ui/button";
 import SectionTitle from "../Common/SectionTitle";
+import { Button } from "../ui/button";
 
 export type TCeleb = {
   _id: number;

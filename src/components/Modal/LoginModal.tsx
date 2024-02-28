@@ -13,6 +13,12 @@ import {
   DialogTrigger,
 } from "@/components/ui/dialog";
 import { cn } from "@/lib/utils";
+import { useLoginUserMutation } from "@/redux/features/users/userApi";
+import { setUser } from "@/redux/features/users/userSlice";
+import { useAppDispatch } from "@/redux/hooks";
+import { decodedToken } from "@/utils/decodedToken";
+import { FieldValues, SubmitHandler } from "react-hook-form";
+import { toast } from "sonner";
 import FForm from "../Form/FForm";
 import FInput from "../Form/FInput";
 import { SignUpModal } from "./SignUpModal";
@@ -22,8 +28,30 @@ type TLogin = {
 };
 
 export function LoginModal({ className }: TLogin) {
-  const handleLogin = (data: any) => {
-    console.log(data);
+  const [loginUser] = useLoginUserMutation();
+  const dispatch = useAppDispatch();
+
+  const handleLogin: SubmitHandler<FieldValues> = async (data) => {
+    const toastId = toast.loading("Loading");
+
+    const userInfo = {
+      email: data.email,
+      password: data.password,
+    };
+
+    try {
+      const res = await loginUser(userInfo).unwrap();
+
+      if (res.success) {
+        const user = decodedToken(res.data.accessToken);
+        dispatch(setUser({ user, token: res.data.accessToken }));
+        toast.success("Logged in successful", { id: toastId });
+      } else {
+        toast.success("Something went wrong please try again", { id: toastId });
+      }
+    } catch (error: any) {
+      toast.error(error.message, { id: toastId });
+    }
   };
 
   return (
@@ -58,6 +86,7 @@ export function LoginModal({ className }: TLogin) {
             <div className="">
               <FInput
                 placeholder="Enter Your Email Here"
+                required={true}
                 type="text"
                 name="email"
                 className="bg-[#EEEEEE] h-11 w-full"
@@ -67,6 +96,7 @@ export function LoginModal({ className }: TLogin) {
               <FInput
                 placeholder="Enter Your Password"
                 type="password"
+                required={true}
                 name="password"
                 className="bg-[#EEEEEE] h-11"
               />

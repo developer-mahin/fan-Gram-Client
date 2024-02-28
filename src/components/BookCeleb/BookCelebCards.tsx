@@ -1,13 +1,13 @@
-import { CelebritySlider } from "../Common/CelebritySlider";
+import { data } from "@/Data/data";
 import { useCallback, useState } from "react";
-import { Button } from "../ui/button";
 import {
   MdOutlineKeyboardArrowLeft,
   MdOutlineKeyboardArrowRight,
 } from "react-icons/md";
-import { data } from "@/FakeData/data";
 import { CelebrityCard } from "../Common/CelebrityCard";
+import { CelebritySlider } from "../Common/CelebritySlider";
 import Container from "../Common/Container";
+import { Button } from "../ui/button";
 
 const availableCeleb = data?.filter((celeb) => celeb.available === true);
 const fanGramCeleb = data?.filter((celeb) => celeb.available !== true);

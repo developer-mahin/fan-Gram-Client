@@ -1,11 +1,11 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { cn } from "@/lib/utils";
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
-import { CiHeart } from "react-icons/ci";
-import { Button } from "../ui/button";
+import { cn } from "@/lib/utils";
 import { useCallback, useEffect, useState } from "react";
-import Container from "../Common/Container";
+import { CiHeart } from "react-icons/ci";
 import { Link } from "react-router-dom";
+import Container from "../Common/Container";
+import { Button } from "../ui/button";
 
 // type CardProps = React.ComponentProps<typeof Card>;
 
@@ -46,7 +46,7 @@ export function BookCelebCard({ data }: { data: Record<string, any> }) {
             <div className="flex flex-col gap-2">
               <h1 className="text-2xl font-bold ">{data.name}</h1>
               <p>
-                Responds In <span className="text-[#D42978]">5 Days</span>
+                Responds In <span className="text-primary">5 Days</span>
               </p>
               <div className="flex gap-3">
                 {data?.tags?.map((tag: string, index: number) => (
@@ -64,13 +64,13 @@ export function BookCelebCard({ data }: { data: Record<string, any> }) {
                     Book Video @ ${data.price}
                   </Button>
                 </Link>
-                <div className="flex gap-1 items-center border border-[#D42978] rounded-3xl pl-6">
+                <div className="flex gap-1 items-center border border-primary rounded-3xl pl-6">
                   <div className="text-sm">Meet & Greet</div>
-                  <div className="text-xs bg-[#D42978] rounded-3xl px-6 py-1">
+                  <div className="text-xs bg-primary rounded-3xl px-6 py-1">
                     Starts From <br /> $399990
                   </div>
                 </div>
-                <div className="flex items-center gap-1 border border-[#D42978] rounded-3xl px-6">
+                <div className="flex items-center gap-1 border border-primary rounded-3xl px-6">
                   For Business
                 </div>
               </div>

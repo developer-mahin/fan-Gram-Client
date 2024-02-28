@@ -4,7 +4,7 @@ import Header from "../Common/Header/Header";
 
 const MainLayout = () => {
   return (
-    <div>
+    <div className="bg-black">
       <Header />
       <Outlet />
       <Footer />

@@ -14,7 +14,7 @@ const FeaturedCelebrity = () => {
   return (
     <>
       <div className="lg:my-20   my-10 relative">
-        <div className="lg:block hidden">
+        <div className="lg:block w-[94%] mx-auto hidden">
           <Carousel className="w-full ">
             <CarouselContent className="bg-[#000000]">
               {Array.from({ length: 5 }).map((_, index) => (

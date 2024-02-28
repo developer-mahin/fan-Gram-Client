@@ -36,6 +36,16 @@ input.PhoneInputInput:focus {
   @apply text-white;
 }
 
+.scrollBar {
+  overflow-y: scroll;
+  height: 100vh;
+
+  &::-webkit-scrollbar {
+    overflow: hidden;
+    display: none;
+  }
+}
+
 .complete:not(:first-child):before,
 .active:not(:first-child):before {
   @apply bg-primary;
@@ -44,5 +54,8 @@ input.PhoneInputInput:focus {
 @media only screen and (max-width: 768px) {
   .banner_image {
     background-image: none;
+  }
+  .scrollBar {
+    height: 100%;
   }
 }

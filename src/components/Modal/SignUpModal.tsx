@@ -20,15 +20,33 @@ import { Carousel, CarouselContent, CarouselItem } from "../ui/carousel";
 import Autoplay from "embla-carousel-autoplay";
 import girl from "@/assets/sunny.png";
 import welcome from "../../assets/welcomeIcon.png";
-
-// type TLogin = {
-//   email: string;
-//   password: string;
-// };
+import { FieldValues, SubmitHandler } from "react-hook-form";
+import { useRegisterUserMutation } from "@/redux/features/users/userApi";
+import { toast } from "sonner";
+import { TResponse } from "@/types/global.types";
 
 export function SignUpModal() {
-  const handleLogin = (data: any) => {
-    console.log(data);
+  const [registerUser] = useRegisterUserMutation();
+
+  const handleSignUp: SubmitHandler<FieldValues> = async (data) => {
+    const toastId = toast.loading("Loading");
+
+    const userInfo = {
+      name: data.name,
+      email: data.email,
+      password: data.password,
+    };
+
+    try {
+      const res = (await registerUser(userInfo)) as TResponse<any>;
+      if (res?.data.success) {
+        toast.success(res?.data.success.message, { id: toastId });
+      } else {
+        toast.success(res?.error?.data.message, { id: toastId });
+      }
+    } catch (error) {
+      toast.error("Something went wrong");
+    }
   };
 
   return (
@@ -96,12 +114,13 @@ export function SignUpModal() {
                 </div>
               </DialogDescription>
             </DialogHeader>
-            <FForm onSubmit={handleLogin}>
+            <FForm onSubmit={handleSignUp}>
               <div className="space-y-2">
                 <div className="">
                   <FInput
                     placeholder="Enter Your Name"
                     type="text"
+                    required={true}
                     name="name"
                     className="bg-[#EEEEEE] h-11"
                   />
@@ -110,6 +129,7 @@ export function SignUpModal() {
                   <FInput
                     placeholder="Enter Your Email Here"
                     type="email"
+                    required={true}
                     name="email"
                     className="bg-[#EEEEEE] h-11"
                   />
@@ -118,6 +138,7 @@ export function SignUpModal() {
                   <FInput
                     placeholder="Enter Your Password"
                     type="password"
+                    required={true}
                     name="password"
                     className="bg-[#EEEEEE] h-11"
                   />
@@ -127,6 +148,7 @@ export function SignUpModal() {
                     placeholder="Enter Your Invite Code (Optional)"
                     type="text"
                     name="inviteCode"
+                    required={false}
                     className="bg-[#EEEEEE] h-11"
                   />
                 </div>

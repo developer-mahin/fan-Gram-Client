@@ -10,9 +10,17 @@ type TInputProps = {
   placeholder?: string;
   className?: any;
   label?: string;
+  required?: boolean;
 };
 
-const FInput = ({ type, name, placeholder, className, label }: TInputProps) => {
+const FInput = ({
+  type,
+  name,
+  placeholder,
+  className,
+  label,
+  required,
+}: TInputProps) => {
   const { control } = useFormContext();
 
   return (
@@ -20,7 +28,7 @@ const FInput = ({ type, name, placeholder, className, label }: TInputProps) => {
       control={control}
       name={name}
       rules={{
-        required: true,
+        required: required,
       }}
       render={({ field }) => (
         <div className="flex flex-col gap-y-1">
