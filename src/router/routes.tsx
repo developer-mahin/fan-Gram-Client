@@ -3,9 +3,12 @@ import DashboardLayout from "@/components/layout/DashboardLayout";
 import Account from "@/pages/Account/Account";
 import BookCeleb from "@/pages/BookCeleb";
 import Categories from "@/pages/Categories";
+import AllBannerImages from "@/pages/Dashobard/AllBannerImages";
 import AllCelebrities from "@/pages/Dashobard/AllCelebrities";
+import CreateBannerImage from "@/pages/Dashobard/CreateBannerImage";
 import CreateCelebrity from "@/pages/Dashobard/CreateCelebrity";
 import Dashboard from "@/pages/Dashobard/Dashboard";
+import EmailVerification from "@/pages/EmailVerification";
 import Gifting from "@/pages/Gifting";
 import HowToFanGram from "@/pages/HowToFanGram";
 import Order from "@/pages/Order";
@@ -72,7 +75,20 @@ const router = createBrowserRouter([
         path: "/dashboard/all-celebrities",
         element: <AllCelebrities />,
       },
+      {
+        path: "/dashboard/add-banner-image",
+        element: <CreateBannerImage />,
+      },
+      {
+        path: "/dashboard/all-banner-images",
+        element: <AllBannerImages />,
+      },
     ],
+  },
+
+  {
+    path: "/email-verification",
+    element: <EmailVerification />,
   },
 ]);
 

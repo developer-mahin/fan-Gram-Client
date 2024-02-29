@@ -1,5 +1,6 @@
 import { configureStore } from "@reduxjs/toolkit";
 import userReducer from "./features/users/userSlice";
+import celebrityReducer from "./features/Celebrity/celebritySlice";
 import {
   persistStore,
   persistReducer,
@@ -24,6 +25,7 @@ export const store = configureStore({
   reducer: {
     [baseApi.reducerPath]: baseApi.reducer,
     user: persistedReducer,
+    celebrity: celebrityReducer,
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({

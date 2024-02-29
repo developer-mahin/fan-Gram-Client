@@ -1,20 +1,36 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import allu from "@/assets/allu.jpg";
 import hashTag from "@/assets/hasTag.png";
 import jacklin from "@/assets/jacklin.jpg";
 import salman from "@/assets/salman.jpg";
 import silpa from "@/assets/silpa.jpg";
 import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { useGetAllBannerImageQuery } from "@/redux/features/Banner/bannerApi";
+import { SearchIcon } from "lucide-react";
+// import Autoplay from "embla-carousel-autoplay";
+import "../../../styles/global.css";
+
+import { Swiper, SwiperSlide } from "swiper/react";
+
+import "swiper/css";
+import "swiper/css/grid";
+import "swiper/css/pagination";
+
+import { Pagination, Grid, Autoplay } from "swiper/modules";
 import {
   Carousel,
   CarouselContent,
   CarouselItem,
 } from "@/components/ui/carousel";
-import { Input } from "@/components/ui/input";
-import { SearchIcon } from "lucide-react";
-import Autoplay from "embla-carousel-autoplay";
 
 const Banner = () => {
-  const images = [silpa, jacklin, salman, allu];
+  const { data: bannerImage, isLoading } = useGetAllBannerImageQuery(undefined);
+
+  if (isLoading) {
+    return "";
+  }
+  const images = [silpa, jacklin, salman, allu, silpa, jacklin, salman, allu];
 
   return (
     <div className="flex lg:flex-row flex-col-reverse items-center gap-12 lg:h-[90vh] h-fit">
@@ -35,7 +51,40 @@ const Banner = () => {
         </div>
       </div>
 
-      <Carousel
+      <Swiper
+        slidesPerView={2}
+        grid={{
+          rows: 2,
+        }}
+        autoplay={{
+          delay: 2500,
+          disableOnInteraction: false,
+        }}
+        spaceBetween={25}
+        pagination={{
+          clickable: true,
+        }}
+        modules={[Grid, Autoplay, Pagination]}
+        className="mySwiper"
+      >
+        <div>
+          {bannerImage.data.map((item: any) => {
+            return (
+              <SwiperSlide>
+                <div>
+                  <img
+                    className="rounded-[15px] object-cover lg:w-[280px] w-full  lg:h-[287px] h-auto"
+                    src={`http://localhost:5000/uploads/${item.path.slice(7)}`}
+                    alt=""
+                  />
+                </div>
+              </SwiperSlide>
+            );
+          })}
+        </div>
+      </Swiper>
+
+      {/* <Carousel
         plugins={[
           Autoplay({
             delay: 3500,
@@ -44,13 +93,16 @@ const Banner = () => {
         className=""
       >
         <CarouselContent className="rounded-xl">
-          {Array.from({ length: 10 }).map((_, index) => (
+          {Array.from({ length: 5 }).map((_, index) => (
             <CarouselItem key={index}>
-              <div className="grid grid-cols-2 gap-6 [&>*:nth-child(odd)]:-mt-14  lg:mt-10 mt-20">
-                {images.map((item, i) => (
+              <div className="grid grid-cols-2 gap-6 [&>*:nth-child(odd)]:-mt-14 lg:mt-10 mt-20">
+                {images.map((item: any, i: number) => (
                   <div key={i}>
                     <img
-                      className="rounded-[15px] lg:w-[310px] w-full  h-auto"
+                      className="rounded-[15px] object-cover lg:w-[310px] w-full lg:h-[310px] h-auto"
+                      // src={`http://localhost:5000/uploads/${item.path.slice(
+                      //   7
+                      // )}`}
                       src={item}
                       alt=""
                     />
@@ -60,7 +112,7 @@ const Banner = () => {
             </CarouselItem>
           ))}
         </CarouselContent>
-      </Carousel>
+      </Carousel> */}
     </div>
   );
 };

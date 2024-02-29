@@ -18,6 +18,7 @@ const availableCeleb = data?.filter((celeb) => celeb.available === true);
 const fanGramCeleb = data?.filter((celeb) => celeb.available !== true);
 
 const CelebrityCards = () => {
+  
   const [currentSlider, setCurrentSlider] = useState(0);
   const [currentFanGramSlider, setCurrentFanGramSlider] = useState(0);
 
