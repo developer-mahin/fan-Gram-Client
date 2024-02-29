@@ -25,13 +25,10 @@ const celebrityApi = baseApi.injectEndpoints({
 
     updateCelebrity: builder.mutation({
       query: (verifyData) => {
-        const { id, verified } = verifyData;
-        console.log(verifyData);
-
         return {
-          url: `/celebrity/${id}`,
+          url: `/celebrity`,
           method: "PATCH",
-          body: verified,
+          body: verifyData,
         };
       },
       invalidatesTags: ["celebrity"],

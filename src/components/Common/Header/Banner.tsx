@@ -68,7 +68,7 @@ const Banner = () => {
         className="mySwiper"
       >
         <div>
-          {bannerImage.data.map((item: any) => {
+          {bannerImage?.data?.map((item: any) => {
             return (
               <SwiperSlide>
                 <div>
