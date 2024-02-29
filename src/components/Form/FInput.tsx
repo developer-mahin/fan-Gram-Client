@@ -11,6 +11,8 @@ type TInputProps = {
   className?: any;
   label?: string;
   required?: boolean;
+  accept?: string;
+  multiple?: any;
 };
 
 const FInput = ({
@@ -20,6 +22,8 @@ const FInput = ({
   className,
   label,
   required,
+  accept,
+  multiple,
 }: TInputProps) => {
   const { control } = useFormContext();
 
@@ -39,6 +43,8 @@ const FInput = ({
             className={cn(className)}
             {...field}
             type={type}
+            multiple={multiple}
+            accept={accept}
             placeholder={placeholder ? placeholder : ""}
           />
         </div>

@@ -36,6 +36,16 @@ const celebrityApi = baseApi.injectEndpoints({
       },
       invalidatesTags: ["celebrity"],
     }),
+
+    DeleteCelebrity: builder.mutation({
+      query: (id) => {
+        return {
+          url: `/celebrity/${id}`,
+          method: "DELETE",
+        };
+      },
+      invalidatesTags: ["celebrity"],
+    }),
   }),
 });
 
@@ -43,4 +53,5 @@ export const {
   useGetAllCelebrityQuery,
   useUpdateCelebrityMutation,
   useAddCelebrityMutation,
+  useDeleteCelebrityMutation,
 } = celebrityApi;

@@ -24,25 +24,31 @@ import { FieldValues, SubmitHandler } from "react-hook-form";
 import { useRegisterUserMutation } from "@/redux/features/users/userApi";
 import { toast } from "sonner";
 import { TResponse } from "@/types/global.types";
+import { useNavigate } from "react-router-dom";
 
 export function SignUpModal() {
   const [registerUser] = useRegisterUserMutation();
+  const navigate = useNavigate();
 
   const handleSignUp: SubmitHandler<FieldValues> = async (data) => {
-    const toastId = toast.loading("Loading");
-
     const userInfo = {
       name: data.name,
       email: data.email,
       password: data.password,
     };
+    localStorage.setItem("email", data.email);
 
     try {
       const res = (await registerUser(userInfo)) as TResponse<any>;
+      if (!res?.data.verified) {
+        toast.success("Please verify your email, Check email");
+        return navigate("/email-verification");
+      }
+
       if (res?.data.success) {
-        toast.success(res?.data.success.message, { id: toastId });
+        toast.success(res?.data.success.message);
       } else {
-        toast.success(res?.error?.data.message, { id: toastId });
+        toast.success(res?.error?.data.message);
       }
     } catch (error) {
       toast.error("Something went wrong");

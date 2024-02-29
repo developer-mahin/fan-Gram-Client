@@ -17,4 +17,14 @@ export const Menus = [
     path: "/dashboard/all-celebrities",
     icon: <RiBarChartBoxFill className="size-6" />,
   },
+  {
+    title: "Add Banner Image",
+    path: "/dashboard/add-banner-image",
+    icon: <RiBarChartBoxFill className="size-6" />,
+  },
+  {
+    title: "All Banner Images",
+    path: "/dashboard/all-banner-images",
+    icon: <RiBarChartBoxFill className="size-6" />,
+  },
 ];

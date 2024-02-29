@@ -2,19 +2,32 @@
 import FForm from "@/components/Form/FForm";
 import FInput from "@/components/Form/FInput";
 import { Button } from "@/components/ui/button";
+import { Label } from "@/components/ui/label";
+import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { useAddCelebrityMutation } from "@/redux/features/Celebrity/celebrityApi";
-import { useState } from "react";
+import { ChangeEvent, useState } from "react";
 import { FieldValues, SubmitHandler } from "react-hook-form";
 import { toast } from "sonner";
 
 const CreateCelebrity = () => {
   const [image, setImage] = useState<File | null>(null);
   const [addCelebrity] = useAddCelebrityMutation();
+  const [isDhamaka, setIsDhamaka] = useState("nextDayDelivery");
+  const [videos, setVideos] = useState<File[]>([]);
+
+  console.log(isDhamaka);
 
   const handleImageChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const file = event.target.files?.[0];
     if (file) {
       setImage(file);
+    }
+  };
+
+  const handleVideoChange = (event: ChangeEvent<HTMLInputElement>) => {
+    if (event.target.files) {
+      const files = Array.from(event.target.files);
+      setVideos(files);
     }
   };
 
@@ -31,15 +44,20 @@ const CreateCelebrity = () => {
       },
       featured: true,
       responseIn: data.responseIn,
-      videoUrl: data.videoUrl,
       verified: true,
       hashtag: data.hashtag,
       rating: data.rating,
+      isDhamaka: isDhamaka === "fanGramDhamaka" ? true : false,
     };
     const celebrityInfoString = JSON.stringify(celebrityInfo);
 
     const formData = new FormData();
     formData.append("images", image!);
+
+    videos.forEach((video) => {
+      formData.append(`videos`, video);
+    });
+
     formData.append("data", celebrityInfoString);
 
     try {
@@ -50,7 +68,7 @@ const CreateCelebrity = () => {
         toast.success("Something went wrong please try again", { id: toastId });
       }
     } catch (error: any) {
-      toast.error(error.message, { id: toastId });
+      toast.error("Something went wrong please try again", { id: toastId });
     }
   };
 
@@ -121,13 +139,46 @@ const CreateCelebrity = () => {
             placeholder="Add rating"
             label="Celebrity Rating"
           />
-          <input
-            onChange={handleImageChange}
-            name="image"
-            type="file"
-            accept="image/*"
-            required={true}
-          />
+          <div className="flex flex-col space-y-2 mt-3">
+            <Label>Add Image</Label>
+            <RadioGroup
+              onValueChange={(value: string) => setIsDhamaka(value)}
+              defaultValue="nextDayDelivery"
+              className="flex items-center "
+            >
+              <div className="flex items-center space-x-2">
+                <RadioGroupItem value="nextDayDelivery" id="r2" />
+                <Label htmlFor="r2">Next Day Delivery</Label>
+              </div>
+              <div className="flex items-center space-x-2">
+                <RadioGroupItem value="fanGramDhamaka" id="r3" />
+                <Label htmlFor="r3">FanGram Dhamaka</Label>
+              </div>
+            </RadioGroup>
+          </div>
+          <div className="flex flex-col space-y-2">
+            <Label>Add Image</Label>
+            <input
+              onChange={handleImageChange}
+              name="image"
+              type="file"
+              accept="image/*"
+              className="border p-1.5 rounded-lg"
+              required={true}
+            />
+          </div>
+          <div className="flex flex-col space-y-2">
+            <Label>Add Videos</Label>
+            <input
+              onChange={handleVideoChange}
+              name="image"
+              type="file"
+              multiple
+              accept="video/*"
+              className="border p-1.5 rounded-lg"
+              required={true}
+            />
+          </div>
         </div>
         <Button type="submit" className="px-8 font-semibold rounded-full mt-6">
           Add Celebrity

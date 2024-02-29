@@ -51,6 +51,24 @@ input.PhoneInputInput:focus {
   @apply bg-primary;
 }
 
+.swiper {
+  width: 600px;
+  height: 600px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.swiper-slide {
+  text-align: center;
+  font-size: 18px;
+  height: calc((100% - 30px) / 2) !important;
+}
+
+
+.ptSwiper:nth-child(odd){
+  margin-top: 30px;
+}
+
 @media only screen and (max-width: 768px) {
   .banner_image {
     background-image: none;

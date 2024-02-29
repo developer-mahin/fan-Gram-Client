@@ -32,8 +32,6 @@ export function LoginModal({ className }: TLogin) {
   const dispatch = useAppDispatch();
 
   const handleLogin: SubmitHandler<FieldValues> = async (data) => {
-    const toastId = toast.loading("Loading");
-
     const userInfo = {
       email: data.email,
       password: data.password,
@@ -45,12 +43,12 @@ export function LoginModal({ className }: TLogin) {
       if (res.success) {
         const user = decodedToken(res.data.accessToken);
         dispatch(setUser({ user, token: res.data.accessToken }));
-        toast.success("Logged in successful", { id: toastId });
+        toast.success("Logged in successful");
       } else {
-        toast.success("Something went wrong please try again", { id: toastId });
+        toast.success("Something went wrong please try again");
       }
     } catch (error: any) {
-      toast.error(error.message, { id: toastId });
+      toast.error(error.message);
     }
   };
 
@@ -104,12 +102,14 @@ export function LoginModal({ className }: TLogin) {
           </div>
           <DialogFooter className="sm:justify-center mt-4 ">
             <div>
-              <Button
-                type="submit"
-                className="bg-primary hover:bg-primary rounded-full lg:w-[282px] px-12"
-              >
-                Login
-              </Button>
+              <DialogTrigger>
+                <Button
+                  type="submit"
+                  className="bg-primary hover:bg-primary rounded-full lg:w-[282px] px-12"
+                >
+                  Login
+                </Button>
+              </DialogTrigger>
               <p className="font-bold text-sm text-center mt-4">
                 Not on FanGram?
                 <button className="cursor-pointer ml-1">
