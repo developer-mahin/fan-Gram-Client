@@ -1,4 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
+import AddCelebFaq from "@/components/Dashboard/AddCelebFaq";
 import FForm from "@/components/Form/FForm";
 import FInput from "@/components/Form/FInput";
 import { Button } from "@/components/ui/button";
@@ -9,11 +10,17 @@ import { ChangeEvent, useState } from "react";
 import { FieldValues, SubmitHandler } from "react-hook-form";
 import { toast } from "sonner";
 
+interface InputField {
+  question: string;
+  answer: string;
+}
+
 const CreateCelebrity = () => {
   const [image, setImage] = useState<File | null>(null);
   const [addCelebrity] = useAddCelebrityMutation();
-  const [isDhamaka, setIsDhamaka] = useState("nextDayDelivery");
+  const [isDhamaka, setIsDhamaka] = useState("false");
   const [videos, setVideos] = useState<File[]>([]);
+  const [faq, setFaq] = useState<InputField[]>([]);
 
   console.log(isDhamaka);
 
@@ -21,6 +28,7 @@ const CreateCelebrity = () => {
     const file = event.target.files?.[0];
     if (file) {
       setImage(file);
+      console.log({ image });
     }
   };
 
@@ -33,21 +41,22 @@ const CreateCelebrity = () => {
 
   const onSubmit: SubmitHandler<FieldValues> = async (data) => {
     const toastId = toast.loading("Loading...");
-
+    console.log(data);
     const celebrityInfo = {
-      celebrityName: data.celebrityName,
-      bookingPrice: data.bookingPrice,
-      meetingPrice: data.meetingPrice,
+      celebrityName: data?.celebrityName,
+      bookingPrice: data?.bookingPrice,
+      meetingPrice: data?.meetingPrice,
       offers: {
-        discount: data.offers.discount,
-        couponCode: data.offers.couponCode,
+        discount: data?.offers?.discount,
+        couponCode: data?.offers?.couponCode,
       },
       featured: true,
-      responseIn: data.responseIn,
+      faq: faq,
+      responseIn: data?.responseIn,
       verified: true,
-      hashtag: data.hashtag,
-      rating: data.rating,
-      isDhamaka: isDhamaka === "fanGramDhamaka" ? true : false,
+      hashtag: data?.hashtag,
+      rating: data?.rating,
+      earlyResponse: isDhamaka === "false" ? false : true,
     };
     const celebrityInfoString = JSON.stringify(celebrityInfo);
 
@@ -65,10 +74,13 @@ const CreateCelebrity = () => {
       if (res.success) {
         toast.success("Celebrity add successful", { id: toastId });
       } else {
-        toast.success("Something went wrong please try again", { id: toastId });
+        toast.success(res.data.message, {
+          id: toastId,
+        });
       }
     } catch (error: any) {
-      toast.error("Something went wrong please try again", { id: toastId });
+      console.log(error);
+      toast.error(error.data.message, { id: toastId });
     }
   };
 
@@ -87,48 +99,48 @@ const CreateCelebrity = () => {
             name="bookingPrice"
             type="number"
             required={true}
-            placeholder="Add Celebrity Name"
+            placeholder="Add Booking Price"
             label="Celebrity Name"
           />
           <FInput
             name="meetingPrice"
             type="number"
-            required={true}
+            required={false}
             placeholder="Add Meeting Price "
             label="Meeting Price"
           />
           <FInput
             name="offers.discount"
             type="number"
-            required={true}
+            required={false}
             placeholder="Add discount "
             label="Discount"
           />
           <FInput
             name="offers.couponCode"
             type="text"
-            required={true}
+            required={false}
             placeholder="Add Coupon Code"
             label="Coupon Code"
           />
           <FInput
             name="responseIn"
             type="text"
-            required={true}
+            required={false}
             placeholder="Add Celebrity Response Time"
             label="Celebrity Response Time"
           />
           <FInput
             name="videoUrl"
             type="text"
-            required={true}
+            required={false}
             placeholder="Add Video Url"
             label="Celebrity Response Time"
           />
           <FInput
             name="hashtag"
             type="text"
-            required={true}
+            required={false}
             placeholder="Add hashtag"
             label="Hashtag"
           />
@@ -143,15 +155,15 @@ const CreateCelebrity = () => {
             <Label>Add Image</Label>
             <RadioGroup
               onValueChange={(value: string) => setIsDhamaka(value)}
-              defaultValue="nextDayDelivery"
+              defaultValue="false"
               className="flex items-center "
             >
               <div className="flex items-center space-x-2">
-                <RadioGroupItem value="nextDayDelivery" id="r2" />
+                <RadioGroupItem value="true" id="r2" />
                 <Label htmlFor="r2">Next Day Delivery</Label>
               </div>
               <div className="flex items-center space-x-2">
-                <RadioGroupItem value="fanGramDhamaka" id="r3" />
+                <RadioGroupItem value="false" id="r3" />
                 <Label htmlFor="r3">FanGram Dhamaka</Label>
               </div>
             </RadioGroup>
@@ -162,9 +174,10 @@ const CreateCelebrity = () => {
               onChange={handleImageChange}
               name="image"
               type="file"
+              multiple
               accept="image/*"
               className="border p-1.5 rounded-lg"
-              required={true}
+              required={false}
             />
           </div>
           <div className="flex flex-col space-y-2">
@@ -176,10 +189,11 @@ const CreateCelebrity = () => {
               multiple
               accept="video/*"
               className="border p-1.5 rounded-lg"
-              required={true}
+              required={false}
             />
           </div>
         </div>
+        <AddCelebFaq faq={faq} setFaq={setFaq} />
         <Button type="submit" className="px-8 font-semibold rounded-full mt-6">
           Add Celebrity
         </Button>
