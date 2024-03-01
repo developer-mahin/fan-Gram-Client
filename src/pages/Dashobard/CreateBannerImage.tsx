@@ -4,7 +4,7 @@ import { Label } from "@/components/ui/label";
 import { useAddBannerImageMutation } from "@/redux/features/Banner/bannerApi";
 import { TResponse } from "@/types/global.types";
 import { ChangeEvent, useState } from "react";
-import { Field, FieldValues, SubmitHandler } from "react-hook-form";
+import { FieldValues, SubmitHandler } from "react-hook-form";
 import { toast } from "sonner";
 
 const CreateBannerImage = () => {
@@ -18,7 +18,7 @@ const CreateBannerImage = () => {
     setImages(selectedImages);
   };
 
-  const onSubmit: SubmitHandler<FieldValues> = async (data) => {
+  const onSubmit: SubmitHandler<FieldValues> = async () => {
     const formData = new FormData();
     images.forEach((image) => {
       formData.append(`images`, image);
@@ -39,8 +39,10 @@ const CreateBannerImage = () => {
 
   return (
     <div className="">
+      <h2 className="mb-4 text-2xl font-semibold leading">
+        Create Banner Images
+      </h2>
       <form onSubmit={onSubmit} className="flex flex-col">
-        <h2 className="mb-4 text-3xl font-bold">Add Banner Images</h2>
         <Label className="font-semibold mb-2">Banner Image</Label>
         <input
           name="images"

@@ -17,13 +17,7 @@ type TFormProps = {
   children: ReactNode;
 } & TFormConfig;
 
-const FForm = ({
-  onSubmit,
-  children,
-  defaultValues,
-  resolver,
-  
-}: TFormProps) => {
+const FForm = ({ onSubmit, children, defaultValues, resolver }: TFormProps) => {
   const formConfig: TFormConfig = {
     resolver: undefined,
   };

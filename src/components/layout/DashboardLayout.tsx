@@ -1,20 +1,11 @@
 import React, { useState } from "react";
-import { LuArrowRightCircle } from "react-icons/lu";
-import { Link, NavLink, Outlet } from "react-router-dom";
+import { Link, Outlet } from "react-router-dom";
 
 import { Menus } from "@/Data/dashboardMenu";
+import { HiMenuAlt3 } from "react-icons/hi";
 import logo from "../../assets/logo.png";
 import "../../styles/global.css";
-import { Button } from "../ui/button";
-import {
-  Tooltip,
-  TooltipContent,
-  TooltipProvider,
-  TooltipTrigger,
-} from "../ui/tooltip";
 import DashboardHeader from "../Common/Header/DashboardHeader";
-import { HiMenuAlt3 } from "react-icons/hi";
-import { MdOutlineDashboard } from "react-icons/md";
 
 const DashboardLayout = () => {
   const [open, setOpen] = useState(true);

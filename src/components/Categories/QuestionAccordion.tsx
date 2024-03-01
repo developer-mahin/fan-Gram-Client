@@ -1,9 +1,8 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { ReactNode, useState } from "react";
 import { IoIosArrowDown, IoIosArrowUp } from "react-icons/io";
-import Container from "../Common/Container";
-import { faqData } from "@/Data/faqData";
-import { Button } from "../ui/button";
 import SectionTitle from "../Common/SectionTitle";
+import { Button } from "../ui/button";
 
 type TItemProps = {
   children: ReactNode;
@@ -51,7 +50,7 @@ const Item = ({ title, children, index }: TItemProps) => {
   );
 };
 
-export const QuestionAccordion = () => {
+export const QuestionAccordion = ({ faqData }: { faqData?: any }) => {
   return (
     <div className="py-20">
       <div>
@@ -59,9 +58,9 @@ export const QuestionAccordion = () => {
           Frequently Asked Questions
         </SectionTitle>
         <div className="lg:space-y-4 space-y-2">
-          {faqData.map((data, i: number) => (
-            <Item index={i} key={i} title={data.title}>
-              {data.des}
+          {faqData?.map((data: any, i: number) => (
+            <Item index={i} key={i} title={data.question}>
+              {data.answer}
             </Item>
           ))}
         </div>

@@ -4,6 +4,7 @@ import { IoIosArrowBack, IoIosArrowForward } from "react-icons/io";
 import { CelebritySlider } from "../Common/CelebritySlider";
 import SectionTitle from "../Common/SectionTitle";
 import { Button } from "../ui/button";
+import FIconButton from "../Common/FIconButton";
 
 export type TCeleb = {
   _id: number;
@@ -82,18 +83,13 @@ const CelebrityCards = () => {
           </div>
 
           <div className="lg:flex hidden items-center gap-5">
-            <button
-              onClick={prevSlider}
-              className="size-12 rounded-full bg-transparent flex items-center justify-center border border-primary "
-            >
-              <IoIosArrowBack className="text-primary size-6" />
-            </button>
-            <button
-              onClick={nextSlider}
-              className="size-12 rounded-full bg-primary flex items-center justify-center border border-primary "
-            >
-              <IoIosArrowForward className="text-white size-6" />
-            </button>
+            <FIconButton handler={prevSlider} Icon={IoIosArrowBack} />
+            <FIconButton
+              handler={nextSlider}
+              Icon={IoIosArrowForward}
+              className="bg-primary text-white"
+              iconClass="text-white"
+            />
           </div>
         </div>
         <CelebritySlider
@@ -115,18 +111,13 @@ const CelebrityCards = () => {
               </Button>
             </div>
             <div className="lg:flex hidden items-center gap-5">
-              <button
-                onClick={prevFanGramSlider}
-                className="size-12 rounded-full bg-transparent flex items-center justify-center border border-primary "
-              >
-                <IoIosArrowBack className="text-primary size-6" />
-              </button>
-              <button
-                onClick={nextFanGramSlider}
-                className="size-12 rounded-full bg-primary flex items-center justify-center border border-primary "
-              >
-                <IoIosArrowForward className="text-white size-6" />
-              </button>
+              <FIconButton handler={prevFanGramSlider} Icon={IoIosArrowBack} />
+              <FIconButton
+                handler={nextFanGramSlider}
+                Icon={IoIosArrowForward}
+                className="bg-primary text-white"
+                iconClass="text-white"
+              />
             </div>
           </div>
         </div>

@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { ReactNode, useState } from "react";
 import { IoIosArrowDown, IoIosArrowUp } from "react-icons/io";
 import Container from "../Common/Container";
@@ -58,7 +59,7 @@ export const Faq = () => {
           Frequently Asked Questions
         </h2>
         <div className="space-y-4">
-          {faqData.map((data, i: number) => (
+          {faqData.map((data: any, i: number) => (
             <Item index={i} key={i} title={data.title}>
               {data.des}
             </Item>

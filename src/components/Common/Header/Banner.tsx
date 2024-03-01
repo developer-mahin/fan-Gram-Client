@@ -1,9 +1,9 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import allu from "@/assets/allu.jpg";
+// import allu from "@/assets/allu.jpg";
 import hashTag from "@/assets/hasTag.png";
-import jacklin from "@/assets/jacklin.jpg";
-import salman from "@/assets/salman.jpg";
-import silpa from "@/assets/silpa.jpg";
+// import jacklin from "@/assets/jacklin.jpg";
+// import salman from "@/assets/salman.jpg";
+// import silpa from "@/assets/silpa.jpg";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { useGetAllBannerImageQuery } from "@/redux/features/Banner/bannerApi";
@@ -17,12 +17,12 @@ import "swiper/css";
 import "swiper/css/grid";
 import "swiper/css/pagination";
 
-import { Pagination, Grid, Autoplay,  } from "swiper/modules";
-import {
-  Carousel,
-  CarouselContent,
-  CarouselItem,
-} from "@/components/ui/carousel";
+import { Pagination, Grid, Autoplay } from "swiper/modules";
+// import {
+//   Carousel,
+//   CarouselContent,
+//   CarouselItem,
+// } from "@/components/ui/carousel";
 
 const Banner = () => {
   const { data: bannerImage, isLoading } = useGetAllBannerImageQuery(undefined);
@@ -30,7 +30,7 @@ const Banner = () => {
   if (isLoading) {
     return "";
   }
-  const images = [silpa, jacklin, salman, allu, silpa, jacklin, salman, allu];
+  // const images = [silpa, jacklin, salman, allu, silpa, jacklin, salman, allu];
 
   return (
     <div className="flex lg:flex-row flex-col-reverse items-center gap-12 lg:h-[90vh] h-fit">

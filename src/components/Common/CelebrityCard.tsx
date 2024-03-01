@@ -15,9 +15,13 @@ import { Link } from "react-router-dom";
 // type CardProps = React.ComponentProps<typeof Card>;
 
 export function CelebrityCard({ data }: { data: Record<string, any> }) {
+  const { imgUrl, celebrityName, hashtag, bookingPrice } = data;
+
   return (
     <Card
-      className={cn("w-full lg:h-[360px]  h-auto bg-[#292929] border-none rounded-2xl")}
+      className={cn(
+        "w-full lg:h-[360px]  h-auto bg-[#292929] border-none rounded-2xl"
+      )}
     >
       <CardHeader
         className={cn("flex justify-end pt-4 pb-0 items-end text-white")}
@@ -28,23 +32,23 @@ export function CelebrityCard({ data }: { data: Record<string, any> }) {
       </CardHeader>
       <CardContent className="flex pb-2.5 flex-col items-center justify-center space-y-1 mx-auto">
         <img
-          className="rounded-full lg:size-auto size-[80px]"
-          src={data.img}
+          className="rounded-full object-cover lg:size-32 size-[80px]"
+          src={`http://localhost:5000/uploads/${imgUrl}`}
           alt=""
         />
         <CardTitle className="mx-auto text-white lg:text-2xl text-sm px-10 text-center">
-          {data.name}
+          {celebrityName}
         </CardTitle>
         <CardDescription className="text-center text-white">
-          {data?.tags?.map((tag: string, index: number) => (
+          {hashtag?.map((tag: string, index: number) => (
             <small key={index} style={{ fontFamily: "'Satisfy', cursive" }}>
               #{tag}
             </small>
           ))}
         </CardDescription>
         <CardTitle className="text-center text-white lg:text-lg text-xs">
-          <>Starting From $</>
-          {data.price}
+          <>Starting From ₹</>
+          {bookingPrice}
         </CardTitle>
       </CardContent>
       <CardFooter>

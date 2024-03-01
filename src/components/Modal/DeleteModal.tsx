@@ -11,7 +11,7 @@ import {
 } from "../ui/dialog";
 
 type TDeleteModalProps = {
-  className: string;
+  className?: string;
   handler: any;
   title: string;
 };

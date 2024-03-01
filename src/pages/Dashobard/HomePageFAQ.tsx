@@ -1,57 +1,44 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import FForm from "@/components/Form/FForm";
 import FInput from "@/components/Form/FInput";
 import { Button } from "@/components/ui/button";
-import { useState } from "react";
+import { useCreateHomeFAQMutation } from "@/redux/features/HomeFAQ/HomeFAQApi";
 import { FieldValues, SubmitHandler } from "react-hook-form";
-
-interface InputField {
-  value: string;
-}
+import { toast } from "sonner";
 
 const HomePageFAQ = () => {
-  const [inputFields, setInputFields] = useState<InputField[]>([{ value: "" }]);
+  const [createHomeFAQ] = useCreateHomeFAQMutation();
 
-  const handleAddField = () => {
-    setInputFields([...inputFields, { value: "" }]);
-  };
+  const onSubmit: SubmitHandler<FieldValues> = async (data) => {
+    const toastId = toast.loading("Loading...");
 
-  const onSubmit: SubmitHandler<FieldValues> = (data) => {
-    console.log(data);
+    try {
+      const res = await createHomeFAQ(data).unwrap();
+      if (res.success) {
+        toast.success("FAQ Created", { id: toastId });
+      } else {
+        toast.success(res.data.message, {
+          id: toastId,
+        });
+      }
+    } catch (error: any) {
+      toast.error(error.data.message, { id: toastId });
+    }
   };
 
   return (
     <FForm onSubmit={onSubmit}>
-      <div className="space-y-3">
-        <h2 className="text-3xl font-bold">All Frequently Asked Questions</h2>
-        {inputFields.map((inputField, index) => (
-          <div key={index} className="flex flex-col space-y-3">
-            <FInput
-              label="Add Title"
-              name="title"
-              type="text"
-              placeholder="Add Title"
-              required={true}
-              className="w-1/2 border rounded-lg h-10 px-3"
-            />
-            <FInput
-              name="description"
-              type="text"
-              label="Add Description"
-              placeholder="description"
-              required={true}
-              className="w-1/2 border rounded-lg h-10 px-3"
-            />
-          </div>
-        ))}
+      <div className="space-y-3 lg:w-1/3">
+        <h2 className="text-3xl font-bold">Add Frequently Asked Questions</h2>
+        <FInput
+          type="text"
+          placeholder="Question"
+          name="question"
+          label="Question"
+        />
+        <FInput type="text" placeholder="Answer" name="answer" label="Answer" />
         <div className="flex items-center gap-3">
-          <Button
-            className="rounded-full"
-            type="button"
-            onClick={handleAddField}
-          >
-            Add Field
-          </Button>
-          <Button className="rounded-full" type="submit">
+          <Button className="rounded-full px-10" type="submit">
             Submit
           </Button>
         </div>

@@ -13,12 +13,13 @@ import { Label } from "../ui/label";
 import { fakeData } from "./Confirm";
 import PaymentStepFooter from "./PaymentStepFooter";
 
-type TPaymentProps = {
-  activeStep: number;
-  handleNext: () => void;
-};
+// type TPaymentProps = {
+//   activeStep: number;
+//   handleNext: () => void;
+// };
 
-const Payment = ({ activeStep, handleNext }: TPaymentProps) => {
+// { activeStep, handleNext }: TPaymentProps
+const Payment = () => {
   const [value, setValue] = useState<E164Number | undefined>("");
 
   return (
@@ -121,8 +122,8 @@ const Payment = ({ activeStep, handleNext }: TPaymentProps) => {
               </label>
             </div>
             <PaymentStepFooter
-              activeStep={activeStep}
-              handleNext={handleNext}
+              // activeStep={activeStep}
+              // handleNext={handleNext}
             />
           </div>
         </div>

@@ -1,6 +1,8 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
+import { useGetAllCelebrityQuery } from "@/redux/features/Celebrity/celebrityApi";
 import { TCeleb } from "../Categories/CelebrityCards";
 import { CelebrityCard } from "./CelebrityCard";
+import Spinner from "../Spinner/Spinner";
 
 type TSlider = {
   currentSlider: any;
@@ -13,13 +15,24 @@ export const CelebritySlider = ({
   data,
   handleDotClick,
 }: TSlider) => {
+  const { data: allCelebrity, isLoading } = useGetAllCelebrityQuery(undefined);
+
+  if (isLoading) {
+    return <Spinner />;
+  }
+
+  const isSmallScreen = window.innerWidth <= 768;
+  
   return (
     <div className="my-6 relative overflow-hidden">
       <div className="ease-linear duration-300 flex gap-[2%]">
-        {data?.map((item) => (
+        {allCelebrity?.data?.map((item: any, i: number) => (
           <div
+            key={i}
             style={{
-              transform: `translateX(-${currentSlider * 52}%)`,
+              transform: `translateX(-${
+                currentSlider * (isSmallScreen ? 100 : 50)
+              }%)`,
             }}
             className="lg:min-w-[20%] min-w-[50%] w h-fit bg-black/30 relative duration-200"
           >

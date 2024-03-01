@@ -34,7 +34,7 @@ const FInput = ({
       rules={{
         required: required,
       }}
-      render={({ field }) => (
+      render={({ field: { value, ...field } }) => (
         <div className="flex flex-col gap-y-1">
           <Label htmlFor={name} className="mb-2">
             {label}
@@ -43,6 +43,7 @@ const FInput = ({
             className={cn(className)}
             {...field}
             type={type}
+            value={value}
             multiple={multiple}
             accept={accept}
             placeholder={placeholder ? placeholder : ""}

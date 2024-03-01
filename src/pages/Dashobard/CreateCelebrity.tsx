@@ -22,8 +22,6 @@ const CreateCelebrity = () => {
   const [videos, setVideos] = useState<File[]>([]);
   const [faq, setFaq] = useState<InputField[]>([]);
 
-  console.log(isDhamaka);
-
   const handleImageChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const file = event.target.files?.[0];
     if (file) {
@@ -41,7 +39,7 @@ const CreateCelebrity = () => {
 
   const onSubmit: SubmitHandler<FieldValues> = async (data) => {
     const toastId = toast.loading("Loading...");
-    console.log(data);
+
     const celebrityInfo = {
       celebrityName: data?.celebrityName,
       bookingPrice: data?.bookingPrice,
@@ -79,13 +77,15 @@ const CreateCelebrity = () => {
         });
       }
     } catch (error: any) {
-      console.log(error);
       toast.error(error.data.message, { id: toastId });
     }
   };
 
   return (
     <div className="px-4">
+      <h2 className="mb-4 text-2xl font-semibold leading">
+        Create Celebrities
+      </h2>
       <FForm onSubmit={onSubmit}>
         <div className="grid grid-cols-3 gap-6">
           <FInput
@@ -177,7 +177,7 @@ const CreateCelebrity = () => {
               multiple
               accept="image/*"
               className="border p-1.5 rounded-lg"
-              required={false}
+              required={true}
             />
           </div>
           <div className="flex flex-col space-y-2">
@@ -189,7 +189,7 @@ const CreateCelebrity = () => {
               multiple
               accept="video/*"
               className="border p-1.5 rounded-lg"
-              required={false}
+              required={true}
             />
           </div>
         </div>
