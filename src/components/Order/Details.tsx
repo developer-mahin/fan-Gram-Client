@@ -1,84 +1,26 @@
 import { buttonText } from "@/Data/detailsStepper";
+import {
+  buttonValues,
+  deliveryFree,
+  extra,
+  surpriseTo,
+} from "@/Data/detailsTabData";
 import colorMark from "@/assets/colorMark.png";
 import star from "@/assets/star.png";
-import sunny from "@/assets/sunny.png";
 import FormClickableButton from "@/components/Common/FormClickableButton";
 import FForm from "@/components/Form/FForm";
 import FInput from "@/components/Form/FInput";
 import FRadioButton from "@/components/Form/FRadioButton";
 import { Label } from "@/components/ui/label";
+import { useGetSingleCelebrityQuery } from "@/redux/features/Celebrity/celebrityApi";
+import { Plus } from "lucide-react";
 import { useState } from "react";
 import { FieldValues, SubmitHandler } from "react-hook-form";
-import Occasion from "./Occasion";
-import extra1 from "@/assets/extra (2).png";
-import extra2 from "@/assets/extra (1).png";
-import extra3 from "@/assets/extra (3).png";
-import extra4 from "@/assets/extra (4).png";
-import { Button } from "../ui/button";
-import { Plus } from "lucide-react";
+import { useParams } from "react-router-dom";
 import Container from "../Common/Container";
-
-const buttonValues = [
-  {
-    value: "someoneElse",
-    label: "Someone Else",
-  },
-  {
-    value: "mySelf",
-    label: "My Self",
-  },
-];
-
-const deliveryFree = [
-  {
-    value: "within4DaysFree",
-    label: "Within 4 days Free",
-  },
-];
-
-const surpriseTo = [
-  {
-    value: "yes,GoHead₹1500",
-    label: "Yes, go head ₹1500",
-  },
-  {
-    value: "No, Skip for now",
-    label: "No, Skip for now",
-  },
-];
-
-const extra = [
-  {
-    img: extra1,
-    title: "Remove the FanRang logo",
-    des: "Download your video without a tring watermark",
-    price: "₹750",
-  },
-  {
-    img: extra2,
-    title: "Gifting Experience",
-    des: "Gift wrap your video with special effects.",
-    price: "₹600",
-  },
-  {
-    img: extra3,
-    title: "Full HD",
-    des: "Video is recorded with full HD 1080x1920. Pick this if the video quality is extra important.",
-    price: "₹300",
-  },
-  {
-    img: extra4,
-    title: "Dm On Instagram",
-    des: "Want To your Order",
-    price: "₹600",
-  },
-  {
-    img: extra1,
-    title: "Remove the FanRang logo",
-    des: "Download your video without a tring watermark",
-    price: "₹750",
-  },
-];
+import Spinner from "../Spinner/Spinner";
+import { Button } from "../ui/button";
+import Occasion from "./Occasion";
 
 const Details = () => {
   const [radioButton, setRadioButton] = useState("Someone Else");
@@ -89,6 +31,14 @@ const Details = () => {
     useState("Within 4 days Free");
   const [surpriseToDelivery, setSurpriseToDelivery] =
     useState("Yes, go head ₹1500");
+  const { id } = useParams();
+  const { data: celebrityData, isLoading } = useGetSingleCelebrityQuery(id);
+
+  if (isLoading) {
+    return <Spinner />;
+  }
+
+  const { celebrityName, imgUrl, verified } = celebrityData.data;
 
   const onSubmit: SubmitHandler<FieldValues> = (data) => {
     console.log(data);
@@ -102,16 +52,16 @@ const Details = () => {
         </h4>
         <div className="flex items-center gap-4 mt-5">
           <img
-            src={sunny}
+            src={`http://localhost:5000/uploads/${imgUrl}`}
             alt=""
             className="size-[100px] object-cover border rounded-xl"
           />
           <div className="flex items-center gap-2">
             <h2 className="lg:text-4xl text-2xl font-extrabold text-white">
-              Sunny Leone
+              {celebrityName}
             </h2>
             <div className="flex items-center gap-2">
-              <img src={colorMark} className="size-8 " alt="" />
+              {verified && <img src={colorMark} className="size-8 " alt="" />}
               <div className="border rounded-full px-3 w-fit flex items-center gap-2 h-8">
                 <img src={star} className="size-5" alt="" />
                 <p className="text-sm font-medium">4.7 (12)</p>

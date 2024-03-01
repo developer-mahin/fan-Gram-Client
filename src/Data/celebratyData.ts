@@ -65,4 +65,40 @@ export const celebraty = [
     price: "₹9999",
     image: sakti,
   },
+  {
+    name: "Salim Marchant",
+    hashTag: "#Movie Star #Baby Doll",
+    price: "₹9999",
+    image: salim,
+  },
+  {
+    name: "Priya Mani Rajt",
+    hashTag: "#Movie Star #Baby Doll",
+    price: "₹9999",
+    image: priya,
+  },
+  {
+    name: "Priya Mani Rajt",
+    hashTag: "#Movie Star #Baby Doll",
+    price: "₹9999",
+    image: priya,
+  },
+  {
+    name: "Shakti Kapoor",
+    hashTag: "#Movie Star #Baby Doll",
+    price: "₹9999",
+    image: sakti,
+  },
+  {
+    name: "Salim Marchant",
+    hashTag: "#Movie Star #Baby Doll",
+    price: "₹9999",
+    image: salim,
+  },
+  {
+    name: "Priya Mani Rajt",
+    hashTag: "#Movie Star #Baby Doll",
+    price: "₹9999",
+    image: priya,
+  },
 ];

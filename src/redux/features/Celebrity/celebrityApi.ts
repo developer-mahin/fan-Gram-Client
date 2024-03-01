@@ -12,6 +12,16 @@ const celebrityApi = baseApi.injectEndpoints({
       providesTags: ["celebrity"],
     }),
 
+    getSingleCelebrity: builder.query({
+      query: (id) => {
+        return {
+          url: `/celebrity/${id}`,
+          method: "GET",
+        };
+      },
+      providesTags: ["celebrity"],
+    }),
+
     addCelebrity: builder.mutation({
       query: (celebrityInfo) => {
         return {
@@ -51,4 +61,5 @@ export const {
   useUpdateCelebrityMutation,
   useAddCelebrityMutation,
   useDeleteCelebrityMutation,
+  useGetSingleCelebrityQuery,
 } = celebrityApi;

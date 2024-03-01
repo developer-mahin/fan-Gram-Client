@@ -1,11 +1,11 @@
 import { Button } from "../ui/button";
 
-type TPaymentStepFooter = {
-  handleNext: () => void;
-  activeStep: number;
-};
+// type TPaymentStepFooter = {
+//   handleNext: () => void;
+//   activeStep: number;
+// };
 
-const PaymentStepFooter = ({ activeStep, handleNext }: TPaymentStepFooter) => {
+const PaymentStepFooter = () => {
   return (
     <div className="mt-16 flex items-center justify-between">
       <p className="text-black font-semibold lg:w-[444px]">
@@ -13,7 +13,7 @@ const PaymentStepFooter = ({ activeStep, handleNext }: TPaymentStepFooter) => {
         continuing, you agree to our terms
       </p>
       <div>
-        <Button className="w-[414px] rounded-full font-semibold text-lg" x>
+        <Button className="w-[414px] rounded-full font-semibold text-lg">
           Continue
         </Button>
       </div>

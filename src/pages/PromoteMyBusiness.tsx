@@ -6,9 +6,16 @@ import CelebrityBrandShoutouts from "@/components/PromoteMyBusiness/CelebrityBra
 import LetsWork from "@/components/PromoteMyBusiness/LetsWork";
 import OutLetestWork from "@/components/PromoteMyBusiness/OutLetestWork";
 import WhatWeOffers from "@/components/PromoteMyBusiness/WhatWeOffers";
+import Spinner from "@/components/Spinner/Spinner";
 import { Button } from "@/components/ui/button";
+import { useAllHomeFaqQuery } from "@/redux/features/HomeFAQ/HomeFAQApi";
 
 const PromoteMyBusiness = () => {
+  const { data: faqData, isLoading } = useAllHomeFaqQuery(undefined);
+
+  if (isLoading) {
+    return <Spinner />;
+  }
   return (
     <div>
       <PromoteBusiness className="w-full py-[66px] justify-between lg:px-64 px-10" />
@@ -18,7 +25,7 @@ const PromoteMyBusiness = () => {
         <CelebrityBrandShoutouts />
         <WhatWeOffers />
         <BusinessWork />
-        <QuestionAccordion />
+        <QuestionAccordion faqData={faqData?.data} />
 
         <div className="bg-gradient-to-r from-[#EA8069] to-[#AB2DA7] px-10 py-12 rounded-2xl mb-10 flex flex-col items-center space-y-5">
           <h2 className="text-3xl font-extrabold text-white text-center">

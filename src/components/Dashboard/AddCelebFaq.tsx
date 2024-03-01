@@ -11,49 +11,13 @@ interface InputField {
 }
 
 const AddCelebFaq = ({ faq, setFaq }: InputField) => {
-  //   const [inputFields, setInputFields] = useState<InputField[]>([{ value: "" }]);
-
-  //   const handleAddField = () => {
-  //     setInputFields([...inputFields, { value: "" }]);
-  //   };
-
-  // Step 3
   const handleAddFaq = () => {
-    // Step 7
     setFaq([...faq, { question: "", answer: "" }]);
   };
-
-  console.log(faq);
 
   return (
     <div className="w-full">
       {faq.map((entry, index) => (
-        // <div key={index}>
-        //   {/* Step 7 */}
-        //   <input
-        //     type="text"
-        //     placeholder="Question"
-        //     value={entry.question}
-        //     onChange={(e) => {
-        //       e.preventDefault();
-        //       const updatedFaq = [...faq];
-        //       updatedFaq[index].question = e.target.value;
-        //       setFaq(updatedFaq);
-        //     }}
-        //   />
-        //   <input
-        //     type="text"
-        //     placeholder="Answer"
-        //     value={entry.answer}
-        //     onChange={(e) => {
-        //       e.preventDefault();
-        //       const updatedFaq = [...faq];
-        //       updatedFaq[index].answer = e.target.value;
-        //       setFaq(updatedFaq);
-        //     }}
-        //   />
-        // </div>
-
         <div key={index} className="flex gap-6 my-4">
           <div className="">
             <Label className="">Add Question</Label>
@@ -96,26 +60,3 @@ const AddCelebFaq = ({ faq, setFaq }: InputField) => {
 };
 
 export default AddCelebFaq;
-
-{
-  /* {inputFields.map((inputField, index) => (
-        <div key={index} className="flex flex-col space-y-3">
-          <FInput
-            label="Add Title"
-            name="question"
-            type="text"
-            placeholder="Add Title"
-            required={true}
-            className="w-1/2 border rounded-lg h-10 px-3"
-          />
-          <FInput
-            name="answer"
-            type="text"
-            label="Add Description"
-            placeholder="description"
-            required={true}
-            className="w-2/3 border rounded-lg h-10 px-3"
-          />
-        </div>
-      ))} */
-}

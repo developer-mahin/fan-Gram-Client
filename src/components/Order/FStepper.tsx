@@ -57,7 +57,8 @@ const Stepper = ({ stepData }: TStepperProps) => {
         ) : activeStep === 1 ? (
           <ConfirmStepFooter activeStep={activeStep} handleNext={handleNext} />
         ) : (
-          <PaymentStepFooter activeStep={activeStep} handleNext={handleNext} />
+          // <PaymentStepFooter activeStep={activeStep} handleNext={handleNext} />
+          <PaymentStepFooter />
         )}
       </Container>
     </div>

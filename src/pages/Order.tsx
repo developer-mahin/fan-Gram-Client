@@ -27,7 +27,8 @@ const Order = () => {
     },
     {
       title: "Payment",
-      content: <Payment activeStep={activeStep} handleNext={handleNext} />,
+      // content: <Payment activeStep={activeStep} handleNext={handleNext} />,
+      content: <Payment />,
     },
   ];
 

@@ -7,7 +7,10 @@ import AllBannerImages from "@/pages/Dashobard/AllBannerImages";
 import AllCelebrities from "@/pages/Dashobard/AllCelebrities";
 import CreateBannerImage from "@/pages/Dashobard/CreateBannerImage";
 import CreateCelebrity from "@/pages/Dashobard/CreateCelebrity";
-import Dashboard from "@/pages/Dashobard/Dashboard";
+import CreateLatestWork from "@/pages/Dashobard/CreateLatestWork";
+import FaqData from "@/pages/Dashobard/FaqData";
+import HomePageFAQ from "@/pages/Dashobard/HomePageFAQ";
+import LatestWorks from "@/pages/Dashobard/LatestWorks";
 import EmailVerification from "@/pages/EmailVerification";
 import Gifting from "@/pages/Gifting";
 import HowToFanGram from "@/pages/HowToFanGram";
@@ -50,7 +53,7 @@ const router = createBrowserRouter([
         element: <PromoteMyBusiness />,
       },
       {
-        path: "/order",
+        path: "/order/:id",
         element: <Order />,
       },
       {
@@ -64,8 +67,9 @@ const router = createBrowserRouter([
     element: <DashboardLayout />,
     children: [
       {
-        path: "/dashboard",
-        element: <Dashboard />,
+        index: true,
+
+        element: <CreateCelebrity />,
       },
       {
         path: "/dashboard/create-celebrity",
@@ -82,6 +86,22 @@ const router = createBrowserRouter([
       {
         path: "/dashboard/all-banner-images",
         element: <AllBannerImages />,
+      },
+      {
+        path: "/dashboard/home-faq",
+        element: <HomePageFAQ />,
+      },
+      {
+        path: "/dashboard/create-latest-work",
+        element: <CreateLatestWork />,
+      },
+      {
+        path: "/dashboard/all-latest-work",
+        element: <LatestWorks />,
+      },
+      {
+        path: "/dashboard/faq-data",
+        element: <FaqData />,
       },
     ],
   },

@@ -1,24 +1,41 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
+import colorMark from "@/assets/colorMark.png";
+import question from "@/assets/question.png";
+import safe from "@/assets/safe.png";
+import star from "@/assets/star.png";
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import { cn } from "@/lib/utils";
-import { useCallback, useEffect, useState } from "react";
+import { useGetSingleCelebrityQuery } from "@/redux/features/Celebrity/celebrityApi";
+import React, { useCallback, useEffect, useState } from "react";
 import { CiHeart } from "react-icons/ci";
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import Container from "../Common/Container";
+import Spinner from "../Spinner/Spinner";
 import { Button } from "../ui/button";
 
-// type CardProps = React.ComponentProps<typeof Card>;
-
-export function BookCelebCard({ data }: { data: Record<string, any> }) {
+export function BookCelebCard() {
   const [currentSlider, setCurrentSlider] = useState(0);
-  const sliderImages = [data.img, data.img, data.img];
+  const { id } = useParams();
+  const { data: celebrity, isLoading } = useGetSingleCelebrityQuery(id);
+
+  const {
+    _id,
+    imgUrl,
+    celebrityName,
+    videoUrl,
+    bookingPrice,
+    verified,
+    meetingPrice,
+    responseIn,
+    hashtag,
+  } = celebrity.data;
 
   const nextSlider = useCallback(
     () =>
       setCurrentSlider((currentSlider) =>
-        currentSlider === sliderImages.length - 1 ? 0 : currentSlider + 1
+        currentSlider === videoUrl.length - 1 ? 0 : currentSlider + 1
       ),
-    [sliderImages.length]
+    [videoUrl.length]
   );
 
   useEffect(() => {
@@ -27,6 +44,10 @@ export function BookCelebCard({ data }: { data: Record<string, any> }) {
     }, 3000);
     return () => clearInterval(intervalId);
   }, [nextSlider]);
+
+  if (isLoading) {
+    return <Spinner />;
+  }
 
   return (
     <Card className={cn("w-auto h-fit  bg-[#161616] border-none rounded-lg ")}>
@@ -40,50 +61,75 @@ export function BookCelebCard({ data }: { data: Record<string, any> }) {
         </CardHeader>
         <CardContent className="flex items-center justify-start gap-4 mx-auto text-white px-0">
           <div>
-            <img className="rounded-lg w-full h-full" src={data.img} alt="" />
+            <img
+              className="rounded-lg border border-gray-300 object-cover w-[258px] h-[262px]"
+              src={`http://localhost:5000/uploads/${imgUrl}`}
+              alt=""
+            />
           </div>
+
           <div className="flex-grow">
             <div className="flex flex-col gap-2">
-              <h1 className="text-2xl font-bold ">{data.name}</h1>
+              <div className="flex items-center gap-2">
+                <h2 className="lg:text-4xl text-2xl font-extrabold text-white">
+                  {celebrityName}
+                </h2>
+                <div className="flex items-center gap-2">
+                  {verified && (
+                    <img src={colorMark} className="size-8 " alt="" />
+                  )}
+                  <div className="border rounded-full px-3 w-fit flex items-center gap-2 h-8">
+                    <img src={star} className="size-5" alt="" />
+                    <p className="text-sm font-medium">4.7 (12)</p>
+                  </div>
+                </div>
+              </div>
               <p>
-                Responds In <span className="text-primary">5 Days</span>
+                Responds In <span className="text-primary">{responseIn}</span>
               </p>
-              <div className="flex gap-3">
-                {data?.tags?.map((tag: string, index: number) => (
-                  <small
+              <div className="flex gap-3 items-center mt-3">
+                {hashtag?.map((tag: string, index: number) => (
+                  <p
                     key={index}
-                    className="font-serif rounded-2xl bg-[#292929] py-1 px-3"
+                    className="rounded-full bg-[#292929] flex items-center justify-center h-10 px-4"
                   >
                     {tag}
-                  </small>
+                  </p>
                 ))}
               </div>
-              <div className="flex gap-3">
-                <Link to="/order">
+              <div className="flex gap-3 mt-3">
+                <Link to={`/order/${_id}`}>
                   <Button className="px-6 rounded-3xl">
-                    Book Video @ ${data.price}
+                    Book Video @ ₹{bookingPrice}
                   </Button>
                 </Link>
                 <div className="flex gap-1 items-center border border-primary rounded-3xl pl-6">
                   <div className="text-sm">Meet & Greet</div>
-                  <div className="text-xs bg-primary rounded-3xl px-6 py-1">
-                    Starts From <br /> $399990
+                  <div className="text-xs bg-primary rounded-bl-full rounded-tr-full rounded-br-full px-6 py-1">
+                    Starts From <br /> ₹{meetingPrice}
                   </div>
                 </div>
                 <div className="flex items-center gap-1 border border-primary rounded-3xl px-6">
                   For Business
                 </div>
               </div>
-              <small className="text-gray-400">
-                Secure & Safe Payments. Need Help? Text Us
-              </small>
+              <div className="text-[#999999] flex items-center gap-3 mt-3">
+                <div className="flex items-center gap-1">
+                  <p>Secure & Safe Payments.</p>
+                  <img src={safe} alt="" className="size-4" />
+                </div>
+                <div className="flex items-center gap-1">
+                  <p>Need Help? Text Us</p>
+                  <img src={question} alt="" className="size-4" />
+                </div>
+              </div>
             </div>
           </div>
           <div className="">
             <div className="w-[200px] relative overflow-hidden rounded-xl">
               {/* dots */}
               <div className="flex justify-center items-center rounded-full z-50 absolute bottom-4 w-full gap-1">
-                {sliderImages.map((_, inx) => (
+                {videoUrl.map((_: any, inx: number) => (
                   <button
                     key={inx}
                     onClick={() => setCurrentSlider(inx)}
@@ -98,14 +144,18 @@ export function BookCelebCard({ data }: { data: Record<string, any> }) {
                 className="ease-linear duration-300 flex transform-gpu"
                 style={{ transform: `translateX(-${currentSlider * 100}%)` }}
               >
-                {sliderImages.map((img, inx) => (
-                  <img
-                    key={inx}
-                    src={img}
-                    className=" bg-black/20  object-cover object-center"
-                    alt={`Slider - ${inx + 1}`}
-                  />
-                ))}
+                {videoUrl.length &&
+                  videoUrl?.map((video: any, inx: number) => {
+                    return (
+                      <React.Fragment key={inx}>
+                        <video controls>
+                          <source
+                            src={`http://localhost:5000/uploads/${video.path}`}
+                          />
+                        </video>
+                      </React.Fragment>
+                    );
+                  })}
               </div>
             </div>
           </div>

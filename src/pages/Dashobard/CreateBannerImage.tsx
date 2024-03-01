@@ -18,8 +18,7 @@ const CreateBannerImage = () => {
     setImages(selectedImages);
   };
 
-  const onSubmit = async (e: Event) => {
-    e.preventDefault();
+  const onSubmit: SubmitHandler<FieldValues> = async () => {
     const formData = new FormData();
     images.forEach((image) => {
       formData.append(`images`, image);
@@ -27,21 +26,23 @@ const CreateBannerImage = () => {
 
     try {
       const res = (await addBannerImage(formData)) as TResponse<any>;
-      if (res.data.success) {
+      if (res?.data?.success) {
         setImages([]);
         toast.success("Successfully upload image");
       } else {
         toast.success("Something went wrong please try again");
       }
     } catch (error: any) {
-      toast.error(error.message);
+      toast.success("Something went wrong please try again");
     }
   };
 
   return (
     <div className="">
+      <h2 className="mb-4 text-2xl font-semibold leading">
+        Create Banner Images
+      </h2>
       <form onSubmit={onSubmit} className="flex flex-col">
-        <h2 className="mb-4 text-3xl font-bold">Add Banner Images</h2>
         <Label className="font-semibold mb-2">Banner Image</Label>
         <input
           name="images"

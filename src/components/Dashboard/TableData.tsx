@@ -24,9 +24,8 @@ const TableData = ({ item }: { item: any }) => {
       id,
       verified: !verified,
     };
-    console.log({ verifyData });
+
     const formData = new FormData();
-    // console.log(Object.fromEntries(formData));
     const data2 = JSON.stringify(verifyData);
     formData.append("data", data2);
 

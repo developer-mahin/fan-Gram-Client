@@ -34,28 +34,31 @@ const AllBannerImages = () => {
   };
 
   return (
-    <FTable TABLE_HEAD={TABLE_HEAD}>
-      {bannerImage?.data?.map((item: any) => {
-        return (
-          <tr key={item._id} className="border-b border-gray-500">
-            <td className="p-2">
-              <img
-                className="size-20 object-cover rounded-full"
-                src={`http://localhost:5000/uploads/${item.path.slice(7)}`}
-                alt=""
-              />
-            </td>
-            <td onClick={() => setImageId(item._id)} className="p-2">
-              <DeleteModal
-                title="Delete Celebrity"
-                handler={handleDelete}
-                className="rounded-full px-4 h-8 hover:bg-red-500 bg-red-500"
-              />
-            </td>
-          </tr>
-        );
-      })}
-    </FTable>
+    <>
+      <h2 className="mb-4 text-2xl font-semibold leading">Banner Images</h2>
+      <FTable TABLE_HEAD={TABLE_HEAD}>
+        {bannerImage?.data?.map((item: any) => {
+          return (
+            <tr key={item._id} className="border-b border-gray-500">
+              <td className="p-2">
+                <img
+                  className="size-20 object-cover rounded-full"
+                  src={`http://localhost:5000/uploads/${item.path}`}
+                  alt=""
+                />
+              </td>
+              <td onClick={() => setImageId(item._id)} className="p-2">
+                <DeleteModal
+                  title="Delete Celebrity"
+                  handler={handleDelete}
+                  className="rounded-full px-4 h-8 hover:bg-red-500 bg-red-500"
+                />
+              </td>
+            </tr>
+          );
+        })}
+      </FTable>
+    </>
   );
 };
 

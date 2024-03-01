@@ -64,9 +64,20 @@ input.PhoneInputInput:focus {
   height: calc((100% - 30px) / 2) !important;
 }
 
+.slider-item:nth-child(odd) {
+  margin-top: 20px;
+}
 
-.ptSwiper:nth-child(odd){
-  margin-top: 30px;
+.celebrity {
+  height: 446px;
+  width: 92%;
+  background-size: cover;
+  background-repeat: no-repeat;
+  border-radius: 15px;
+}
+
+.celebrityCard {
+  background: #d42978;
 }
 
 @media only screen and (max-width: 768px) {
@@ -75,5 +86,12 @@ input.PhoneInputInput:focus {
   }
   .scrollBar {
     height: 100%;
+  }
+  .celebrity {
+    height: 420px;
+    width: 100%;
+  }
+  .celebrityCard {
+    background: linear-gradient(180deg, #00000000 0%, #a82daa 100%);
   }
 }

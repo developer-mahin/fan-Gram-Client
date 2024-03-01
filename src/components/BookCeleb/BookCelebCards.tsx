@@ -1,13 +1,14 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { data } from "@/Data/data";
 import { useCallback, useState } from "react";
-import {
-  MdOutlineKeyboardArrowLeft,
-  MdOutlineKeyboardArrowRight,
-} from "react-icons/md";
+import { IoIosArrowBack, IoIosArrowForward } from "react-icons/io";
 import { CelebrityCard } from "../Common/CelebrityCard";
 import { CelebritySlider } from "../Common/CelebritySlider";
 import Container from "../Common/Container";
+import FIconButton from "../Common/FIconButton";
 import { Button } from "../ui/button";
+import { useGetAllCelebrityQuery } from "@/redux/features/Celebrity/celebrityApi";
+import Spinner from "../Spinner/Spinner";
 
 const availableCeleb = data?.filter((celeb) => celeb.available === true);
 const fanGramCeleb = data?.filter((celeb) => celeb.available !== true);
@@ -15,6 +16,7 @@ const fanGramCeleb = data?.filter((celeb) => celeb.available !== true);
 const BookCelebCards = () => {
   const [currentSlider, setCurrentSlider] = useState(0);
   const [currentFanGramSlider, setCurrentFanGramSlider] = useState(0);
+  const { data: allCelebrity, isLoading } = useGetAllCelebrityQuery(undefined);
 
   const prevSlider = () =>
     setCurrentSlider((currentSlider) =>
@@ -41,6 +43,10 @@ const BookCelebCards = () => {
     []
   );
 
+  if (isLoading) {
+    return <Spinner />;
+  }
+
   return (
     <Container>
       <div className="space-y-8 ">
@@ -55,35 +61,25 @@ const BookCelebCards = () => {
               </Button>
             </div>
             <div className="flex gap-6">
-              {/* arrow left */}
-              <button
-                onClick={prevSlider}
-                className="bg-transparent rounded-full w-6 h-6 md:w-8 md:h-8 border border-[#9F1F5A] flex justify-center items-center"
-              >
-                <MdOutlineKeyboardArrowLeft className="w-4 h-4 md:w-6 md:h-6  font-light text-[#9F1F5A]" />
-              </button>
-              {/* arrow right */}
-              <button
-                onClick={nextSlider}
-                className="bg-transparent rounded-full w-6 h-6 md:w-8 md:h-8 border border-[#9F1F5A] flex justify-center items-center"
-              >
-                <MdOutlineKeyboardArrowRight className="w-4 h-4 md:w-6 md:h-6  font-light text-[#9F1F5A]" />
-              </button>
+              <FIconButton handler={prevSlider} Icon={IoIosArrowBack} />
+              <FIconButton
+                handler={nextSlider}
+                Icon={IoIosArrowForward}
+                className="bg-primary text-white"
+                iconClass="text-white"
+              />
             </div>
           </div>
-          {/* <CelebritySlider
-          currentSlider={currentSlider}
-          data={availableCeleb}
-        ></CelebritySlider> */}
 
           <div className="my-6 relative overflow-hidden">
-            <div
-              className="ease-linear duration-300 flex gap-[2%]"
-              style={{ transform: `translateX(-${currentSlider * 52}%)` }}
-            >
+            <div className="ease-linear duration-300 flex gap-[2%]">
               {/* sliders */}
-              {availableCeleb?.map((item) => (
-                <div className="min-w-[20%] h-fit bg-black/30 relative duration-200">
+              {allCelebrity?.data?.map((item: any) => (
+                <div
+                  key={item._id}
+                  style={{ transform: `translateX(-${currentSlider * 50}%)` }}
+                  className="min-w-[20%] h-fit bg-black/30 relative duration-200"
+                >
                   <CelebrityCard data={item} />
                 </div>
               ))}
@@ -103,20 +99,16 @@ const BookCelebCards = () => {
                 </Button>
               </div>
               <div className="flex gap-6">
-                {/* arrow left */}
-                <button
-                  onClick={prevFanGramSlider}
-                  className="bg-transparent rounded-full w-6 h-6 md:w-8 md:h-8 border border-[#9F1F5A] flex justify-center items-center"
-                >
-                  <MdOutlineKeyboardArrowLeft className="w-4 h-4 md:w-6 md:h-6  font-light text-[#9F1F5A]" />
-                </button>
-                {/* arrow right */}
-                <button
-                  onClick={nextFanGramSlider}
-                  className="bg-transparent rounded-full w-6 h-6 md:w-8 md:h-8 border border-[#9F1F5A] flex justify-center items-center"
-                >
-                  <MdOutlineKeyboardArrowRight className="w-4 h-4 md:w-6 md:h-6  font-light text-[#9F1F5A]" />
-                </button>
+                <FIconButton
+                  handler={prevFanGramSlider}
+                  Icon={IoIosArrowBack}
+                />
+                <FIconButton
+                  handler={nextFanGramSlider}
+                  Icon={IoIosArrowForward}
+                  className="bg-primary text-white"
+                  iconClass="text-white"
+                />
               </div>
             </div>
           </div>

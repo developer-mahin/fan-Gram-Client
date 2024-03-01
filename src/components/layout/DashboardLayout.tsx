@@ -1,17 +1,10 @@
-import { useState } from "react";
-import { LuArrowRightCircle } from "react-icons/lu";
-import { Link, NavLink, Outlet } from "react-router-dom";
+import React, { useState } from "react";
+import { Link, Outlet } from "react-router-dom";
 
 import { Menus } from "@/Data/dashboardMenu";
+import { HiMenuAlt3 } from "react-icons/hi";
 import logo from "../../assets/logo.png";
 import "../../styles/global.css";
-import { Button } from "../ui/button";
-import {
-  Tooltip,
-  TooltipContent,
-  TooltipProvider,
-  TooltipTrigger,
-} from "../ui/tooltip";
 import DashboardHeader from "../Common/Header/DashboardHeader";
 
 const DashboardLayout = () => {
@@ -19,7 +12,7 @@ const DashboardLayout = () => {
 
   return (
     <div className="flex text-black bg-white w-full">
-      <div
+      {/* <div
         className={` ${
           open ? "lg:w-60" : "lg:w-[85px] w-16"
         }  relative duration-700  border-r shadow-2xl border-gray-100 `}
@@ -92,6 +85,59 @@ const DashboardLayout = () => {
         >
           <LuArrowRightCircle className="size-6 " />
         </button>
+      </div> */}
+      <div
+        className={`bg-white min-h-screen ${
+          open ? "w-72" : "w-16"
+        } duration-500 border-r shadow-2xl border-gray-100 px-4`}
+      >
+        <div
+          className={`py-3 flex ${open ? "justify-between" : "justify-end"}`}
+        >
+          <Link to="/">
+            <img
+              src={logo}
+              className={`cursor-pointer lg:w-28 w-12 duration-500 ${
+                !open && "hidden"
+              }`}
+            />
+          </Link>
+          <HiMenuAlt3
+            size={26}
+            className="cursor-pointer"
+            onClick={() => setOpen(!open)}
+          />
+        </div>
+        <div className="mt-4 flex flex-col gap-2 relative">
+          {Menus?.map((menu, i) => (
+            <Link
+              to={menu?.path}
+              key={i}
+              className={` ${
+                menu?.margin && "mt-5"
+              } group flex items-center text-sm  gap-3.5 font-medium p-2 hover:bg-secondary hover:text-white rounded-md`}
+            >
+              <div>{React.createElement(menu?.icon, { size: "20" })}</div>
+              <h2
+                style={{
+                  transitionDelay: `${i + 3}00ms`,
+                }}
+                className={`whitespace-pre duration-500 ${
+                  !open && "opacity-0 translate-x-28 overflow-hidden"
+                }`}
+              >
+                {menu?.title}
+              </h2>
+              <h2
+                className={`${
+                  open && "hidden"
+                } absolute left-48 bg-white font-semibold whitespace-pre text-gray-900 hover:text-white rounded-md drop-shadow-lg px-0 py-0 w-0 overflow-hidden group-hover:px-2 group-hover:py-1 group-hover:left-14 group-hover:duration-300 group-hover:w-fit  `}
+              >
+                {menu?.title}
+              </h2>
+            </Link>
+          ))}
+        </div>
       </div>
       <div className="h-full flex-1 ">
         <div className="">
