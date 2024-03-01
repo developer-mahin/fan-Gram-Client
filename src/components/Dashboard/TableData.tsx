@@ -24,14 +24,20 @@ const TableData = ({ item }: { item: any }) => {
       id,
       verified: !verified,
     };
+    console.log({ verifyData });
+    const formData = new FormData();
+    // console.log(Object.fromEntries(formData));
+    const data2 = JSON.stringify(verifyData);
+    formData.append("data", data2);
 
     try {
-      const res = (await updateCelebrity(verifyData)) as TResponse<any>;
+      const res = (await updateCelebrity(formData)) as TResponse<any>;
 
       if (res.error) {
-        toast.error("something went wrong, not verified", { id: toastId });
+        console.log(res);
+        toast.error(res.error.data.message, { id: toastId });
       } else {
-        toast.success("successfully verified the celebrity", { id: toastId });
+        toast.success(res.data.message, { id: toastId });
       }
     } catch (error) {
       toast.error("Something went wrong");
@@ -72,7 +78,7 @@ const TableData = ({ item }: { item: any }) => {
               : "bg-red-500 text-white hover:bg-red-500 "
           }`}
         >
-          {item.verified ? "Verified User" : "Unverified User"}
+          {item.verified ? "Verified" : "Not Verified"}
         </Button>
       </td>
       <td className="p-3" onClick={() => dispatch(addCelebrityId(item._id))}>
