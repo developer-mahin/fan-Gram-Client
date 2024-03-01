@@ -17,7 +17,7 @@ import "swiper/css";
 import "swiper/css/grid";
 import "swiper/css/pagination";
 
-import { Pagination, Grid, Autoplay } from "swiper/modules";
+import { Pagination, Grid, Autoplay,  } from "swiper/modules";
 import {
   Carousel,
   CarouselContent,
@@ -68,13 +68,13 @@ const Banner = () => {
         className="mySwiper"
       >
         <div>
-          {bannerImage.data.map((item: any) => {
+          {bannerImage?.data?.map((item: any) => {
             return (
               <SwiperSlide>
                 <div>
                   <img
-                    className="rounded-[15px] object-cover lg:w-[280px] w-full  lg:h-[287px] h-auto"
-                    src={`http://localhost:5000/uploads/${item.path.slice(7)}`}
+                    className="rounded-[15px] object-cover lg:w-[280px] w-[180px]  lg:h-[287px] h-[180px]"
+                    src={`http://localhost:5000/uploads/${item.path}`}
                     alt=""
                   />
                 </div>

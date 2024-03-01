@@ -1,20 +1,81 @@
 import { celebraty } from "@/Data/celebratyData";
 import { Button } from "../ui/button";
-import { Card, CardContent } from "../ui/card";
-import {
-  Carousel,
-  CarouselContent,
-  CarouselItem,
-  CarouselNext,
-  CarouselPrevious,
-} from "../ui/carousel";
-import Autoplay from "embla-carousel-autoplay";
+// import { Card, CardContent } from "../ui/card";
+// import {
+//   Carousel,
+//   CarouselContent,
+//   CarouselItem,
+//   CarouselNext,
+//   CarouselPrevious,
+// } from "../ui/carousel";
+// import Autoplay from "embla-carousel-autoplay";
+import Slider from "react-slick";
+import "../../styles/global.css";
 
 const FeaturedCelebrity = () => {
+  const settings = {
+    className: "center",
+    centerMode: true,
+    infinite: true,
+    slidesToShow: 2,
+    speed: 500,
+    rows: 2,
+    slidesPerRow: 5,
+    fade: true,
+    responsive: [
+      {
+        breakpoint: 768,
+        settings: {
+          arrows: false,
+          centerMode: false,
+          dots: true,
+          rows: 1,
+          slidesToShow: 1,
+          slidesPerRow: 1,
+        },
+      },
+    ],
+  };
+
   return (
     <>
-      <div className="lg:my-20   my-10 relative">
-        <div className="lg:block w-[94%] mx-auto hidden">
+      <div className="lg:my-20 my-10 relative">
+        <div className="slider-container">
+          <Slider {...settings}>
+            {celebraty.map((item, i) => {
+              return (
+                <div key={i} className="lg:mt-0 mt-20">
+                  <div
+                    style={{
+                      backgroundImage: `url(${item.image})`,
+                    }}
+                    className="relative celebrity"
+                  >
+                    <div className="lg:pt-3 pt-32 py-4 pr-2 pl-[21px] absolute bottom-0 w-full rounded-tl-[30px] rounded-bl-[15px] rounded-br-[15px] celebrityCard">
+                      <h2 className="text-2xl text-white font-bold pr-2">
+                        {item.name}
+                      </h2>
+                      <h2 className="text-white">{item.hashTag}</h2>
+                      <div className="flex items-center justify-between gap-2 mt-3">
+                        <p className="text-sm font-bold text-white">
+                          Starting From {item.price}
+                        </p>
+                        <Button
+                          size="sm"
+                          className="bg-white text-primary hover:bg-white rounded-full font-medium"
+                        >
+                          Book Now
+                        </Button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              );
+            })}
+          </Slider>
+        </div>
+
+        {/* <div className="lg:block w-[94%] mx-auto hidden">
           <Carousel className="w-full ">
             <CarouselContent className="bg-[#000000]">
               {Array.from({ length: 5 }).map((_, index) => (
@@ -103,9 +164,9 @@ const FeaturedCelebrity = () => {
               <CarouselNext className="bg-primary hover:bg-primary hover:text-white border-primary text-white " />
             </div>
           </Carousel>
-        </div>
+        </div> */}
 
-        <div className="lg:hidden block">
+        {/* <div className="lg:hidden block">
           <Carousel
             plugins={[
               Autoplay({
@@ -150,7 +211,7 @@ const FeaturedCelebrity = () => {
               ))}
             </CarouselContent>
           </Carousel>
-        </div>
+        </div> */}
       </div>
     </>
   );

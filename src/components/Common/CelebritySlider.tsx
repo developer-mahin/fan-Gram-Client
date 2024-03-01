@@ -27,7 +27,7 @@ export const CelebritySlider = ({
           </div>
         ))}
       </div>
-      <div className="flex items-center justify-center w-full mt-6">
+      <div className="flex lg:hidden items-center justify-center w-full mt-6">
         {data.slice(0, 8).map((_, index) => (
           <button
             key={index}

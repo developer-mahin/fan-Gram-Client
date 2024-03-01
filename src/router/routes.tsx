@@ -8,6 +8,7 @@ import AllCelebrities from "@/pages/Dashobard/AllCelebrities";
 import CreateBannerImage from "@/pages/Dashobard/CreateBannerImage";
 import CreateCelebrity from "@/pages/Dashobard/CreateCelebrity";
 import Dashboard from "@/pages/Dashobard/Dashboard";
+import HomePageFAQ from "@/pages/Dashobard/HomePageFAQ";
 import EmailVerification from "@/pages/EmailVerification";
 import Gifting from "@/pages/Gifting";
 import HowToFanGram from "@/pages/HowToFanGram";
@@ -82,6 +83,10 @@ const router = createBrowserRouter([
       {
         path: "/dashboard/all-banner-images",
         element: <AllBannerImages />,
+      },
+      {
+        path: "/dashboard/home-faq",
+        element: <HomePageFAQ />,
       },
     ],
   },

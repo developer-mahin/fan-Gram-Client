@@ -41,7 +41,7 @@ const AllBannerImages = () => {
             <td className="p-2">
               <img
                 className="size-20 object-cover rounded-full"
-                src={`http://localhost:5000/uploads/${item.path.slice(7)}`}
+                src={`http://localhost:5000/uploads/${item.path}`}
                 alt=""
               />
             </td>

@@ -21,6 +21,9 @@ const AllCelebrities = () => {
     "Edit",
   ];
 
+
+  console.log(allCelebrities)
+
   return (
     <div className="">
       <h2 className="mb-4 text-2xl font-semibold leading">Celebrities</h2>

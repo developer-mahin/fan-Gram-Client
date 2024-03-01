@@ -5,26 +5,33 @@ export const Menus = [
   {
     title: "Dashboard",
     path: "/dashboard",
-    icon: <IoStatsChart className="size-6" />,
+    icon: IoStatsChart,
   },
   {
     title: "Create Celebrity",
     path: "/dashboard/create-celebrity",
-    icon: <RiBarChartBoxFill className="size-6" />,
+    icon: IoStatsChart,
   },
   {
     title: "Celebrities Data",
     path: "/dashboard/all-celebrities",
-    icon: <RiBarChartBoxFill className="size-6" />,
+    icon: IoStatsChart,
   },
   {
     title: "Add Banner Image",
     path: "/dashboard/add-banner-image",
-    icon: <RiBarChartBoxFill className="size-6" />,
+    icon: IoStatsChart,
+    margin: true,
   },
   {
     title: "All Banner Images",
     path: "/dashboard/all-banner-images",
-    icon: <RiBarChartBoxFill className="size-6" />,
+    icon: IoStatsChart,
+  },
+  {
+    title: "Home Page FAQ",
+    path: "/dashboard/home-faq",
+    icon: IoStatsChart,
+    margin: true,
   },
 ];

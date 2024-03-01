@@ -4,7 +4,7 @@ import { Label } from "@/components/ui/label";
 import { useAddBannerImageMutation } from "@/redux/features/Banner/bannerApi";
 import { TResponse } from "@/types/global.types";
 import { ChangeEvent, useState } from "react";
-import { FieldValues, SubmitHandler } from "react-hook-form";
+import { Field, FieldValues, SubmitHandler } from "react-hook-form";
 import { toast } from "sonner";
 
 const CreateBannerImage = () => {
@@ -18,8 +18,7 @@ const CreateBannerImage = () => {
     setImages(selectedImages);
   };
 
-  const onSubmit = async (e: Event) => {
-    e.preventDefault();
+  const onSubmit: SubmitHandler<FieldValues> = async (data) => {
     const formData = new FormData();
     images.forEach((image) => {
       formData.append(`images`, image);
@@ -27,14 +26,14 @@ const CreateBannerImage = () => {
 
     try {
       const res = (await addBannerImage(formData)) as TResponse<any>;
-      if (res.data.success) {
+      if (res?.data?.success) {
         setImages([]);
         toast.success("Successfully upload image");
       } else {
         toast.success("Something went wrong please try again");
       }
     } catch (error: any) {
-      toast.error(error.message);
+      toast.success("Something went wrong please try again");
     }
   };
 
