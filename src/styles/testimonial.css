@@ -14,13 +14,12 @@
   margin: 0 auto;
   margin-top: 4rem;
   width: 80vw;
-  height: 450px;
+  height: 480px;
   max-width: 1200px;
   text-align: center;
   position: relative;
   display: flex;
   overflow: hidden;
-  /* background-color: ; */
   border-radius: 25px;
 }
 
@@ -75,6 +74,6 @@ article.nextSlide {
 @media only screen and (max-width: 768px) {
   .section-center {
     width: 90vw;
-    height: 1000px;
+    height: 800px;
   }
 }

@@ -1,10 +1,11 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { testimonialData } from "@/Data/testimonialData";
 import { useEffect, useState } from "react";
-import "../../styles/testimonial.css";
 import { BsFillStarFill } from "react-icons/bs";
 import { IoIosArrowBack, IoIosArrowForward } from "react-icons/io";
-import SectionTitle from "../Common/SectionTitle";
+import "../../styles/testimonial.css";
 import FIconButton from "../Common/FIconButton";
+import SectionTitle from "../Common/SectionTitle";
 
 const Testimonial = () => {
   const [people] = useState(testimonialData);
@@ -39,7 +40,7 @@ const Testimonial = () => {
             text commonly
           </p>
         </div>
-        <div className="flex items-center gap-5">
+        <div className="lg:flex hidden items-center gap-5">
           <FIconButton
             handler={() => setIndex(index - 1)}
             Icon={IoIosArrowBack}
@@ -52,7 +53,7 @@ const Testimonial = () => {
           />
         </div>
       </div>
-      <div className="section-center">
+      <div className="section-center ">
         {people.map((item, indexPeople) => {
           const { name, img, occupation, review } = item;
           let position = "nextSlide";
@@ -67,17 +68,15 @@ const Testimonial = () => {
           }
           return (
             <article
-              className={`${position} lg:px-20 grid lg:grid-cols-2 gap-x-[68px] mx-auto bg-[#292929]`}
+              className={`${position}  lg:px-20 px-4 grid lg:grid-cols-2 mx-auto bg-[#292929]`}
               key={indexPeople}
             >
-              <img
-                src={img}
-                alt={name}
-                className="lg:w-full h-[450px] object-cover"
-              />
-              <div className="bg-[url('@/assets/quate.png')] lg:mt-[120px] bg-no-repeat lg:w-[544px]">
+              <div className="">
+                <img src={img} alt={name} className="h-[480px]" />
+              </div>
+              <div className=" bg-[url('@/assets/quate.png')] lg:mt-[120px] bg-no-repeat lg:w-[544px]">
                 <div className="lg:px-10">
-                  <p className="text-lg text-white mt-8">{review}</p>
+                  <p className="text-lg text-white lg:mt-8">{review}</p>
                   <div className="flex items-center justify-center">
                     <div>
                       <div className="flex items-center gap-x-4 ">
@@ -91,6 +90,17 @@ const Testimonial = () => {
                       <p className="text-white text-sm">{occupation}</p>
                     </div>
                   </div>
+                </div>
+                <div className="lg:hidden block">
+                  {testimonialData.map((_: any, index: number) => (
+                    <button
+                      key={index}
+                      onClick={() => setIndex(index - 1)}
+                      className={`mx-1 size-3 rounded-full ${
+                        indexPeople === index ? "bg-white" : "bg-[#a3a3a36d] "
+                      }`}
+                    />
+                  ))}
                 </div>
               </div>
             </article>

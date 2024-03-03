@@ -94,4 +94,17 @@ input.PhoneInputInput:focus {
   .celebrityCard {
     background: linear-gradient(180deg, #00000000 0%, #a82daa 100%);
   }
+  .swiper-slide {
+    width: 42% !important;
+    height: calc(36% - 12.5px) !important;
+  }
+  .swiper {
+    height: 500px !important;
+  }
+  .swiper-wrapper {
+    width: 100vw !important;
+  }
+  .mySwiper{
+    margin-top: 50px;
+  }
 }
