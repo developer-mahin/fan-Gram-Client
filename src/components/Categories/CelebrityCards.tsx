@@ -1,10 +1,12 @@
-import { data } from "@/Data/data";
+/* eslint-disable @typescript-eslint/no-explicit-any */
+import { useGetAllCelebrityQuery } from "@/redux/features/Celebrity/celebrityApi";
 import { useCallback, useEffect, useState } from "react";
 import { IoIosArrowBack, IoIosArrowForward } from "react-icons/io";
 import { CelebritySlider } from "../Common/CelebritySlider";
-import SectionTitle from "../Common/SectionTitle";
-import { Button } from "../ui/button";
 import FIconButton from "../Common/FIconButton";
+import SectionTitle from "../Common/SectionTitle";
+import Spinner from "../Spinner/Spinner";
+import { Button } from "../ui/button";
 
 export type TCeleb = {
   _id: number;
@@ -15,16 +17,25 @@ export type TCeleb = {
   available: boolean;
 };
 
-const availableCeleb = data?.filter((celeb) => celeb.available === true);
-const fanGramCeleb = data?.filter((celeb) => celeb.available !== true);
-
 const CelebrityCards = () => {
   const [currentSlider, setCurrentSlider] = useState(0);
   const [currentFanGramSlider, setCurrentFanGramSlider] = useState(0);
 
+  const { data: allCelebrityData, isLoading } =
+    useGetAllCelebrityQuery(undefined);
+
+  console.log(allCelebrityData);
+
+  const availableCeleb = allCelebrityData?.data?.filter(
+    (celeb: any) => celeb.earlyResponse === true
+  );
+  const fanGramCeleb = allCelebrityData?.data?.filter(
+    (celeb: any) => celeb.earlyResponse !== true
+  );
+
   const prevSlider = () =>
     setCurrentSlider((currentSlider) =>
-      currentSlider === 0 ? availableCeleb.length - 1 : currentSlider - 1
+      currentSlider === 0 ? availableCeleb?.length - 1 : currentSlider - 1
     );
   const prevFanGramSlider = () =>
     setCurrentFanGramSlider((currentFanGramSlider) =>
@@ -36,17 +47,17 @@ const CelebrityCards = () => {
   const nextSlider = useCallback(
     () =>
       setCurrentSlider((currentSlider) =>
-        currentSlider === availableCeleb.length - 1 ? 0 : currentSlider + 1
+        currentSlider === availableCeleb?.length - 1 ? 0 : currentSlider + 1
       ),
-    []
+    [availableCeleb?.length]
   );
 
   const nextFanGramSlider = useCallback(
     () =>
       setCurrentFanGramSlider((currentSlider) =>
-        currentSlider === fanGramCeleb.length - 1 ? 0 : currentSlider + 1
+        currentSlider === fanGramCeleb?.length - 1 ? 0 : currentSlider + 1
       ),
-    []
+    [fanGramCeleb?.length]
   );
 
   const handleDotClick = (index: number) => {
@@ -68,6 +79,10 @@ const CelebrityCards = () => {
 
     return () => clearInterval(intervalId);
   }, [nextSlider, nextFanGramSlider]);
+
+  if (isLoading) {
+    return <Spinner />;
+  }
 
   return (
     <div className="space-y-8 ">

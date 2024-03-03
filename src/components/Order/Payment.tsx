@@ -101,29 +101,9 @@ const Payment = () => {
             </p>
             <p className="text-primary">Iamduteraboys@gmail.com</p>
 
-            <div className="mt-8">
-              <Label className="text-black font-medium ">Billing Phone</Label>
-              <PhoneInput
-                international
-                defaultCountry="PK"
-                value={value}
-                onChange={setValue}
-                className="border rounded-lg bg-[#F7F7F7] text-black px-4 mt-2 bg-"
-                placeholder="Enter Your Mobile Number"
-              />
-            </div>
-            <div className="flex items-center space-x-2 mt-3">
-              <Checkbox id="terms" />
-              <label
-                htmlFor="terms"
-                className="lg:text-sm text-xs font-medium leading-none peer-disabled:cursor-not-allowed text-black peer-disabled:opacity-70"
-              >
-                I’m purchasing as a company
-              </label>
-            </div>
             <PaymentStepFooter
-              // activeStep={activeStep}
-              // handleNext={handleNext}
+            // activeStep={activeStep}
+            // handleNext={handleNext}
             />
           </div>
         </div>

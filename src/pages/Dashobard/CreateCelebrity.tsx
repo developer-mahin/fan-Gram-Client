@@ -82,12 +82,12 @@ const CreateCelebrity = () => {
   };
 
   return (
-    <div className="px-4">
+    <div className="lg:px-4">
       <h2 className="mb-4 text-2xl font-semibold leading">
         Create Celebrities
       </h2>
       <FForm onSubmit={onSubmit}>
-        <div className="grid grid-cols-3 gap-6">
+        <div className="grid lg:grid-cols-3 gap-6">
           <FInput
             name="celebrityName"
             type="text"

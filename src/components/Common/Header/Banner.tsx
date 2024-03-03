@@ -1,28 +1,16 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-// import allu from "@/assets/allu.jpg";
 import hashTag from "@/assets/hasTag.png";
-// import jacklin from "@/assets/jacklin.jpg";
-// import salman from "@/assets/salman.jpg";
-// import silpa from "@/assets/silpa.jpg";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { useGetAllBannerImageQuery } from "@/redux/features/Banner/bannerApi";
 import { SearchIcon } from "lucide-react";
-// import Autoplay from "embla-carousel-autoplay";
 import "../../../styles/global.css";
-
 import { Swiper, SwiperSlide } from "swiper/react";
-
 import "swiper/css";
+import "swiper/css/effect-fade";
 import "swiper/css/grid";
 import "swiper/css/pagination";
-
-import { Pagination, Grid, Autoplay } from "swiper/modules";
-// import {
-//   Carousel,
-//   CarouselContent,
-//   CarouselItem,
-// } from "@/components/ui/carousel";
+import { Autoplay, EffectFade, Grid, Pagination } from "swiper/modules";
 
 const Banner = () => {
   const { data: bannerImage, isLoading } = useGetAllBannerImageQuery(undefined);
@@ -33,7 +21,7 @@ const Banner = () => {
   // const images = [silpa, jacklin, salman, allu, silpa, jacklin, salman, allu];
 
   return (
-    <div className="flex lg:flex-row flex-col-reverse items-center gap-12 lg:h-[90vh] h-fit">
+    <div className="flex lg:flex-row flex-col-reverse items-center lg:gap-12 lg:h-[90vh] h-fit">
       <div className="">
         <img className="lg:w-[363px] w-[200px]" src={hashTag} alt="" />
         <h2 className="lg:w-[750px] w-full font-bold lg:text-[55px] text-3xl text-white lg:leading-[60px] leading-[40px]">
@@ -56,6 +44,7 @@ const Banner = () => {
         grid={{
           rows: 2,
         }}
+        // effect="fade"
         autoplay={{
           delay: 2500,
           disableOnInteraction: false,
@@ -64,16 +53,21 @@ const Banner = () => {
         pagination={{
           clickable: true,
         }}
-        modules={[Grid, Autoplay, Pagination]}
+        breakpoints={{
+          320: {
+            spaceBetween: 30,
+          },
+        }}
+        modules={[Grid, Autoplay, Pagination, EffectFade]}
         className="mySwiper"
       >
-        <div>
+        {/* <div>
           {bannerImage?.data?.map((item: any) => {
             return (
               <SwiperSlide>
                 <div>
                   <img
-                    className="rounded-[15px] object-cover lg:w-[280px] w-[180px]  lg:h-[287px] h-[180px]"
+                    className="rounded-[15px] object-cover lg:w-[280px] w-[180px] lg:h-[287px] h-[180px]"
                     src={`http://localhost:5000/uploads/${item.path}`}
                     alt=""
                   />
@@ -81,7 +75,7 @@ const Banner = () => {
               </SwiperSlide>
             );
           })}
-        </div>
+        </div> */}
       </Swiper>
 
       {/* <Carousel

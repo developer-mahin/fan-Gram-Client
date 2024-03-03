@@ -16,18 +16,18 @@ export const buttonValues = [
 
 export const deliveryFree = [
   {
-    value: "within4DaysFree",
+    value: "0",
     label: "Within 4 days Free",
   },
 ];
 
 export const surpriseTo = [
   {
-    value: "yes,GoHead₹1500",
+    value: "1500",
     label: "Yes, go head ₹1500",
   },
   {
-    value: "No, Skip for now",
+    value: "0",
     label: "No, Skip for now",
   },
 ];
