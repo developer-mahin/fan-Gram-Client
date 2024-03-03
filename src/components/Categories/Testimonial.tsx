@@ -1,5 +1,4 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { testimonialData } from "@/Data/testimonialData";
 import { useEffect, useState } from "react";
 import { BsFillStarFill } from "react-icons/bs";
 import { IoIosArrowBack, IoIosArrowForward } from "react-icons/io";
@@ -8,11 +7,17 @@ import FIconButton from "../Common/FIconButton";
 import SectionTitle from "../Common/SectionTitle";
 
 const Testimonial = () => {
-  const [people] = useState(testimonialData);
   const [index, setIndex] = useState(0);
+  const [people, setPeople] = useState([]);
 
   useEffect(() => {
-    const lastIndex = people.length - 1;
+    fetch("http://localhost:5000/api/v1/testimonial")
+      .then((res) => res.json())
+      .then((data) => setPeople(data.data));
+  }, []);
+
+  useEffect(() => {
+    const lastIndex = people?.length - 1;
     if (index < 0) {
       setIndex(lastIndex);
     }
@@ -43,26 +48,30 @@ const Testimonial = () => {
         <div className="lg:flex hidden items-center gap-5">
           <FIconButton
             handler={() => setIndex(index - 1)}
+            // handler={prevSlider}
             Icon={IoIosArrowBack}
           />
           <FIconButton
             handler={() => setIndex(index + 1)}
+            // handler={nextSlider}
             Icon={IoIosArrowForward}
             className="bg-primary text-white"
             iconClass="text-white"
           />
         </div>
       </div>
+
       <div className="section-center ">
-        {people.map((item, indexPeople) => {
-          const { name, img, occupation, review } = item;
+        {people?.map((item: any, indexPeople: number) => {
+          const { name, videoUrl, occasion, review } = item;
+
           let position = "nextSlide";
           if (indexPeople === index) {
             position = "activeSlide";
           }
           if (
             indexPeople === index - 1 ||
-            (index === 0 && indexPeople === people.length - 1)
+            (index === 0 && indexPeople === people?.length - 1)
           ) {
             position = "lastSlide";
           }
@@ -71,8 +80,13 @@ const Testimonial = () => {
               className={`${position}  lg:px-20 px-4 grid lg:grid-cols-2 mx-auto bg-[#292929]`}
               key={indexPeople}
             >
-              <div className="">
-                <img src={img} alt={name} className="h-[480px]" />
+              <div className="lg:pl-16">
+                <video
+                  controls
+                  className="h-[480px] rounded-2xl object-cover lg:w-[330px]"
+                >
+                  <source src={`http://localhost:5000/uploads/${videoUrl}`} />
+                </video>
               </div>
               <div className=" bg-[url('@/assets/quate.png')] lg:mt-[120px] bg-no-repeat lg:w-[544px]">
                 <div className="lg:px-10">
@@ -87,12 +101,12 @@ const Testimonial = () => {
                         <BsFillStarFill className="text-[#FFC107] text-xl" />
                       </div>
                       <p className="text-white font-bold">{name}</p>
-                      <p className="text-white text-sm">{occupation}</p>
+                      <p className="text-white text-sm">{occasion}</p>
                     </div>
                   </div>
                 </div>
                 <div className="lg:hidden block">
-                  {testimonialData.map((_: any, index: number) => (
+                  {people?.map((_: any, index: number) => (
                     <button
                       key={index}
                       onClick={() => setIndex(index - 1)}

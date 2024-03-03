@@ -7,9 +7,13 @@ import Slider from "react-slick";
 import "../../styles/global.css";
 import SectionTitle from "../Common/SectionTitle";
 import Spinner from "../Spinner/Spinner";
+import { useAppDispatch } from "@/redux/hooks";
+import { addToWishList } from "@/redux/features/Global/globalSlice";
 
 const FeaturedCelebrity = () => {
   const { data: allCelebrity, isLoading } = useGetAllCelebrityQuery(undefined);
+
+  const dispatch = useAppDispatch();
 
   const settings = {
     className: "center",
@@ -70,7 +74,10 @@ const FeaturedCelebrity = () => {
                         "flex justify-end pt-4 mr-2 pb-0 items-end text-white"
                       }
                     >
-                      <button className="bg-[#FCAE4B] rounded-full flex items-center justify-center p-1.5">
+                      <button
+                        onClick={() => dispatch(addToWishList(item))}
+                        className="bg-[#FCAE4B] rounded-full flex items-center justify-center p-1.5"
+                      >
                         <CiHeart className="text-xl" />
                       </button>
                     </div>

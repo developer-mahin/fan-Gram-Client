@@ -104,7 +104,14 @@ input.PhoneInputInput:focus {
   .swiper-wrapper {
     width: 100vw !important;
   }
-  .mySwiper{
+  .mySwiper {
     margin-top: 50px;
+  }
+
+  .ReactModal__Content.ReactModal__Content--after-open {
+    transform: translate(-72%, -71%) !important;
+    padding: 5px !important;
+    inset: 48% auto auto 48% !important;
+    width: 65% !important;
   }
 }

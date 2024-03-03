@@ -6,9 +6,11 @@ import BookCeleb from "@/pages/BookCeleb";
 import Categories from "@/pages/Categories";
 import AllBannerImages from "@/pages/Dashobard/AllBannerImages";
 import AllCelebrities from "@/pages/Dashobard/AllCelebrities";
+import AllTestimonial from "@/pages/Dashobard/AllTestimonial";
 import CreateBannerImage from "@/pages/Dashobard/CreateBannerImage";
 import CreateCelebrity from "@/pages/Dashobard/CreateCelebrity";
 import CreateLatestWork from "@/pages/Dashobard/CreateLatestWork";
+import CreateTestimonial from "@/pages/Dashobard/CreateTestimonial";
 import FaqData from "@/pages/Dashobard/FaqData";
 import HomePageFAQ from "@/pages/Dashobard/HomePageFAQ";
 import LatestWorks from "@/pages/Dashobard/LatestWorks";
@@ -111,6 +113,14 @@ const router = createBrowserRouter([
       {
         path: "/dashboard/faq-data",
         element: <FaqData />,
+      },
+      {
+        path: "/dashboard/create-testimonial",
+        element: <CreateTestimonial />,
+      },
+      {
+        path: "/dashboard/testimonial-data",
+        element: <AllTestimonial />,
       },
     ],
   },

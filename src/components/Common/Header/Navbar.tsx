@@ -7,9 +7,12 @@ import { Link } from "react-router-dom";
 import logo from "../../../assets/logo.png";
 import Container from "../Container";
 import FNavLink from "../FNavLink";
+import FModal from "../FModal";
+import { SignUpModal } from "@/components/Modal/SignUpModal";
 
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [buttonText, setButtonText] = useState(0);
 
   return (
     <Container>
@@ -32,14 +35,24 @@ const Navbar = () => {
               </Link>
             </li>
             <li>
-              <LoginModal />
+              <FModal>
+                {buttonText === 0 ? (
+                  <LoginModal setButtonText={setButtonText} />
+                ) : (
+                  <SignUpModal setButtonText={setButtonText} />
+                )}
+              </FModal>
             </li>
           </ul>
           <div className="lg:hidden">
             <div className="flex items-center gap-2.5">
-              <Button className="bg-primary hover:bg-primary rounded-full">
-                Login/Signup
-              </Button>
+              <FModal>
+                {buttonText === 0 ? (
+                  <LoginModal setButtonText={setButtonText} />
+                ) : (
+                  <SignUpModal setButtonText={setButtonText} />
+                )}
+              </FModal>
 
               <button
                 className="bg-primary p-1 rounded-full text-white "
