@@ -16,6 +16,13 @@ import { Button } from "../ui/button";
 
 export function BookCelebCard() {
   const { id } = useParams();
+<<<<<<< HEAD
+=======
+  const { data: celebrity, isLoading } = useGetSingleCelebrityQuery(id);
+
+  console.log(celebrity);
+
+>>>>>>> 66b7b2868fecbb15568520db4b06bc3015bd3eb1
   const {
     data: celebrity,
     isLoading,

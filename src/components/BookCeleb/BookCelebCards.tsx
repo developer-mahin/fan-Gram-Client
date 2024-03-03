@@ -17,6 +17,10 @@ const BookCelebCards = () => {
   const [currentSlider, setCurrentSlider] = useState(0);
   const [currentFanGramSlider, setCurrentFanGramSlider] = useState(0);
   const { data: allCelebrity, isLoading } = useGetAllCelebrityQuery(undefined);
+  console.log(allCelebrity);
+
+  // const availableCeleb = data?.filter((celeb) => celeb?.earlyResponse === true);
+  // const fanGramCeleb = data?.filter((celeb) => celeb?.earlyResponse !== true);
 
   const prevSlider = () =>
     setCurrentSlider((currentSlider) =>

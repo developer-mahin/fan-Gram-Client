@@ -61,7 +61,7 @@ const Banner = () => {
         modules={[Grid, Autoplay, Pagination, EffectFade]}
         className="mySwiper"
       >
-        <div>
+        {/* <div>
           {bannerImage?.data?.map((item: any) => {
             return (
               <SwiperSlide>
@@ -75,7 +75,7 @@ const Banner = () => {
               </SwiperSlide>
             );
           })}
-        </div>
+        </div> */}
       </Swiper>
 
       {/* <Carousel

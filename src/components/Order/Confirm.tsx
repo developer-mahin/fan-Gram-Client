@@ -2,15 +2,12 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import colorMark from "@/assets/colorMark.png";
 import colourInsta from "@/assets/colourInsta.png";
-import colorFan from "@/assets/coorFanGram.png";
 import greenTick from "@/assets/greenTick.png";
 import guarantee from "@/assets/guarantee.png";
-import hd from "@/assets/hd.png";
 import help from "@/assets/help.png";
 import save from "@/assets/save.png";
 import secured from "@/assets/secured.png";
 import star from "@/assets/star.png";
-import sunny from "@/assets/sunny.png";
 import { E164Number } from "libphonenumber-js/core";
 import { Plus } from "lucide-react";
 import { useState } from "react";
@@ -22,6 +19,9 @@ import { Button } from "../ui/button";
 import { Input } from "../ui/input";
 import { Label } from "../ui/label";
 import ConfirmStepFooter from "./ConfirmStepFooter";
+import { useParams } from "react-router-dom";
+import { useGetSingleCelebrityQuery } from "@/redux/features/Celebrity/celebrityApi";
+import Spinner from "../Spinner/Spinner";
 
 type TFakeData = {
   img: any;
@@ -54,7 +54,16 @@ type TConfirmProps = {
 
 const Confirm = ({ activeStep, handleNext }: TConfirmProps) => {
   const [value, setValue] = useState<E164Number | undefined>("");
+  const { id } = useParams();
+  const { data: celebrityData, isLoading } = useGetSingleCelebrityQuery(id);
 
+  if (isLoading) {
+    return <Spinner />;
+  }
+
+  console.log(celebrityData);
+
+  const { celebrityName, imgUrl } = celebrityData.data;
   return (
     <>
       <Container className="mt-12">
@@ -64,11 +73,13 @@ const Confirm = ({ activeStep, handleNext }: TConfirmProps) => {
           </h4>
           <div className="flex lg:flex-row flex-col items-center gap-4 mt-5">
             <img
-              src={sunny}
+              src={imgUrl}
               alt=""
               className="size-[100px] object-cover border rounded-xl"
             />
-            <h2 className="text-4xl font-extrabold text-white">Sunny Leone</h2>
+            <h2 className="text-4xl font-extrabold text-white">
+              {celebrityName}
+            </h2>
             <div className="flex items-center gap-2">
               <img src={colorMark} className="size-8" alt="" />
               <div className="border rounded-full px-3 w-fit flex items-center gap-2 h-8">
@@ -87,13 +98,13 @@ const Confirm = ({ activeStep, handleNext }: TConfirmProps) => {
             </h4>
             <div className="flex items-center gap-4 mt-5">
               <img
-                src={sunny}
+                src={imgUrl}
                 alt=""
                 className="size-[100px] object-cover border rounded-xl"
               />
               <div className="flex-1">
                 <h2 className="text-2xl font-extrabold text-black">
-                  Sunny Leone
+                  {celebrityName}
                 </h2>
                 <p className="text-primary font-medium">Summary</p>
                 <p className="text-secondary">
@@ -165,55 +176,6 @@ const Confirm = ({ activeStep, handleNext }: TConfirmProps) => {
           </Container>
 
           <div className="bg-[url('@/assets/line.png')] w-full h-1.5 bg-no-repeat bg-center bg-cover"></div>
-
-          <Container className="py-5 lg:px-10 px-3">
-            <h2 className="text-secondary font-semibold pb-3">
-              Level Up Your Surprise
-            </h2>
-            <div className="p-3 rounded-xl flex items-center justify-between bg-[#F9F9F9]">
-              <div className="flex items-center gap-5">
-                <div className="">
-                  <img
-                    className="size-[42px] object-contain"
-                    src={colorFan}
-                    alt=""
-                  />
-                </div>
-                <div className="flex flex-col gap-y-1">
-                  <h4 className=" font-semibold text-black">
-                    Remove the FanRang Logo
-                  </h4>
-                  <p className="text-sm text-secondary gap-1.5 font-semibold">
-                    Remove the logo and show off in your circle
-                  </p>
-                </div>
-              </div>
-              <div className="px-6 flex flex-col">
-                <p className="text-black font-semibold text-sm">₹625</p>
-                <p className="text-primary font-semibold text-sm">Free</p>
-              </div>
-            </div>
-
-            <div className="p-3 rounded-xl flex items-center justify-between bg-[#F9F9F9] mt-2.5">
-              <div className="flex items-center gap-5">
-                <div className="">
-                  <img className="size-[42px] object-contain" src={hd} alt="" />
-                </div>
-                <div className="flex flex-col gap-y-1">
-                  <h4 className=" font-semibold text-black">
-                    Remove the FanRang Logo
-                  </h4>
-                  <p className="text-sm text-secondary gap-1.5 font-semibold">
-                    Remove the logo and show off in your circle
-                  </p>
-                </div>
-              </div>
-              <div className="px-6 flex flex-col">
-                <p className="text-black font-semibold text-sm">₹625</p>
-                <p className="text-primary font-semibold text-sm">Free</p>
-              </div>
-            </div>
-          </Container>
 
           <div className="bg-[url('@/assets/line.png')] w-full h-1.5 bg-no-repeat bg-center bg-cover"></div>
 
