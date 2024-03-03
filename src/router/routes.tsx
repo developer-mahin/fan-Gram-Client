@@ -56,9 +56,9 @@ const router = createBrowserRouter([
       {
         path: "/order/:id",
         element: (
-          <Order />
-          // <ProtectedRoutes role="user">
-          // </ProtectedRoutes>
+          <ProtectedRoutes role="user">
+            <Order />
+          </ProtectedRoutes>
         ),
       },
       {
