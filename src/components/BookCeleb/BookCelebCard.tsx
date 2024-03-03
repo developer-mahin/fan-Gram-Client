@@ -18,6 +18,8 @@ export function BookCelebCard() {
   const { id } = useParams();
   const { data: celebrity, isLoading } = useGetSingleCelebrityQuery(id);
 
+  console.log(celebrity);
+
   const {
     _id,
     imgUrl,

@@ -24,6 +24,7 @@ const CelebrityCards = () => {
   const { data: allCelebrityData, isLoading } =
     useGetAllCelebrityQuery(undefined);
 
+
   const availableCeleb = allCelebrityData?.data?.filter(
     (celeb: any) => celeb.earlyResponse === true
   );

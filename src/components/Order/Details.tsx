@@ -1,10 +1,5 @@
 import { buttonText } from "@/Data/detailsStepper";
-import {
-  buttonValues,
-  deliveryFree,
-  extra,
-  surpriseTo,
-} from "@/Data/detailsTabData";
+import { buttonValues, deliveryFree, surpriseTo } from "@/Data/detailsTabData";
 import colorMark from "@/assets/colorMark.png";
 import star from "@/assets/star.png";
 import FormClickableButton from "@/components/Common/FormClickableButton";
@@ -13,14 +8,13 @@ import FInput from "@/components/Form/FInput";
 import FRadioButton from "@/components/Form/FRadioButton";
 import { Label } from "@/components/ui/label";
 import { useGetSingleCelebrityQuery } from "@/redux/features/Celebrity/celebrityApi";
-import { Plus } from "lucide-react";
 import { useState } from "react";
 import { FieldValues, SubmitHandler } from "react-hook-form";
 import { useParams } from "react-router-dom";
 import Container from "../Common/Container";
 import Spinner from "../Spinner/Spinner";
-import { Button } from "../ui/button";
 import Occasion from "./Occasion";
+import Offers from "./Offers";
 
 const Details = () => {
   const [radioButton, setRadioButton] = useState("Someone Else");
@@ -38,7 +32,13 @@ const Details = () => {
     return <Spinner />;
   }
 
-  const { celebrityName, imgUrl, verified } = celebrityData.data;
+  const { celebrityName, imgUrl, verified, addOnCost } = celebrityData.data;
+  // const addOnCost = {
+  //   hd_video: 500,
+  //   effect: 600,
+  //   remove_logo: 800,
+  //   dmDiscount: 600,
+  // };
 
   const onSubmit: SubmitHandler<FieldValues> = (data) => {
     console.log(data);
@@ -139,7 +139,7 @@ const Details = () => {
             <div>
               <FRadioButton
                 buttonValues={deliveryFree}
-                defaultValue="within4DaysFree"
+                defaultValue="0"
                 setterState={setDeliveryWithFree}
                 state={deliveryWithFree}
               />
@@ -150,48 +150,14 @@ const Details = () => {
               </p>
               <FRadioButton
                 buttonValues={surpriseTo}
-                defaultValue="yes,GoHead₹1500"
+                defaultValue="1500"
                 setterState={setSurpriseToDelivery}
                 state={surpriseToDelivery}
               />
             </div>
           </div>
 
-          <div className="pt-10 pb-5">
-            <h2 className="text-3xl text-white font-bold">Extras</h2>
-            <div>
-              {extra.map((data, i) => {
-                return (
-                  <div
-                    key={i}
-                    className="p-3 rounded-xl bg-gradient-to-r from-black to-[#202020] mt-5 flex items-center justify-between"
-                  >
-                    <div className="flex lg:flex-row flex-col lg:items-center items-start lg:gap-5">
-                      <div className="bg-primary p-2 rounded-lg">
-                        <img className="size-[58px]" src={data.img} alt="" />
-                      </div>
-                      <div className="flex lg:mt-0 mt-4 flex-col gap-y-1">
-                        <h4 className="text-xl font-semibold text-white">
-                          {data.title}
-                        </h4>
-                        <p className="text-sm font-medium text-[#737373]">
-                          {data.des}
-                        </p>
-                        <p className="text-[#737373] font-medium">
-                          {data.price}
-                        </p>
-                      </div>
-                    </div>
-                    <div className="px-6 lg:mt-0 mt-4 ">
-                      <Button className="rounded-full p-0 size-8">
-                        <Plus />
-                      </Button>
-                    </div>
-                  </div>
-                );
-              })}
-            </div>
-          </div>
+          {addOnCost ? <Offers addOnCost={addOnCost} /> : ""}
         </FForm>
       </Container>
       <div className="bg-[url('@/assets/stepperBg.png')] w-full h-2.5 bg-no-repeat bg-center bg-cover mt-12"></div>
