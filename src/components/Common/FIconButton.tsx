@@ -6,6 +6,7 @@ type TIconButtonProps = {
   className?: string;
   Icon: any;
   iconClass?: string;
+  disabled?: boolean;
 };
 
 const FIconButton = ({
@@ -13,10 +14,12 @@ const FIconButton = ({
   handler,
   Icon,
   iconClass,
+  disabled,
 }: TIconButtonProps) => {
   return (
     <button
       onClick={handler}
+      disabled={disabled}
       className={cn(
         "size-12 rounded-full bg-transparent flex items-center justify-center border border-primary",
         className

@@ -1,5 +1,6 @@
 import App from "@/App";
 import DashboardLayout from "@/components/layout/DashboardLayout";
+import ProtectedRoutes from "@/components/layout/ProtectedRoutes";
 import Account from "@/pages/Account/Account";
 import BookCeleb from "@/pages/BookCeleb";
 import Categories from "@/pages/Categories";
@@ -54,7 +55,11 @@ const router = createBrowserRouter([
       },
       {
         path: "/order/:id",
-        element: <Order />,
+        element: (
+          <ProtectedRoutes role="user">
+            <Order />
+          </ProtectedRoutes>
+        ),
       },
       {
         path: "/profile",
@@ -64,7 +69,11 @@ const router = createBrowserRouter([
   },
   {
     path: "/dashboard",
-    element: <DashboardLayout />,
+    element: (
+      <ProtectedRoutes role="superAdmin">
+        <DashboardLayout />
+      </ProtectedRoutes>
+    ),
     children: [
       {
         index: true,

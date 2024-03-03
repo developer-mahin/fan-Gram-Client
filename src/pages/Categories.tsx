@@ -14,15 +14,13 @@ const Categories = () => {
     return <Spinner />;
   }
 
-  console.log(faqData.data);
-
   return (
     <Container>
       <FeaturedCelebrity />
       <CelebrityCards />
       <PromoteBusiness className="lg:p-[42px] p-[20px] rounded-2xl mt-20" />
       <Testimonial />
-      <QuestionAccordion faqData={faqData.data} />
+      <QuestionAccordion faqData={faqData?.data} />
     </Container>
   );
 };
