@@ -1,8 +1,9 @@
-import { jwtDecode } from "jwt-decode";
-import { ReactNode } from "react";
-import { Navigate } from "react-router-dom";
-import { useAppDispatch, useAppSelector } from "../../redux/hooks";
+import { setIsModalOpen } from "@/redux/features/Global/globalSlice";
 import { TUser, logOut } from "@/redux/features/users/userSlice";
+import { jwtDecode } from "jwt-decode";
+import { ReactNode, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
+import { useAppDispatch, useAppSelector } from "../../redux/hooks";
 
 type TProtectedRoutesProps = {
   children: ReactNode;
@@ -10,21 +11,24 @@ type TProtectedRoutesProps = {
 };
 
 const ProtectedRoutes = ({ children, role }: TProtectedRoutesProps) => {
+  const navigate = useNavigate();
   const { token } = useAppSelector((state) => state.user);
   const dispatch = useAppDispatch();
 
-  let user;
-  if (token) {
-    user = jwtDecode(token);
-  }
-
-  if (role !== undefined && role !== (user as TUser)?.role) {
-    dispatch(logOut());
-    return <Navigate to="/login" replace={true} />;
-  }
+  useEffect(() => {
+    if (!token) {
+      dispatch(setIsModalOpen(true));
+      navigate("/");
+    } else {
+      const user = jwtDecode(token) as TUser;
+      if (role && role !== user.role) {
+        dispatch(logOut());
+      }
+    }
+  }, [dispatch, role, token, navigate]);
 
   if (!token) {
-    return <Navigate to="/login" replace={true} />;
+    return null;
   }
 
   return children;

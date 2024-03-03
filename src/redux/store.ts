@@ -1,6 +1,7 @@
 import { configureStore } from "@reduxjs/toolkit";
 import userReducer from "./features/users/userSlice";
 import orderReducer from "./features/Order/orderSlice";
+import globalReducer from "./features/Global/globalSlice";
 import celebrityReducer from "./features/Celebrity/celebritySlice";
 import {
   persistStore,
@@ -28,6 +29,7 @@ export const store = configureStore({
     user: persistedReducer,
     celebrity: celebrityReducer,
     order: orderReducer,
+    global: globalReducer,
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({

@@ -21,7 +21,7 @@ const Banner = () => {
   // const images = [silpa, jacklin, salman, allu, silpa, jacklin, salman, allu];
 
   return (
-    <div className="flex lg:flex-row flex-col-reverse items-center lg:gap-12 lg:h-[90vh] h-fit">
+    <div className="flex lg:flex-row flex-col-reverse items-center lg:gap-12 lg:h-[90vh] h-fit relative z-0">
       <div className="">
         <img className="lg:w-[363px] w-[200px]" src={hashTag} alt="" />
         <h2 className="lg:w-[750px] w-full font-bold lg:text-[55px] text-3xl text-white lg:leading-[60px] leading-[40px]">

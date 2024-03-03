@@ -2,26 +2,30 @@
 import FForm from "@/components/Form/FForm";
 import FInput from "@/components/Form/FInput";
 import { Button } from "@/components/ui/button";
+import { setIsModalOpen } from "@/redux/features/Global/globalSlice";
 import { useVerifyEmailMutation } from "@/redux/features/users/userApi";
+import { useAppDispatch } from "@/redux/hooks";
 import { FieldValues, SubmitHandler } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 import { toast } from "sonner";
 
 const EmailVerification = () => {
-  const [verifyEmail] = useVerifyEmailMutation();
   const navigate = useNavigate();
+  const [verifyEmail] = useVerifyEmailMutation();
+  const dispatch = useAppDispatch();
   const email = localStorage.getItem("email");
 
   const handleLogin: SubmitHandler<FieldValues> = async (data) => {
     const userInfo = {
       email,
-      password: data.code,
+      code: Number(data.code),
     };
 
     try {
       const res = await verifyEmail(userInfo).unwrap();
       if (res.success) {
         navigate("/");
+        dispatch(setIsModalOpen(true));
         localStorage.clear();
         toast.success("Email Verified Successful, Please Login");
       } else {

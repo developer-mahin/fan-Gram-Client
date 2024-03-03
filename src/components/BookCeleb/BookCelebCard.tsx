@@ -16,23 +16,26 @@ import { Button } from "../ui/button";
 
 export function BookCelebCard() {
   const { id } = useParams();
-  const { data: celebrity, isLoading } = useGetSingleCelebrityQuery(id);
-
   const {
-    _id,
-    imgUrl,
-    celebrityName,
-    videoUrl,
-    bookingPrice,
-    verified,
-    meetingPrice,
-    responseIn,
-    hashtag,
-  } = celebrity.data;
+    data: celebrity,
+    isLoading,
+  } = useGetSingleCelebrityQuery(id);
 
   if (isLoading) {
     return <Spinner />;
   }
+
+  // const {
+  //   imgUrl,
+  //   celebrityName,
+  //   videoUrl,
+  //   bookingPrice,
+  //   verified,
+  //   meetingPrice,
+  //   responseIn,
+  //   hashtag,
+  //   _id,
+  // } = celebrity?.data;
 
   const settings = {
     infinite: true,
@@ -57,7 +60,7 @@ export function BookCelebCard() {
           <div>
             <img
               className="rounded-lg border border-gray-300 object-cover w-[258px] h-[262px]"
-              src={`http://localhost:5000/uploads/${imgUrl}`}
+              src={`http://localhost:5000/uploads/${celebrity?.data?.imgUrl}`}
               alt=""
             />
           </div>
@@ -66,10 +69,10 @@ export function BookCelebCard() {
             <div className="flex flex-col gap-2">
               <div className="flex items-center gap-2">
                 <h2 className="lg:text-4xl text-lg font-extrabold text-white">
-                  {celebrityName}
+                  {celebrity?.data?.celebrityName}
                 </h2>
                 <div className="flex items-center gap-2">
-                  {verified && (
+                  {celebrity?.data?.verified && (
                     <img src={colorMark} className="lg:size-8 size-6 " alt="" />
                   )}
                   <div className="border rounded-full px-3 w-fit flex items-center gap-2 h-8">
@@ -79,10 +82,10 @@ export function BookCelebCard() {
                 </div>
               </div>
               <p>
-                Responds In <span className="text-primary">{responseIn}</span>
+                Responds In <span className="text-primary">{celebrity?.data?.responseIn}</span>
               </p>
               <div className="flex lg:flex-row flex-col gap-3 items-center mt-3">
-                {hashtag?.map((tag: string, index: number) => (
+                {celebrity?.data?.hashtag?.map((tag: string, index: number) => (
                   <p
                     key={index}
                     className="rounded-full bg-[#292929] flex items-center justify-center h-10 px-4"
@@ -92,16 +95,16 @@ export function BookCelebCard() {
                 ))}
               </div>
               <div className="flex lg:flex-row lg:items-start items-center flex-col gap-3 mt-3">
-                <Link to={`/order/${_id}`}>
+                <Link to={`/order/${celebrity?.data?._id}`}>
                   <Button className="px-6 rounded-3xl">
-                    Book Video @ ₹{bookingPrice}
+                    Book Video @ ₹{celebrity?.data?.bookingPrice}
                   </Button>
                 </Link>
                 <div className="flex gap-3  items-center">
                   <div className="flex gap-1 items-center border border-primary rounded-3xl pl-6">
                     <div className="lg:text-sm text-xs">Meet & Greet</div>
                     <div className="text-xs bg-primary rounded-bl-full rounded-tr-full rounded-br-full px-6 py-1">
-                      Starts From <br /> ₹{meetingPrice}
+                      Starts From <br /> ₹{celebrity?.data?.meetingPrice}
                     </div>
                   </div>
                   <div className="flex  lg:text-base text-xs items-center gap-1 border border-primary rounded-3xl lg:px-6 px-3 h-10">
@@ -127,8 +130,8 @@ export function BookCelebCard() {
             <div className="w-[200px] relative overflow-hidden rounded-xl">
               <div className="slider-container">
                 <Slider {...settings}>
-                  {videoUrl.length &&
-                    videoUrl?.map((video: any, inx: number) => {
+                  {celebrity?.data?.videoUrl.length &&
+                    celebrity?.data?.videoUrl?.map((video: any, inx: number) => {
                       return (
                         <React.Fragment key={inx}>
                           <video controls className="w-full">
